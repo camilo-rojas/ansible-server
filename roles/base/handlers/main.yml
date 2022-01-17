@@ -1,0 +1,15 @@
+---
+- name: apt_update
+  apt: update_cache=yes
+
+- name: restart_sshd
+  service:
+    name: "{{ openssh_service }}"
+    state: restarted
+
+- name: update_tmux_plugin_perms
+  file:
+    path: /home/camilor/.tmux/plugins
+    owner: camilor
+    group: camilor
+    recurse: true
