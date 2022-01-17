@@ -11,7 +11,6 @@
       when: ansible_distribution == "Archlinux"
 
   tasks:
-
   - name: aurman user
     user:
       name: aurman
@@ -29,9 +28,16 @@
 #    aur:
 #      name: yay
 #      use: makepkg
-#      skip_installed: true  s
+#      skip_installed: true
 
   - name: install apps
     package:
       name: '{{ packages }}'
       state: latest
+
+  - name: change font size alacritty
+    lineinfile:
+      dest: ~/.config/alacritty/alacritty.yml
+      regexp: "^%  size: 12"
+      line: "  size:10"
+    
