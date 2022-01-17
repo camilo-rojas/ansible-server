@@ -3,7 +3,7 @@
   tags: always
   connection: local
   become: true
-  pre_taks:
+  pre_tasks:
     - name: pre-run update package cache
       tags: always
       pacman: update_cahe=yes
