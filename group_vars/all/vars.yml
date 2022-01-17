@@ -4,4 +4,4 @@ packages:
   - openssh
   - git
 
- alacritty_font_size: 10
+alacritty_font_size: 10
