@@ -37,6 +37,8 @@
 
   - name: change font size alacritty
     lineinfile:
-      dest: ~/.config/alacritty/alacritty.yml
-      regexp: "size: 12"
-      line: "size: 10"
+      path: ~/.config/alacritty/alacritty.yml
+      regexp: "  size: 12"
+      line: "    size: 10"
+      state: present
+      backup: yes
