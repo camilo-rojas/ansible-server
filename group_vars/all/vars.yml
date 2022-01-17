@@ -1,0 +1,6 @@
+username: camilor
+packages:
+  - htop
+  - tmux
+  - openssh
+  - git

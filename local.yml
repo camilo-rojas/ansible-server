@@ -33,9 +33,4 @@
 
   - name: install apps
     package:
-      name:
-        - htop
-        - openssh
-        - git
-        - tmux 
-        - vi
+      name: '{{ packages }}'
