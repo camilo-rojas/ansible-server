@@ -5,3 +5,4 @@ packages:
   - git
 
 alacritty_font_size: 10
+servername: homeServer
