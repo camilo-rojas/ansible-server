@@ -39,5 +39,5 @@
     replace:
       path: /home/camilor/.config/alacritty/alacritty.yml
       regexp: "  size: 12"
-      replace: "  size: '{{ alacritty_font_size }}"
+      replace: "  size: {{ alacritty_font_size }}"
       backup: yes
