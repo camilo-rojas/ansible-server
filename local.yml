@@ -1,0 +1,10 @@
+---
+- hosts: localhosts
+  connection: local
+  become: true
+  
+  tasks:
+  - name: install apps
+    package:
+      name: htop
+
