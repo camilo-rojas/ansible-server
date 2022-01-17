@@ -3,15 +3,8 @@
   connection: local
   become: true
   
-#  vars_files:
-#    - vault
-
   tasks:
-#  - name: prepare system
-#    hosts: lan
-#    become: yes
-#    gather_facts: no
- 
+
   - name: aurman user
     user:
       name: aurman
@@ -34,3 +27,4 @@
   - name: install apps
     package:
       name: '{{ packages }}'
+      state: latest
