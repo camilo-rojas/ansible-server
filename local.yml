@@ -23,13 +23,13 @@
       dest: /etc/sudoers.d/aurman
       validate: 'visudo -cf %s'
 
-  - name: install yay
-    become: yes
-    become_user: aurman
-    aur:
-      name: yay
-      use: makepkg
-      skip_installed: true 
+#  - name: install yay
+#    become: yes
+#    become_user: aurman
+#    aur:
+#      name: yay
+#      use: makepkg
+#      skip_installed: true 
 
   - name: install apps
     package:
@@ -38,3 +38,4 @@
         - openssh
         - git
         - tmux 
+        - vi
