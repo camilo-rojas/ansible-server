@@ -5,6 +5,7 @@ packages:
   - tmux
   - openssh
   - git
+  - zsh
 
 alacritty_font_size: 12
 servername: homeServer
