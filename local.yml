@@ -1,7 +1,14 @@
 ---
 - hosts: localhost
+  tag: always
   connection: local
   become: true
+  pre_taks:
+    - name: pre-run update package cache
+      tags: always
+      pacman: update_cahe=yes
+      changed_when: fales
+      when: ansible_distribution == "Archlinux"
   
   tasks:
 
