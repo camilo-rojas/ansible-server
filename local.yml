@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  tag: always
+  tags: always
   connection: local
   become: true
   pre_taks:
