@@ -9,9 +9,8 @@
       pacman: update_cache=yes
       changed_when: false
       when: ansible_distribution == "Archlinux"
-  
-  tasks:
 
+  tasks:
   - name: aurman user
     user:
       name: aurman
@@ -29,9 +28,22 @@
 #    aur:
 #      name: yay
 #      use: makepkg
-#      skip_installed: true 
+#      skip_installed: true
 
   - name: install apps
     package:
       name: '{{ packages }}'
       state: latest
+
+  - name: change font size alacritty
+    replace:
+      path: /home/camilor/.config/alacritty/alacritty.yml
+      regexp: "  size: 12"
+      replace: "  size: {{ alacritty_font_size }}"
+      backup: yes
+
+  - name: start openssh daemon
+    ansible.builtin.systemd:
+        name: sshd
+        enabled: yes
+        masked: no
