@@ -1,5 +1,5 @@
 # Load distro-specific variables
-- include_vars: "{{ ansible_distribution }}.yml"
+- include_vars: "Archlinux.yml"
   tags: always
 
 
