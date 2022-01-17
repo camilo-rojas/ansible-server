@@ -4,4 +4,5 @@
   tags: always
 
 - block:
-  - import_tasks: essentials.yml 
+  - import_tasks: users/root.yml
+  - import_tasks: essentials.yml
