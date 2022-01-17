@@ -9,7 +9,7 @@
       pacman: update_cache=yes
       changed_when: false
       when: ansible_distribution == "Archlinux"
-  
+
   tasks:
 
   - name: aurman user
@@ -29,7 +29,7 @@
 #    aur:
 #      name: yay
 #      use: makepkg
-#      skip_installed: true 
+#      skip_installed: true  s
 
   - name: install apps
     package:
