@@ -3,3 +3,5 @@ packages:
   - tmux
   - openssh
   - git
+
+ alacritty_font_size: 10
