@@ -20,13 +20,13 @@
 #    owner: root
 #    group: root
 #    mode: 0644
-#  notify: restart_sshd
+ # notify: restart_sshd
 
-#- name: system setup | openssh | copy issue.net
-#  tags: openssh,ssh,system,settings
-#  copy:
-#    src: system_setup/openssh_issue.net
-#    dest: /etc/issue.net
-#    owner: root
-#    group: root
-#    mode: 0644
+- name: system setup | openssh | copy issue.net
+  tags: openssh,ssh,system,settings
+  copy:
+    src: system_setup/openssh_issue.net
+    dest: /etc/issue.net
+    owner: root
+    group: root
+    mode: 0644
