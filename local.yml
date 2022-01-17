@@ -44,6 +44,6 @@
 
   - name: start openssh daemon
     ansible.builtin.systemd:
-        name: openssh
+        name: sshd
         enabled: yes
         masked: no
