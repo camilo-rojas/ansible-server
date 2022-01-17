@@ -1,0 +1,10 @@
+camilor_passwd: password-hash-goes-here
+swappiness_value: 5
+packages:
+  - htop
+  - tmux
+  - openssh
+  - git
+
+alacritty_font_size: 12
+servername: homeServer

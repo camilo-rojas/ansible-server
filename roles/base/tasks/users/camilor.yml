@@ -1,0 +1,154 @@
+- name: users | camilor | create group
+  tags: groups,camilor,users
+  group:
+    name: camilor
+    state: present
+
+- name: users | camilor | create user
+  tags: camilor,sudo,users
+  user:
+    name: camilor
+    group: camilor
+    groups: adm,ansible,{{ sudo_group }}
+    state: present
+    comment: "Camilo Rojas"
+    password: "{{ camilor_passwd }}"
+    shell: /bin/bash
+
+- name: users | camilor | camilor | add sudoers file
+  tags: camilor,settings,sudo,system,users
+  copy:
+    src: users/sudoers_camilor
+    dest: /etc/sudoers.d/camilor
+    owner: root
+    group: root
+    mode: 0440
+
+- name: users | camilor | create .ssh directory
+  tags: dotfiles,camilor,ssh,users
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: camilor
+    group: camilor
+    mode: 0700
+  with_items:
+    - { dir: '/home/camilor/.ssh' }
+
+- name: users | camilor | add public key
+  tags: dotfiles,camilor,ssh,ssh-keys,users
+  authorized_key:
+    user: camilor
+    key: "{{ item }}"
+  with_file:
+    - users/camilor/ssh/camilor_id_ed25519.pub
+
+- name: users | camilor | create config directories
+  tags: dotfiles,camilor,tmux,users,vim,zsh
+  file:
+    path: /home/camilor/{{ item.dir }}
+    state: directory
+    owner: camilor
+    group: camilor
+    mode: 0700
+  with_items:
+    - { dir: '.bash' }
+    - { dir: '.config' }
+    - { dir: '.config/htop' }
+    - { dir: '.config/mc' }
+    - { dir: '.tmux' }
+    - { dir: '.tmux/config' }
+    - { dir: '.tmux/plugins' }
+    - { dir: '.vim' }
+    - { dir: '.vim/autoload' }
+    - { dir: '.vim/bundle' }
+    - { dir: '.vim/colors' }
+    - { dir: '.vim/ftplugin' }
+    - { dir: '.zsh' }
+
+- name: users | jay | copy tmux config (server version)
+  tags: dotfiles,users,camilor,tmux,users,vim,zsh
+  copy:
+    src: users/camilor/tmux/tmux.conf.server
+    dest: /home/camilor/.tmux.conf
+    owner: camilor
+    group: camilor
+    mode: 0600
+  when: "'server' not in group_names"
+
+- name: users | camilor | copy tmux config (workstation version)
+  tags: dotfiles,users,camilor,tmux,users,vim,zsh
+  copy:
+    src: users/camilor/tmux/tmux.conf.workstation
+    dest: /home/camilor/.tmux.conf
+    owner: camilor
+    group: camilor
+    mode: 0600
+  when: "'server' in group_names"
+
+- name: users | camilor | copy dotfiles
+  tags: dotfiles,users,camilor,tmux,users,vim,zsh
+  copy:
+    src: users/camilor/{{ item.src }}
+    dest: /home/camilor/{{ item.dest }}
+    owner: camilor
+    group: camilor
+    mode: 0600
+  with_items:
+    - { src: 'bash/bash_aliases', dest: '.bash/bash_aliases' }
+    - { src: 'bash/bash_profile', dest: '.bash_profile' }
+    - { src: 'bash/bash_prompt', dest: '.bash/bash_prompt' }
+    - { src: 'bash/bash_functions', dest: '.bash/bash_functions' }
+    - { src: 'bash/bashrc', dest: '.bashrc' }
+    - { src: 'bash/profile', dest: '.profile' }
+    - { src: 'git/gitconfig', dest: '.gitconfig' }
+    - { src: 'htop/htoprc', dest: '.config/htop/htoprc' }
+    - { src: 'inputrc', dest: '.inputrc' }
+    - { src: 'mc/mc.ini', dest: '.config/mc/ini' }
+    - { src: 'vim/vimrc', dest: '.vimrc' }
+    - { src: 'zsh/zshrc', dest: '.zshrc' }
+
+- name: users | camilor | clone tmux-completion plugin repository
+  tags: dotfiles,camilor,users,tmux
+  git:
+    repo: https://github.com/srsudar/tmux-completion.git
+    dest: /home/camilor/.tmux/plugins/completion
+    force: yes
+  notify: update_tmux_plugin_perms
+
+- name: users | camilor | clone tmux-continuum plugin repository
+  tags: dotfiles,camilor,users,tmux
+  git:
+    repo: https://github.com/tmux-plugins/tmux-continuum
+    dest: /home/camilor/.tmux/plugins/continuum
+    force: yes
+  notify: update_tmux_plugin_perms
+
+- name: users | camilor | clone tmux-resurrect plugin repository
+  tags: dotfiles,camilor,users,tmux
+  git:
+    repo: https://github.com/tmux-plugins/tmux-resurrect
+    dest: /home/camilor/.tmux/plugins/resurrect
+    force: yes
+  notify: update_tmux_plugin_perms
+
+- name: users | camilor | copy individual zsh config files
+  tags: dotfiles,camilor,users,zsh
+  copy:
+    src: users/camilor/zsh/{{ item.src }}
+    dest: /home/camilor/.zsh/{{ item.src }}
+    owner: camilor
+    group: camilor
+    mode: 0600
+  with_items:
+    - { src: 'aliases.zsh' }
+    - { src: 'bindkey.zsh' }
+    - { src: 'completion.zsh' }
+    - { src: 'exports.zsh' }
+    - { src: 'functions.zsh' }
+    - { src: 'history.zsh' }
+    - { src: 'path.zsh' }
+    - { src: 'plugins.zsh' }
+    - { src: 'prompt.zsh' }
+    - { src: 'setopt.zsh' }
+    - { src: 'theming.zsh' }
