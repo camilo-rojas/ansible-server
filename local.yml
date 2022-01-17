@@ -41,3 +41,9 @@
       regexp: "  size: 12"
       replace: "  size: {{ alacritty_font_size }}"
       backup: yes
+
+  - name: start openssh daemon
+    ansible.builtin.systemd:
+        name: openssh
+        enabled: yes
+        masked: no
