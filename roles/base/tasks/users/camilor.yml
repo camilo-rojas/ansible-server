@@ -24,6 +24,12 @@
     group: root
     mode: 0440
 
+- name: users | camilor | check sudoer file
+  template:
+    src: users/sudoers_camilor
+    dest: /etc/sudoers.d/camilor
+    validate: 'visudo -cf %s'
+
 - name: users | camilor | create .ssh directory
   tags: dotfiles,camilor,ssh,users
   file:
