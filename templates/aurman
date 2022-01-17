@@ -1,2 +1,0 @@
-aurman ALL=(ALL) NOPASSWD: /usr/bin/pacman
-aurman ALL=(ALL) NOPASSWD: /usr/bin/gpg
