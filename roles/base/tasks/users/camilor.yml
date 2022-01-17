@@ -67,7 +67,7 @@
     - { dir: '.vim/ftplugin' }
     - { dir: '.zsh' }
 
-- name: users | jay | copy tmux config (server version)
+- name: users | camilor | copy tmux config (server version)
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
   copy:
     src: users/camilor/tmux/tmux.conf.server
