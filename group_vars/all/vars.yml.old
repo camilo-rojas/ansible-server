@@ -1,9 +1,0 @@
-packages:
-  - htop
-  - tmux
-  - openssh
-  - git
-  - zsh
-
-alacritty_font_size: 10
-servername: homeServer
