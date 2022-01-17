@@ -6,7 +6,7 @@
   pre_tasks:
     - name: pre-run update package cache
       tags: always
-      pacman: update_cahe=yes
+      pacman: update_cache=yes
       changed_when: false
       when: ansible_distribution == "Archlinux"
   
