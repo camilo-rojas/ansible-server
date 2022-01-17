@@ -4,16 +4,16 @@
     name: camilor
     state: present
 
-- name: users | camilor | create user
-  tags: camilor,sudo,users
-  user:
-    name: camilor
-    group: camilor
-    groups: adm,ansible,{{ sudo_group }}
-    state: present
-    comment: "Camilo Rojas"
-    password: "{{ camilor_passwd }}"
-    shell: /bin/bash
+#- name: users | camilor | create user
+#  tags: camilor,sudo,users
+#  user:
+#    name: camilor
+#    group: camilor
+#    groups: adm,{{ sudo_group }}
+#    state: present
+#    comment: "Camilo Rojas"
+#    password: "{{ camilor_passwd }}"
+#    shell: /bin/bash
 
 - name: users | camilor | camilor | add sudoers file
   tags: camilor,settings,sudo,system,users
