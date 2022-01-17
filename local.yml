@@ -1,5 +1,5 @@
 ---
-- hosts: localhosts
+- hosts: localhost
   connection: local
   become: true
   
