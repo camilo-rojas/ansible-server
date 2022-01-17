@@ -11,10 +11,6 @@
       - "{{ dconf_package }}"
       - "{{ python_psutil_package }}"
 
-- name: Set the hostname
-  hostname:
-    name: "{{ servername }}"
-
 - name: aurman user
   user:
     name: aurman
