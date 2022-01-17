@@ -6,10 +6,8 @@
   tasks:
   - name: install apps
     package:
-      name: 
+      name:
         - htop
         - openssh
         - git
-        - tmux
-
-  - name: 
+        - tmux 
