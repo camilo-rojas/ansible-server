@@ -13,7 +13,7 @@
 
 - name: Set the hostname
   hostname:
-  name: "{{ servername }}"
+    name: "{{ servername }}"
 
 - name: aurman user
   user:
