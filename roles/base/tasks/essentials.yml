@@ -1,0 +1,54 @@
+tasks:
+- name: ansible setup | ensure ansible is the latest version
+  tags: ansible,ansible-setup
+  package:
+    name: ansible
+    state: latest
+
+- name: ansible setup | install required packages
+  tags: ansible,ansible-setup,packages
+  package:
+    name:
+      - "{{ dconf_package }}"
+      - "{{ python_psutil_package }}"
+
+- name: Set the hostname
+  hostname:
+  name: "{{ servername }}"
+
+- name: aurman user
+  user:
+    name: aurman
+    group: wheel
+
+- name: aurman permisions
+  template:
+    src: aurman
+    dest: /etc/sudoers.d/aurman
+    validate: 'visudo -cf %s'
+
+#  - name: install yay
+#    become: yes
+#    become_user: aurman
+#    aur:
+#      name: yay
+#      use: makepkg
+#      skip_installed: true
+
+- name: install apps
+  package:
+    name: '{{ packages }}'
+    state: latest
+
+- name: change font size alacritty
+  replace:
+    path: /home/camilor/.config/alacritty/alacritty.yml
+    regexp: "  size: 12"
+    replace: "  size: {{ alacritty_font_size }}"
+    backup: yes
+
+- name: start openssh daemon
+  ansible.builtin.systemd:
+      name: sshd
+      enabled: yes
+      masked: no
