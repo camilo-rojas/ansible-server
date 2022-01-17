@@ -1,3 +1,4 @@
+# Ansible setup
 - name: ansible setup | ensure ansible is the latest version
   tags: ansible,ansible-setup
   package:
@@ -10,17 +11,6 @@
     name:
       - "{{ dconf_package }}"
       - "{{ python_psutil_package }}"
-
-- name: aurman user
-  user:
-    name: aurman
-    group: wheel
-
-- name: aurman permisions
-  template:
-    src: aurman
-    dest: /etc/sudoers.d/aurman
-    validate: 'visudo -cf %s'
 
 #  - name: install yay
 #    become: yes
