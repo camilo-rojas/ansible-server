@@ -5,4 +5,4 @@
   tasks:
 
     - local_action:
-        command ansible-galaxy collection install -r requirements.yml --roles-path roles
+        command ansible-galaxy collection install -r requirements.yml

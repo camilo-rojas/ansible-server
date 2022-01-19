@@ -7,5 +7,5 @@ essential_packages:
   - git
   - zsh
 
-alacritty_font_size: 12
+alacritty_font_size: 10
 servername: homeServer

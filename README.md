@@ -2,8 +2,17 @@
 Ansible configuration for home server with all home services
 My distro is Garuda Dr460nized Arch
 
+Setup crons itself to run every 30 mins to keep package updated
+
+Installation
+
+1. Install Ansible - sudo pacman -S ansible
+2. Run initial galaxy dependencies - sudo ansible-pull -U https://github.com/camilo-rojas/ansible-server.git initialSetup.yml
+3. Run the local notebook - sudo ansible-pull -U https://github.com/camilo-rojas/ansible-server.git
+
 Available Applications
 
+Yay - AUR package manager
 Bazarr - companion to Radarr and Sonarr for downloading subtitles
 Bitwarden_rs - Self-Hosting port of password manager
 Cloud Commander - A dual panel file manager with integrated web console and text editor
@@ -20,3 +29,4 @@ Sonarr - for downloading and managing TV episodes
 Syncthing - sync directories with another device
 YouTubeDL-Material - Self-hosted YouTube downloader built on Material Design
 ZNC - IRC bouncer to stay connected to favourite IRC networks and channels
+Basic packages - git, tmux, openssh, htop, zsh, etc..
