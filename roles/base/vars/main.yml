@@ -1,6 +1,6 @@
 camilor_passwd: password-hash-goes-here
 swappiness_value: 5
-packages:
+essential_packages:
   - htop
   - tmux
   - openssh

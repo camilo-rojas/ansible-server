@@ -11,19 +11,27 @@
     name:
       - "{{ dconf_package }}"
       - "{{ python_psutil_package }}"
-
-#  - name: install yay
-#    become: yes
-#    become_user: aurman
-#    aur:
-#      name: yay
-#      use: makepkg
-#      skip_installed: true
-
-- name: install apps
-  package:
-    name: '{{ packages }}'
+      - '{{ packages }}'
     state: latest
+
+- name: ansible setup | ansible-aur setup
+  git:
+    repo: https://github.com/kewlfft/ansible-aur.git
+    dest: ~/.ansible/plugins/modules/aur
+    version: master
+    accept_hostkey: yes
+  become: yes
+  become_user: camilor
+  tags:
+    - ansible,ansible-setup,aur,ansible-aur
+
+- name: ansible setup | install yay
+  become: yes
+  become_user: camilor
+  aur:
+    name: yay
+    use: makepkg
+    skip_installed: true
 
 - name: change font size alacritty
   replace:
