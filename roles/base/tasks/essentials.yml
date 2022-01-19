@@ -13,11 +13,10 @@
       - "{{ python_psutil_package }}"
     state: latest
 
-- name: ansible setup | install esscential packages
+- name: ansible setup | install essential packages
   tags: ansible,ansible-setup,packages
   package:
-    name:
-      - '{{ essential_packages }}'
+    name: '{{ essential_packages }}'
     state: latest
 
 - name: ansible setup | ansible-aur setup
