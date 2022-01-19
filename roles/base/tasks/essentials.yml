@@ -11,7 +11,7 @@
     name:
       - "{{ dconf_package }}"
       - "{{ python_psutil_package }}"
-      - '{{ packages }}'
+      - '{{ essential_packages }}'
     state: latest
 
 - name: ansible setup | ansible-aur setup
