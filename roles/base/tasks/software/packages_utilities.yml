@@ -11,7 +11,6 @@
       - iotop
       - "{{ lm_sensors_package }}"
       - lsof
-      - mc
       - mosh
       - ncdu
       - net-tools
