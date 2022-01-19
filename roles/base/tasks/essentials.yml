@@ -35,7 +35,7 @@
   kewlfft.aur.aur:
     name: yay
     use: makepkg
-    skip_installed: true
+    state: latest
 
 - name: change font size alacritty
   replace:
