@@ -5,4 +5,5 @@
   tasks:
 
     - local_action:
-        command ansible-galaxy collection install -r requirements.yml
+        become: yes
+        command ansible-galaxy collection install kewlfft.aur

@@ -27,7 +27,7 @@
 - name: ansible setup | install yay
   become: yes
   become_user: camilor
-  aur:
+  kewlfft.aur.aur:
     name: yay
     use: makepkg
     skip_installed: true
