@@ -7,7 +7,7 @@ Setup crons itself to run every 30 mins to keep package updated
 Installation
 
 1. Install Ansible - sudo pacman -Sy ansible
-2. Run initial galaxy dependencies - sudo ansible-pull -U https://github.com/camilo-rojas/ansible-server.git initialSetup.yml
+2. Run initial galaxy dependencies - sudo ansible-galaxy collection install kewlfft.aur
 3. Run the local notebook - sudo ansible-pull -U https://github.com/camilo-rojas/ansible-server.git
 
 Available Applications
