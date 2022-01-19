@@ -11,6 +11,12 @@
     name:
       - "{{ dconf_package }}"
       - "{{ python_psutil_package }}"
+    state: latest
+
+- name: ansible setup | install esscential packages
+  tags: ansible,ansible-setup,packages
+  package:
+    name:
       - '{{ essential_packages }}'
     state: latest
 
