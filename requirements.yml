@@ -1,0 +1,4 @@
+#From Ansible Galaxy
+#Ansible AUR support from kewlfft
+collections:
+  - name: kewlfft.aur

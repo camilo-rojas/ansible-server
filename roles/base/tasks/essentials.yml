@@ -22,8 +22,7 @@
     accept_hostkey: yes
   become: yes
   become_user: camilor
-  tags:
-    - ansible,ansible-setup,aur,ansible-aur
+  tags: ansible,ansible-setup,aur,ansible-aur
 
 - name: ansible setup | install yay
   become: yes
