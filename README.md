@@ -11,6 +11,7 @@ Installation
 3. Run the local notebook - sudo ansible-pull -U https://github.com/camilo-rojas/ansible-server.git
 
 Available Applications
+---
 
 Yay - AUR package manager
 Bazarr - companion to Radarr and Sonarr for downloading subtitles
