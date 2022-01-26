@@ -21,20 +21,28 @@ Available Applications
 - *Prowlarr* - Indexer aggregator for Sonarr, Radarr, Lidarr, etc.
 - *Radarr* - for organizing movies
 - *Bazarr* - companion to Radarr and Sonarr for downloading subtitles
-- *Bitwarden_rs* - Self-Hosting port of password manager
-- *Cloud Commander* - A dual panel file manager with integrated web console and text editor
+- *Readerr* - books and audiobooks
+- *qBittorren* - qB
 - *Heimdall* - Home server dashboard
 - *Home Assistant* - Open source home automation
+- Basic packages - git, tmux, openssh, htop, zsh, ufw, qemu, nrpe, etc..
+
+Future apps being considered
+---
+
+- *Bitwarden_rs* - Self-Hosting port of password manager
+- *Cloud Commander* - A dual panel file manager with integrated web console and text editor
 - *n8n* - Nodemation, a node based workflow and automation service like IFTTT.
 - *netboot.xyz* - a PXE boot server
 - *Portainer* - for managing Docker and running custom images
-- *Sickchill* - for managing TV episodes
 - *Syncthing* - sync directories with another device
 - *YouTubeDL-Material* - Self-hosted YouTube downloader built on Material Design
-- Basic packages - git, tmux, openssh, htop, zsh, etc..
+
 
 Status
 ---
 
 Still work in progress until now only basic base and package management services
 are available.  Will deploy more applications as time allows.
+
+885758490 -
