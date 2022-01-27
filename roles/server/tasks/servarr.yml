@@ -3,5 +3,5 @@
     use: yay
     name:
       - lidarr
-    become: yes
-    become_user: camilor
+  become: yes
+  become_user: camilor
