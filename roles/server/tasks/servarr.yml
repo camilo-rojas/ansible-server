@@ -1,0 +1,5 @@
+- name: Install servarr using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - Lidarr

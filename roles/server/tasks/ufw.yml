@@ -310,6 +310,14 @@
     - web_server_8080 is defined
     - web_server_8080 == true
 
+- name: ufw | lidarr
+  tags: ufw
+  ufw:
+    comment: Lidarr
+    rule: allow
+    port: '8686'
+    proto: tcp
+
 - name: ufw | web server | allow https
   tags: ufw
   ufw:
