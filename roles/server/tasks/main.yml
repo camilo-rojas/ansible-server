@@ -7,6 +7,9 @@
   - import_tasks: ufw.yml
   - import_tasks: qemu-agent.yml
 
+# Install servarr modules
+  - import_tasks: servarr.yml
+
   - include_tasks: unattended_upgrades.yml
     when:
       - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
