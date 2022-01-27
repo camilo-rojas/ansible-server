@@ -2,4 +2,6 @@
   kewlfft.aur.aur:
     use: yay
     name:
-      - Lidarr
+      - lidarr
+    become: yes
+    become_user: camilor
