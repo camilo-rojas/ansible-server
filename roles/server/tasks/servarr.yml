@@ -1,7 +1,21 @@
-- name: Install Lidarr using yay
+- name: servarr | Install Lidarr using yay
   kewlfft.aur.aur:
     use: yay
     name:
       - lidarr
   become: yes
   become_user: camilor
+
+- name: servarr | daemon reload
+  systemd: daemon_reload=yes
+
+ - name: servarr | enable service Lidarr and ensure it is not masked
+  systemd:
+    name: lidarr
+    enabled: yes
+    masked: no
+
+- name: servarr | make sure Lidarr service is running
+  systemd:
+    state: started 
+    name: lidarr
