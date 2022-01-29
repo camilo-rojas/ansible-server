@@ -194,7 +194,7 @@
     comment: ssh from home network
     rule: allow
     port: ssh
-    src: 192.68.0.0/24
+    src: 192.168.0.0/24
   when:
     - linode_instance is defined
     - linode_instance == true
@@ -207,7 +207,6 @@
     port: ssh
     src: '{{ item }}'
   loop:
-    - 10.10.10.10/24
     - 192.168.10.0/24
     - 192.168.0.0/24
   when:
@@ -317,6 +316,15 @@
     rule: allow
     port: '8686'
     proto: tcp
+
+- name: ufw | radarr
+  tags: ufw
+  ufw:
+    comment: Lidarr
+    rule: allow
+    port: '7878'
+    proto: tcp
+
 
 - name: ufw | web server | allow https
   tags: ufw

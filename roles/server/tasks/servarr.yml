@@ -6,6 +6,14 @@
   become: yes
   become_user: camilor
 
+- name: servarr | Install Radarr using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - radarr
+  become: yes
+  become_user: camilor
+
 - name: servarr | daemon reload
   systemd: daemon_reload=yes
 
@@ -15,7 +23,8 @@
     enabled: yes
     masked: no
 
-- name: servarr | make sure Lidarr service is running
+- name: servarr | enable service Radarr and ensure it is not masked
   systemd:
-    state: started
-    name: lidarr
+    name: radarr
+    enabled: yes
+    masked: no
