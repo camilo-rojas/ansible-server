@@ -183,9 +183,6 @@
     rule: allow
     port: '5666'
     src: 192.168.0.0/24
-  when:
-    - linode_instance is defined
-    - linode_instance == true
 
 # openssh
 - name: ufw | openssh | allow ssh (external)
@@ -195,9 +192,6 @@
     rule: allow
     port: ssh
     src: 192.168.0.0/24
-  when:
-    - linode_instance is defined
-    - linode_instance == true
 
 - name: ufw | openssh | allow ssh (internal)
   tags: ufw
@@ -207,11 +201,8 @@
     port: ssh
     src: '{{ item }}'
   loop:
-    - 192.168.10.0/24
     - 192.168.0.0/24
-  when:
-    - linode_instance is defined
-    - linode_instance == false
+    - 192.168.10.0/24
 
 # plex
 - name: ufw | plex | allow plex
