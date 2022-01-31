@@ -1,3 +1,5 @@
+---
+#Install Lidarr
 - name: servarr | Install Lidarr using yay
   kewlfft.aur.aur:
     use: yay
@@ -9,12 +11,14 @@
 - name: servarr | daemon reload
   systemd: daemon_reload=yes
 
+#Enagle Lidarr service
 - name: servarr | enable service Lidarr and ensure it is not masked
   systemd:
     name: lidarr
     enabled: yes
     masked: no
 
+#Install Radarr
 - name: servarr | Install Radarr using yay
   kewlfft.aur.aur:
     use: yay
@@ -29,5 +33,104 @@
 - name: servarr | enable service Radarr and ensure it is not masked
   systemd:
     name: radarr
+    enabled: yes
+    masked: no
+
+#Install Sonarr
+- name: servarr | Install Sonarr using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - sonarr
+  become: yes
+  become_user: camilor
+
+- name: servarr | daemon reload
+  systemd: daemon_reload=yes
+
+- name: servarr | enable service Sonarr and ensure it is not masked
+  systemd:
+    name: sonarr
+    enabled: yes
+    masked: no
+
+#Install Readarr
+- name: servarr | Install Readarr using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - readarr
+  become: yes
+  become_user: camilor
+
+- name: servarr | daemon reload
+  systemd: daemon_reload=yes
+
+- name: servarr | enable service Readarr and ensure it is not masked
+  systemd:
+    name: readarr
+    enabled: yes
+    masked: no
+
+#Install Prowlarr
+- name: servarr | Install Prowlarr using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - prowlarr
+  become: yes
+  become_user: camilor
+
+- name: servarr | daemon reload
+  systemd: daemon_reload=yes
+
+- name: servarr | enable service Prowlarr and ensure it is not masked
+  systemd:
+    name: prowlarr
+    enabled: yes
+    masked: no
+
+#Install Bazaar
+- name: servarr | Install Bazaar using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - bazaar
+  become: yes
+  become_user: camilor
+
+- name: servarr | daemon reload
+  systemd: daemon_reload=yes
+
+- name: servarr | enable service bazaar and ensure it is not masked
+  systemd:
+    name: bazaar
+    enabled: yes
+    masked: no
+
+#Install qB
+- name: servarr | Install qB using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - qbittorrent-nox
+  become: yes
+  become_user: camilor
+
+- name: servarr | add qB service file
+  tags: servaar
+  copy:
+    src: qb/qb.service
+    dest: /etc/systemd/system
+    owner: camilor
+    group: camilor
+    mode: 0770
+
+- name: servarr | daemon reload
+  systemd: daemon_reload=yes
+
+- name: servarr | enable service qB and ensure it is not masked
+  systemd:
+    name: qb
     enabled: yes
     masked: no
