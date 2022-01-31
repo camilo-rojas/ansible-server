@@ -91,11 +91,11 @@
     masked: no
 
 #Install Bazaar
-- name: servarr | Install Bazaar using yay
+- name: servarr | Install Bazarr using yay
   kewlfft.aur.aur:
     use: yay
     name:
-      - bazaar
+      - bazarr
   become: yes
   become_user: camilor
 
@@ -104,7 +104,7 @@
 
 - name: servarr | enable service bazaar and ensure it is not masked
   systemd:
-    name: bazaar
+    name: bazarr
     enabled: yes
     masked: no
 
