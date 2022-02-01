@@ -1,10 +1,14 @@
 ---
 # Install Homer web link manager
 
-- name: homer setup | download and unzip
-  ansible.bultin.unarchive:
+- name: homer | create dir
+  file:
+    path: ~/homer
+    state: directory
+
+- unarchive:
     src: https://github.com/bastienwirtz/homer/releases/download/homer.zip
-    dest: ~/homer/
+    dest: ~/homer
     remote_srv: yes
   become: yes
   become_user: camilor
