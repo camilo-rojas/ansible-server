@@ -11,6 +11,8 @@
   - import_tasks: servarr.yml
 # Specific thinkpad lid ignore configurations
   - import_tasks: thinkpad.yml
+# Install Homer
+  - import_tasks: homer.yml
 
   - include_tasks: unattended_upgrades.yml
     when:

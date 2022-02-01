@@ -13,7 +13,7 @@
   replace:
     path: /etc/systemd/logind.conf
     regexp: "#HandleLidSwitchExternalPower=suspend"
-    replace: "HandleLidSwitch=ignore"
+    replace: "HandleLidSwitchExternalPower=ignore"
     backup: yes
   become: yes
 
