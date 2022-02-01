@@ -6,6 +6,8 @@ essential_packages:
   - openssh
   - git
   - zsh
+  - nano
+  - vi
 
 alacritty_font_size: 10
 servername: homeServer
