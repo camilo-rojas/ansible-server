@@ -1,0 +1,26 @@
+---
+# Disable close lid actions to ignore
+
+- name: thinkpad | remove lid from logind.conf HandleLid
+  replace:
+    path: /etc/systemd/logind.conf
+    regexp: "#HandleLidSwitch=suspend"
+    replace: "HandleLidSwitch=ignore"
+    backup: yes
+  become: yes
+
+- name: thinkpad | remove lid from logind.conf HandleLidExternal
+  replace:
+    path: /etc/systemd/logind.conf
+    regexp: "#HandleLidSwitchExternalPower=suspend"
+    replace: "HandleLidSwitch=ignore"
+    backup: yes
+  become: yes
+
+- name: thinkpad | remove lid from UPower.conf
+  replace:
+    path: /etc/UPower/UPower.conf
+    regexp: "IgnoreLid=false"
+    replace: "IgnoreLid=true"
+    backup: yes
+  become: yes

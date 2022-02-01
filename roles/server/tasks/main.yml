@@ -9,6 +9,8 @@
 
 # Install servarr modules
   - import_tasks: servarr.yml
+# Specific thinkpad lid ignore configurations
+  - import_tasks: thinkpad.yml
 
   - include_tasks: unattended_upgrades.yml
     when:
