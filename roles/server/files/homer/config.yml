@@ -60,7 +60,7 @@ links:
   # see url field and assets/additionnal-page.yml.dist used in this example:
   - name: "another page!"
     icon: "fas fa-file-alt"
-    url: "#additionnal-page" 
+    url: "#additionnal-page"
 
 # Services
 # First level array represent a group.
@@ -119,8 +119,20 @@ services:
         subtitle: "Network management"
         tag: "network"
         target: "_blank"
+        url: "https://unifi.local"
       - name: "Pi Hole"
         logo: "assets/img/png/pihole.png"
         subtitle: "DNS"
         tag: "network"
+        url: "https://pihole.local"
+        target: "_blank"
+
+  - name: "Tools"
+    icon: "fas fa-tools"
+    items:
+      - name: "qB"
+        logo: "assets/img/png/qbittorrent.png"
+        subtitle: "Bittorrent"
+        tag: "bittorrent"
+        url: "https://homeserver.local:8080"
         target: "_blank"
