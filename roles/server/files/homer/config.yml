@@ -126,6 +126,12 @@ services:
         tag: "network"
         url: "https://pihole.local"
         target: "_blank"
+      - name: "HomeAssistant"
+        logo: "assets/img/png/homeassistant.png"
+        subtitle: "Home Automation"
+        tag: "network"
+        url: "https://camilor.duckdns.org"
+        target: "_blank"
 
   - name: "Tools"
     icon: "fas fa-tools"
