@@ -20,8 +20,7 @@
 - name: homer | copy config file
   tags: homer
   copy:
-    remote_src: True
-    src: ~/homer/assets/config.yml.dist
+    src: homer/config.yml
     dest: ~/homer/assets/config.yml
     owner: camilor
     group: camilor
