@@ -11,8 +11,8 @@
 - name: homer unarchive
   unarchive:
     src: https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip
+    remote_src: yes
     dest: ~/homer
-    src: yes
   become: yes
   become_user: camilor
   tags: homer
