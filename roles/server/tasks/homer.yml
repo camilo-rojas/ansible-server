@@ -7,9 +7,37 @@
     state: directory
 
 - unarchive:
-    src: https://github.com/bastienwirtz/homer/releases/download/homer.zip
+    src: https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip
     dest: ~/homer
     remote_srv: yes
   become: yes
   become_user: camilor
   tags: homer
+
+- name: homer | copy config file
+  tags: homer
+  copy:
+    remote_src: True
+    src: ~/homer/assets/config.yml.dist
+    dest: ~/homer/assets/config.yml
+    owner: camilor
+    group: camilor
+    mode: 0660
+
+- name: homer | add homer service file
+  tags: homer
+  copy:
+    src: homer/homer.service
+    dest: /etc/systemd/system
+    owner: camilor
+    group: camilor
+    mode: 0770
+
+- name: homer | daemon reload
+  systemd: daemon_reload=yes
+
+- name: homer | enable service homer and ensure it is not masked
+  systemd:
+    name: homer
+    enabled: yes
+    masked: no
