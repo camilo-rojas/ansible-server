@@ -6,7 +6,7 @@ After=network.target
 User=camilor
 Group=camilor
 WorkingDirectory=/home/camilor/homer
-ExecStart=/usr/bin/python -m http.server 80
+ExecStart=/usr/bin/python -m http.server 8000
 ExecStop=/bin/kill `/bin/ps aux | /bin/grep http.server | /bin/grep -v grep | /usr/bin/awk '{ print $2 }'`
 Restart=on-abort
 

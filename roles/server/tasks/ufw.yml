@@ -300,7 +300,7 @@
   ufw:
     comment: homer
     rule: allow
-    port: '80'
+    port: '8000'
     proto: tcp
 
 - name: ufw | sonarr

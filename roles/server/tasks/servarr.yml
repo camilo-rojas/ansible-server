@@ -41,7 +41,7 @@
     enabled: yes
     masked: no
 
-- name: servarr | enable service Radarr and ensure it is not masked
+- name: servarr | start service Radarr
   systemd:
     name: radarr
     state: started
@@ -64,7 +64,7 @@
     enabled: yes
     masked: no
 
-- name: servarr | enable service Sonarr and ensure it is not masked
+- name: servarr | start service Sonarr
   systemd:
     name: sonarr
     state: started
@@ -87,7 +87,7 @@
     enabled: yes
     masked: no
 
-- name: servarr | enable service Readarr and ensure it is not masked
+- name: servarr | start Readarr
   systemd:
     name: readarr
     state: started
@@ -110,7 +110,7 @@
     enabled: yes
     masked: no
 
-- name: servarr | enable service Prowlarr and ensure it is not masked
+- name: servarr | start Prowlarr
   systemd:
     name: prowlarr
     state: started
@@ -133,7 +133,7 @@
     enabled: yes
     masked: no
 
-- name: servarr | enable service bazaar and ensure it is not masked
+- name: servarr | start bazaar start
   systemd:
     name: bazarr
     state: started
@@ -165,7 +165,7 @@
     enabled: yes
     masked: no
 
-- name: servarr | enable service qB and ensure it is not masked
+- name: servarr | start qB start
   systemd:
     name: qb
     state: started
