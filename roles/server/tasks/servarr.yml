@@ -11,12 +11,17 @@
 - name: servarr | daemon reload
   systemd: daemon_reload=yes
 
-#Enagle Lidarr service
+#Enable Lidarr service
 - name: servarr | enable service Lidarr and ensure it is not masked
   systemd:
     name: lidarr
     enabled: yes
     masked: no
+
+- name: servarr | enable service Lidarr and ensure it is not masked
+  systemd:
+    name: lidarr
+    state: started
 
 #Install Radarr
 - name: servarr | Install Radarr using yay
@@ -36,6 +41,11 @@
     enabled: yes
     masked: no
 
+- name: servarr | enable service Radarr and ensure it is not masked
+  systemd:
+    name: radarr
+    state: started
+
 #Install Sonarr
 - name: servarr | Install Sonarr using yay
   kewlfft.aur.aur:
@@ -53,6 +63,11 @@
     name: sonarr
     enabled: yes
     masked: no
+
+- name: servarr | enable service Sonarr and ensure it is not masked
+  systemd:
+    name: sonarr
+    state: started
 
 #Install Readarr
 - name: servarr | Install Readarr using yay
@@ -72,6 +87,11 @@
     enabled: yes
     masked: no
 
+- name: servarr | enable service Readarr and ensure it is not masked
+  systemd:
+    name: readarr
+    state: started
+
 #Install Prowlarr
 - name: servarr | Install Prowlarr using yay
   kewlfft.aur.aur:
@@ -90,6 +110,11 @@
     enabled: yes
     masked: no
 
+- name: servarr | enable service Prowlarr and ensure it is not masked
+  systemd:
+    name: prowlarr
+    state: started
+
 #Install Bazaar
 - name: servarr | Install Bazarr using yay
   kewlfft.aur.aur:
@@ -107,6 +132,11 @@
     name: bazarr
     enabled: yes
     masked: no
+
+- name: servarr | enable service bazaar and ensure it is not masked
+  systemd:
+    name: bazarr
+    state: started
 
 #Install qB
 - name: servarr | Install qB using yay
@@ -134,3 +164,8 @@
     name: qb
     enabled: yes
     masked: no
+
+- name: servarr | enable service qB and ensure it is not masked
+  systemd:
+    name: qb
+    state: started

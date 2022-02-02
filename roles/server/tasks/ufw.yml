@@ -277,28 +277,7 @@
     - unifi_controller is defined
     - unifi_controller == true
 
-# web server
-- name: ufw | web server | allow http (80)
-  tags: ufw
-  ufw:
-    comment: http
-    rule: allow
-    port: '80'
-    proto: tcp
-  when:
-    - web_server is defined
-    - web_server == true
-
-- name: ufw | web server | allow http (8080)
-  tags: ufw
-  ufw:
-    comment: http_8080
-    rule: allow
-    port: '8080'
-    proto: tcp
-  when:
-    - web_server_8080 is defined
-    - web_server_8080 == true
+#Servarr services
 
 - name: ufw | lidarr
   tags: ufw
@@ -311,11 +290,50 @@
 - name: ufw | radarr
   tags: ufw
   ufw:
-    comment: Lidarr
+    comment: radarr
     rule: allow
     port: '7878'
     proto: tcp
 
+- name: ufw | homer
+  tags: ufw
+  ufw:
+    comment: homer
+    rule: allow
+    port: '80'
+    proto: tcp
+
+- name: ufw | sonarr
+  tags: ufw
+  ufw:
+    comment: sonarr
+    rule: allow
+    port: '8989'
+    proto: tcp
+
+- name: ufw | readerr
+  tags: ufw
+  ufw:
+    comment: readerr
+    rule: allow
+    port: '8787'
+    proto: tcp
+
+- name: ufw | prowlarr
+  tags: ufw
+  ufw:
+    comment: prowlarr
+    rule: allow
+    port: '9696'
+    proto: tcp
+
+- name: ufw | qb
+  tags: ufw
+  ufw:
+    comment: qb
+    rule: allow
+    port: '8080'
+    proto: tcp
 
 - name: ufw | web server | allow https
   tags: ufw
@@ -323,10 +341,7 @@
     comment: https
     rule: allow
     port: '443'
-    proto: tcp
-  when:
-    - web_server is defined
-    - web_server == true
+    proto: tcps
 
 # all rules set, enable
 - name: ufw | enable firewall

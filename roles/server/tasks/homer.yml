@@ -46,3 +46,8 @@
     name: homer
     enabled: yes
     masked: no
+
+- name: homer | start service
+  systemd:
+    name: homer
+    state: started
