@@ -54,10 +54,17 @@
 
 # download icons
 
+- name: homer | create img dir
+  file:
+    path: ~/homer/assets/img
+    state: directory
+  become: yes
+  become_user: camilor
+
 - name: homer | download icons
   git:
     repo: https://github.com/NX211/homer-icons.git
-    dest: ~/homer/assets/tools
+    dest: ~/homer/assets/img
     version: master
     accept_hostkey: yes
   become: yes
