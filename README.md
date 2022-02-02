@@ -31,9 +31,9 @@ Available Applications
 - *Bazarr* - companion to Radarr and Sonarr for downloading subtitles
 - *Readerr* - books and audiobooks
 - *qBittorren* - qB
-- *Heimdall* - Home server dashboard
+- *Homer* - Home server dashboard
 - *Home Assistant* - Open source home automation
-- Basic packages - git, tmux, openssh, htop, zsh, ufw, qemu, nrpe, etc..
+- Basic packages - vi, git, tmux, openssh, htop, zsh, ufw, qemu, nrpe, etc..
 
 Future apps being considered
 ---
@@ -52,5 +52,3 @@ Status
 
 Still work in progress until now only basic base and package management services
 are available.  Will deploy more applications as time allows.
-
-885758490 -

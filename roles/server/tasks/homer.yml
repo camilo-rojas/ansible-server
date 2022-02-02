@@ -51,3 +51,15 @@
   systemd:
     name: homer
     state: started
+
+# download icons
+
+- name: homer | download icons
+  git:
+    repo: https://github.com/NX211/homer-icons.git
+    dest: ~/homer/assets/tools
+    version: master
+    accept_hostkey: yes
+  become: yes
+  become_user: camilor
+  tags: homer
