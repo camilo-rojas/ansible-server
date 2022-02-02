@@ -6,10 +6,11 @@
     path: ~/homer
     state: directory
 
-- unarchive:
+- name: homer unarchive
+  unarchive:
     src: https://github.com/bastienwirtz/homer/releases/latest/download/homer.zip
     dest: ~/homer
-#    remote_srv: yes
+    remote_srv: yes
   become: yes
   become_user: camilor
   tags: homer
