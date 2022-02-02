@@ -140,5 +140,5 @@ services:
         logo: "assets/img/png/qbittorrent.png"
         subtitle: "Bittorrent"
         tag: "bittorrent"
-        url: "https://homeserver.local:8080"
+        url: "http://homeserver.local:8080"
         target: "_blank"
