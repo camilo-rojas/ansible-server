@@ -44,6 +44,15 @@
   with_file:
     - users/camilor/ssh/camilor_id_ed25519.pub
 
+- name: users | camilor | add pub key to .ssh
+  tags: camilor,keys,ssh
+  copy:
+    src: users/camilor/ssh/camilor_id_ed25519.pub
+    dest: ~/.ssh
+    owner: camilor
+    group: camilor
+    mode: 0440
+
 - name: users | camilor | create config directories
   tags: dotfiles,camilor,tmux,users,vim,zsh
   file:
@@ -73,6 +82,12 @@
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: ~/.oh-my-zsh
     depth: 1
+
+- name: users | camilor | powerlevel10k for oh-my-zsh
+  tags: users,camilor,zsh,oh-my-zsh,powerlevel10k
+  package:
+    name: zsh-theme-powerlevel10k-git
+    state: latest
 
 - name: users | camilor | copy tmux config (server version)
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
