@@ -91,16 +91,6 @@
     name: zsh-theme-powerlevel10k-git
     state: latest
 
-- name: users | camilor | copy zsh zshrc
-  tags: dotfiles,users,camilor,zsh
-  copy:
-    src: ~/.oh-my-zsh/templates/zshrc.zsh-template
-    remote_src: yes
-    dest: ~/.zshrc
-    owner: camilor
-    group: camilor
-    mode: 0600
-
 - name: users | camilor | copy tmux config (server version)
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
   copy:
@@ -140,7 +130,8 @@
     - { src: 'htop/htoprc', dest: '.config/htop/htoprc' }
     - { src: 'inputrc', dest: '.inputrc' }
     - { src: 'mc/mc.ini', dest: '.config/mc/ini' }
-#    - { src: 'zsh/zshrc', dest: '.zshrc' }
+    - { src: 'zsh/zshrc', dest: '.zshrc' }
+    - { src: 'zsh/zshrc', dest: '.p10k.zsh' }    
 
 - name: users | camilor | clone tmux-completion plugin repository
   tags: dotfiles,camilor,users,tmux
