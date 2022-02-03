@@ -91,6 +91,16 @@
     name: zsh-theme-powerlevel10k-git
     state: latest
 
+- name: users | camilor | copy zsh zshrc
+  tags: dotfiles,users,camilor,zsh
+  copy:
+    src: ~/.oh-my-zsh/templates/zshrc.zsh-template
+    remote_src: yes
+    dest: ~/.zshrc
+    owner: camilor
+    group: camilor
+    mode: 0600
+
 - name: users | camilor | copy tmux config (server version)
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
   copy:
