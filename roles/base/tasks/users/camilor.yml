@@ -115,7 +115,7 @@
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
   copy:
     src: users/camilor/{{ item.src }}
-    dest: home/camilor/{{ item.dest }}
+    dest: /home/camilor/{{ item.dest }}
     owner: camilor
     group: camilor
     mode: 0600
