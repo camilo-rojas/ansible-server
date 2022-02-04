@@ -48,7 +48,7 @@
   tags: camilor,keys,ssh
   copy:
     src: users/camilor/ssh/camilor_id_ed25519.pub
-    dest: ~/.ssh/id_ed25519.pub
+    dest: /home/camilor/.ssh/id_ed25519.pub
     owner: camilor
     group: camilor
     mode: 0600
@@ -56,7 +56,7 @@
 - name: users | camilor | create config directories
   tags: dotfiles,camilor,tmux,users,vim,zsh
   file:
-    path: ~/{{ item.dir }}
+    path: /home/camilor/{{ item.dir }}
     state: directory
     owner: camilor
     group: camilor
@@ -76,6 +76,7 @@
     - { dir: '.vim/ftplugin' }
     - { dir: '.zsh' }
     - { dir: '.oh-my-zsh' }
+    - { dir: '.oh-my-zsh/themes/powerlevel10k' }
 
 - name: users | camilor | Download oh my zsh
   git:
@@ -85,11 +86,24 @@
   become: yes
   become_user: camilor
 
-- name: users | camilor | powerlevel10k for oh-my-zsh
-  tags: users,camilor,zsh,oh-my-zsh,powerlevel10k
-  package:
-    name: zsh-theme-powerlevel10k-git
-    state: latest
+- name: users | camilor | Download pk10k
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: ~/.oh-my-zsh/themes/powerlevel10k
+    depth: 1
+  become: yes
+  become_user: camilor
+
+- name: users | camilor | copy zsh config files
+  tags: dotfiles,camilor,users,zsh
+  copy:
+    src: users/camilor/zsh/{{ item.src }}
+    dest: ~/.oh-my-zsh/custom/{{ item.src }}
+    owner: camilor
+    group: camilor
+    mode: 0600
+  with_items:
+    - { src: 'aliases.zsh' }
 
 - name: users | camilor | copy tmux config (server version)
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
