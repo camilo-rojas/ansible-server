@@ -94,7 +94,7 @@
   become: yes
   become_user: camilor
 
-- name: users | camilor | copy zsh config files
+- name: users | camilor | copy zsh aliases files
   tags: dotfiles,camilor,users,zsh
   copy:
     src: users/camilor/zsh/aliases.zsh
