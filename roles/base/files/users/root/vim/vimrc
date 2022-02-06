@@ -2,7 +2,7 @@
 colorscheme xoria256
 
 " keyboard shortcuts
-let mapleader = ','
+let mapleader = ' '
 noremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
