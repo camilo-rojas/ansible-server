@@ -97,13 +97,11 @@
 - name: users | camilor | copy zsh config files
   tags: dotfiles,camilor,users,zsh
   copy:
-    src: users/camilor/zsh/{{ item.src }}
-    dest: ~/.oh-my-zsh/custom/{{ item.src }}
+    src: users/camilor/zsh/aliases.zsh
+    dest: ~/.oh-my-zsh/custom/aliases.zsh
     owner: camilor
     group: camilor
     mode: 0600
-  with_items:
-    - { src: 'aliases.zsh' }
 
 - name: users | camilor | copy tmux config (server version)
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
