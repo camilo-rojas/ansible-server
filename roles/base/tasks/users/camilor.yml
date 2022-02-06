@@ -34,7 +34,7 @@
     group: camilor
     mode: 0700
   with_items:
-    - { dir: '~/.ssh' }
+    - { dir: '/home/camilor/.ssh' }
 
 - name: users | camilor | add public key
   tags: dotfiles,camilor,ssh,ssh-keys,users
@@ -81,7 +81,7 @@
 - name: users | camilor | Download oh my zsh
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: ~/.oh-my-zsh
+    dest: /home/camilor/.oh-my-zsh
     depth: 1
   become: yes
   become_user: camilor
@@ -89,7 +89,7 @@
 - name: users | camilor | Download pk10k
   git:
     repo: https://github.com/romkatv/powerlevel10k.git
-    dest: ~/.oh-my-zsh/themes/powerlevel10k
+    dest: /home/camilor/.oh-my-zsh/themes/powerlevel10k
     depth: 1
   become: yes
   become_user: camilor
@@ -98,7 +98,7 @@
   tags: dotfiles,camilor,users,zsh
   copy:
     src: users/camilor/zsh/aliases.zsh
-    dest: ~/.oh-my-zsh/custom/aliases.zsh
+    dest: /home/camilor/.oh-my-zsh/custom/aliases.zsh
     owner: camilor
     group: camilor
     mode: 0600
@@ -107,7 +107,7 @@
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
   copy:
     src: users/camilor/tmux/tmux.conf.server
-    dest: ~/.tmux.conf
+    dest: /home/camilor/.tmux.conf
     owner: camilor
     group: camilor
     mode: 0600
@@ -117,7 +117,7 @@
   tags: dotfiles,users,camilor,tmux,users,vim,zsh
   copy:
     src: users/camilor/tmux/tmux.conf.workstation
-    dest: ~/.tmux.conf
+    dest: /home/camilor/.tmux.conf
     owner: camilor
     group: camilor
     mode: 0600
@@ -149,7 +149,7 @@
   tags: dotfiles,camilor,users,tmux
   git:
     repo: https://github.com/srsudar/tmux-completion.git
-    dest: ~/.tmux/plugins/completion
+    dest: /home/camilor/.tmux/plugins/completion
     force: yes
   notify: update_tmux_plugin_perms
 
@@ -157,7 +157,7 @@
   tags: dotfiles,camilor,users,tmux
   git:
     repo: https://github.com/tmux-plugins/tmux-continuum
-    dest: ~/.tmux/plugins/continuum
+    dest: /home/camilor/.tmux/plugins/continuum
     force: yes
   notify: update_tmux_plugin_perms
 
@@ -165,7 +165,7 @@
   tags: dotfiles,camilor,users,tmux
   git:
     repo: https://github.com/tmux-plugins/tmux-resurrect
-    dest: ~/.tmux/plugins/resurrect
+    dest: /home/camilor/.tmux/plugins/resurrect
     force: yes
   notify: update_tmux_plugin_perms
 
@@ -173,7 +173,7 @@
   tags: dotfiles,camilor,users,zsh
   copy:
     src: users/camilor/zsh/{{ item.src }}
-    dest: ~/.zsh/{{ item.src }}
+    dest: /home/camilor/.zsh/{{ item.src }}
     owner: camilor
     group: camilor
     mode: 0600
