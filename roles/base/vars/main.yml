@@ -8,6 +8,7 @@ essential_packages:
   - zsh
   - nano
   - vi
+  - ntfs-3g
 
 alacritty_font_size: 10
 servername: homeServer

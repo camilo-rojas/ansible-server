@@ -169,3 +169,26 @@
   systemd:
     name: qb
     state: started
+
+#Install Ombi
+- name: servarr | Install Ombi using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - ombi
+  become: yes
+  become_user: camilor
+
+- name: servarr | daemon reload
+  systemd: daemon_reload=yes
+
+- name: servarr | enable service bazaar and ensure it is not masked
+  systemd:
+    name: ombi
+    enabled: yes
+    masked: no
+
+- name: servarr | start bazaar start
+  systemd:
+    name: ombi
+    state: started
