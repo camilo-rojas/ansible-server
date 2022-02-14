@@ -25,13 +25,13 @@
     backup: yes
   become: yes
 
-- name: thinkpad | copy network file - set ip fixed address
+- name: thinkpad | getting ip config
 #  ansible.builtin.command: ip address add 192.168.0.19/24 broadcast + dev enp0s25 | true
   ansible.builtin.command: ip a
   register: ipaddout
   become: true
 
-- name: thinkpad | copy network file - set ip fixed address
+- name: thinkpad | setting ip address
   ansible.builtin.command: ip address add 192.168.0.19/24 broadcast + dev enp0s25
   become: true
   when: "'192.168.0.19/24' not in ipaddout.stdout"
