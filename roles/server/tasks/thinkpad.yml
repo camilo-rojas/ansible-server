@@ -31,6 +31,8 @@
   become: true
   changed_when: "'File exists' not in ipaddout.stdout"
 
+- debug:
+    msg: "{{ipaddout.stdout}}"
 #  tags: ipconfig
 #  copy:
 #    src: ipconfig/20-wired.network
