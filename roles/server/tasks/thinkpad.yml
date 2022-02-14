@@ -30,10 +30,14 @@
   ansible.builtin.command: ip a
   register: ipaddout
   become: true
-  changed_when: "'File exists' not in ipaddout.stdout"
 
-- debug:
-    msg: "{{ipaddout.stdout}}"
+- name: thinkpad | copy network file - set ip fixed address
+  ansible.builtin.command: ip address add 192.168.0.19/24 broadcast + dev enp0s25
+  become: true
+  when: "'192.168.0.19/24' not in ipaddout.stdout"
+
+#- debug:
+#    msg: "{{ipaddout.stdout}}"
 #  tags: ipconfig
 #  copy:
 #    src: ipconfig/20-wired.network
