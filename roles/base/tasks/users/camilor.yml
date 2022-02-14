@@ -81,7 +81,6 @@
     - { dir: '.vim/ftplugin' }
     - { dir: '.zsh' }
     - { dir: '.oh-my-zsh' }
-    - { dir: '.oh-my-zsh/themes/powerlevel10k' }
 
 - name: users | camilor | Download oh my zsh
   git:
@@ -90,6 +89,17 @@
     depth: 1
   become: yes
   become_user: camilor
+
+- name: users | camilor | create config directories
+  tags: dotfiles,camilor,tmux,users,vim,zsh
+  file:
+    path: /home/camilor/{{ item.dir }}
+    state: directory
+    owner: camilor
+    group: camilor
+    mode: 0700
+  with_items:
+    - { dir: '.oh-my-zsh/themes/powerlevel10k' }
 
 - name: users | camilor | Download pk10k
   git:
