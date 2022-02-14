@@ -24,3 +24,36 @@
     replace: "IgnoreLid=true"
     backup: yes
   become: yes
+
+- name: thinkpad | copy network file - set ip fixed address
+  tags: ipconfig
+  copy:
+    src: ipconfig/20-wired.network
+    dest: /etc/systemd/network/20-wired.network
+    owner: root
+    group: root
+    mode: 0660
+  become: yes
+  become_user: root
+
+- name: thinkpad | enable networking services systemd-networkd
+  systemd:
+    name: systemd-networkd.service
+    enabled: yes
+    masked: no
+
+- name: thinkpad | start networking services systemd-networkd
+  systemd:
+    name: systemd-networkd.service
+    state: started
+
+- name: thinkpad | enable networking services systemd-resolved
+  systemd:
+    name: systemd-networkd.service
+    enabled: yes
+    masked: no
+
+- name: thinkpad | start networking services systemd-resovled
+  systemd:
+    name: systemd-networkd.service
+    state: started

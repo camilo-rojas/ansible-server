@@ -30,6 +30,7 @@ Available Applications
 - *Radarr* - for organizing movies
 - *Bazarr* - companion to Radarr and Sonarr for downloading subtitles
 - *Readerr* - books and audiobooks
+- *Ombi* - media request tool
 - *qBittorren* - qB
 - *Homer* - Home server dashboard
 - *Home Assistant* - Open source home automation

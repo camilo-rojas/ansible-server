@@ -182,13 +182,13 @@
 - name: servarr | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | enable service bazaar and ensure it is not masked
+- name: servarr | enable service ombi and ensure it is not masked
   systemd:
     name: ombi
     enabled: yes
     masked: no
 
-- name: servarr | start bazaar start
+- name: servarr | start ombi start
   systemd:
     name: ombi
     state: started

@@ -9,6 +9,7 @@ essential_packages:
   - nano
   - vi
   - ntfs-3g
+  - iperf
 
 alacritty_font_size: 10
 servername: homeServer
