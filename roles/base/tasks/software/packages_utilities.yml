@@ -12,7 +12,7 @@
       - "{{ lm_sensors_package }}"
       - lsof
       - mosh
-      - ncdu
+#      - ncdu
       - net-tools
       - "{{ nfs_client_package }}"
       - nmap

@@ -49,18 +49,47 @@ message:
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
 links:
-  - name: "Contribute"
-    icon: "fab fa-github"
-    url: "https://github.com/bastienwirtz/homer"
+  - name: "Gmail"
+    icon: "fab fa-inbox"
+    url: "https://gmail.com"
     target: "_blank" # optional html a tag target attribute
-  - name: "Wiki"
-    icon: "fas fa-book"
-    url: "https://www.wikipedia.org/"
+  - name: "Outlook"
+    icon: "fab fa-envelope"
+    url: "https://outlook.com"
+    target: "_blank" # optional html a tag target attribute
+  - name: "Trello"
+    icon: "fab fa-trello"
+    url: "https://trello.com"
+    target: "_blank" # optional html a tag target attribute
+  - name: "Github"
+    icon: "fab fa-github"
+    url: "https://github.com/camilo-rojas"
+    target: "_blank" # optional html a tag target attribute
+  - name: "El Tiempo"
+    icon: "fas fa-news"
+    url: "https://www.eltiempo.com/"
+    target: "_blank"
+  - name: "El Tiempo"
+    icon: "fas fa-newspaper"
+    url: "https://www.eltiempo.com/"
+    target: "_blank"
+  - name: "CNN"
+    icon: "fas fa-page"
+    url: "https://www.cnn.com/"
+    target: "_blank"
+  - name: "CNBC"
+    icon: "fas fa-coins"
+    url: "https://www.cnbc.com/"
+    target: "_blank"
+  - name: "TradingView"
+    icon: "fas fa-chart-line"
+    url: "https://www.tradingview.com/"
+    target: "_blank"
   # this will link to a second homer page that will load config from additionnal-page.yml and keep default config values as in config.yml file
   # see url field and assets/additionnal-page.yml.dist used in this example:
-  - name: "another page!"
-    icon: "fas fa-file-alt"
-    url: "#additionnal-page"
+#  - name: "another page!"
+#    icon: "fas fa-file-alt"
+#    url: "#additionnal-page"
 
 # Services
 # First level array represent a group.
@@ -69,6 +98,12 @@ services:
   - name: "Media"
     icon: "fas fa-photo-video"
     items:
+      - name: "YouTube"
+        logo: "assets/img/png/youtube.png"
+        subtitle: "Youtube portal"
+        tag: "media"
+        url: "https://youtube.com"
+        target: "_blank" # optional html a tag target attribute
       - name: "Jellyfin"
         logo: "assets/img/png/jellyfin.png"
         subtitle: "Enjoy your media"
@@ -99,17 +134,11 @@ services:
         tag: "media"
         url: "http://homeserver.local:8686"
         target: "_blank" # optional html a tag target attribute
-      - name: "Prowlarr"
-        logo: "assets/img/png/prowlarr.png"
-        subtitle: "Indexers"
+      - name: "Ombi"
+        logo: "assets/img/png/ombi.png"
+        subtitle: "Media requests"
         tag: "media"
-        url: "http://homeserver.local:9696:"
-        target: "_blank" # optional html a tag target attribute
-      - name: "Bazarr"
-        logo: "assets/img/png/bazarr.png"
-        subtitle: "Subtitles"
-        tag: "media"
-        url: "http://homeserver.local:6767"
+        url: "http://homeserver.local:5000"
         target: "_blank" # optional html a tag target attribute
   - name: "Network"
     icon: "fas fa-network-wired"
@@ -142,3 +171,15 @@ services:
         tag: "bittorrent"
         url: "http://homeserver.local:8080"
         target: "_blank"
+      - name: "Prowlarr"
+        logo: "assets/img/png/prowlarr.png"
+        subtitle: "Indexers"
+        tag: "media"
+        url: "http://homeserver.local:9696"
+        target: "_blank" # optional html a tag target attribute
+      - name: "Bazarr"
+        logo: "assets/img/png/bazarr.png"
+        subtitle: "Subtitles"
+        tag: "media"
+        url: "http://homeserver.local:6767"
+        target: "_blank" # optional html a tag target attribute
