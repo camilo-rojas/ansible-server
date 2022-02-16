@@ -28,6 +28,23 @@
   become: yes
   become_user: camilor
 
+- name: homer | delete config file for second refresh
+  tags: homer
+  file:
+    path: ~/homer/assets/config.yml
+    state: absent
+
+- name: homer | 2nd copy to refresh config file
+  tags: homer
+  copy:
+    src: homer/config.yml
+    dest: ~/homer/assets/config.yml
+    owner: camilor
+    group: camilor
+    mode: 0660
+  become: yes
+  become_user: camilor
+
 - name: homer | add homer service file
   tags: homer
   copy:
