@@ -44,8 +44,12 @@
     replace: "  size: {{ alacritty_font_size }}"
     backup: yes
 
-- name: start openssh daemon
+- name: enable openssh daemon
   ansible.builtin.systemd:
       name: sshd
       enabled: yes
       masked: no
+
+- name: start openssh daemon
+  ansible.builtin.systemd:
+      state: started

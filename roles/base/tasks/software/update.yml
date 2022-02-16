@@ -1,5 +1,11 @@
 ---
 
+- name: system setup | pexpect for updates
+  package:
+    name:
+      - python-pexpect
+    state: latest
+
 - name: system setup | software package updates
   expect:
     command: garuda-update
