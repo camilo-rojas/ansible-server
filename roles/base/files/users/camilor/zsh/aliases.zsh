@@ -1,4 +1,4 @@
-alias ls='lsd'
+alias ls='lsd -l'
 alias la='ls -la'
 alias lt='ls --tree'
 alias back='cd $OLDPWD'
