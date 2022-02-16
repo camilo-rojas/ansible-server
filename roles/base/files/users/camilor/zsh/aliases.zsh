@@ -1,3 +1,6 @@
+alias ls='lsd'
+alias la='ls -la'
+alias lt='ls --tree'
 alias back='cd $OLDPWD'
 alias c='clear'
 alias cd..='cd ..'

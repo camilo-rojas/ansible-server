@@ -1,0 +1,6 @@
+---
+
+- name: system setup | software package updates
+  pacman:
+    update_cache: yes
+    upgrade: yes
