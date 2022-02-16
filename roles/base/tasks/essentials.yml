@@ -53,3 +53,4 @@
 - name: start openssh daemon
   ansible.builtin.systemd:
       state: started
+      name: sshd
