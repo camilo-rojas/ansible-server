@@ -15,4 +15,5 @@
       - ruby
       - "{{ ruby_rake_package }}"
       - tig
+      - python-pexpect
     state: latest
