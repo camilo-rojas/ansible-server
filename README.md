@@ -24,17 +24,17 @@ Available Applications
 ---
 
 - *Yay* - AUR package manager
-- *Sonarr* - for downloading and managing TV episodes
+- *Sonarr* - TV episodes manager
 - *Lidarr* - Music collection manager
-- *Prowlarr* - Indexer aggregator for Sonarr, Radarr, Lidarr, etc.
-- *Radarr* - for organizing movies
-- *Bazarr* - companion to Radarr and Sonarr for downloading subtitles
+- *Radarr* - Movie manager
 - *Readerr* - books and audiobooks
 - *Ombi* - media request tool
+- *Bazarr* - Subtitles manager
+- *Prowlarr* - Indexer aggregator for Sonarr, Radarr, Lidarr, etc.
 - *qBittorren* - qB
 - *Homer* - Home server dashboard
 - *Home Assistant* - Open source home automation
-- Basic packages - vi, git, tmux, openssh, htop, zsh, ufw, qemu, nrpe, etc..
+- Basic packages - vi, git, tmux, openssh, htop, zsh, ufw, qemu, nrpe, lsd, etc..
 
 Future apps being considered
 ---
