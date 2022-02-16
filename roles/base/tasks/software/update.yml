@@ -1,4 +1,9 @@
 ---
 
 - name: system setup | software package updates
-  command: garuda-update
+  expect:
+    command: garuda-update
+    responses:
+        'Replace hwids with core/hwdata? [Y/n]': 'y'
+        'Proceed with installation? [Y/n]': 'y'
+        'Do you want to remove these packages? [Y/n]': 'y'
