@@ -68,6 +68,11 @@
     name: homer
     state: started
 
+- name: homer | reload service
+  systemd:
+    name: homer
+    state: reloaded
+
 # download icons
 
 - name: homer | create img dir
