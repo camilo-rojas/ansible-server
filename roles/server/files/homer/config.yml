@@ -50,11 +50,11 @@ message:
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
 links:
   - name: "Gmail"
-    icon: "fab fa-inbox"
+    icon: "fab fa-envelope"
     url: "https://gmail.com"
     target: "_blank" # optional html a tag target attribute
   - name: "Outlook"
-    icon: "fab fa-envelope"
+    icon: "fab fa-building"
     url: "https://outlook.com"
     target: "_blank" # optional html a tag target attribute
   - name: "Trello"
@@ -66,15 +66,11 @@ links:
     url: "https://github.com/camilo-rojas"
     target: "_blank" # optional html a tag target attribute
   - name: "El Tiempo"
-    icon: "fas fa-news"
-    url: "https://www.eltiempo.com/"
-    target: "_blank"
-  - name: "El Tiempo"
     icon: "fas fa-newspaper"
     url: "https://www.eltiempo.com/"
     target: "_blank"
   - name: "CNN"
-    icon: "fas fa-page"
+    icon: "fas fa-newspaper"
     url: "https://www.cnn.com/"
     target: "_blank"
   - name: "CNBC"
@@ -100,7 +96,7 @@ services:
     items:
       - name: "YouTube"
         logo: "assets/img/png/youtube.png"
-        subtitle: "Youtube portal"
+        subtitle: "Learn something"
         tag: "media"
         url: "https://youtube.com"
         target: "_blank" # optional html a tag target attribute

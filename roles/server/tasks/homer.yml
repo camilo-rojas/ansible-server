@@ -68,7 +68,7 @@
     name: homer
     state: started
 
-- name: homer | start service
+- name: homer | stop service
   systemd:
     name: homer
     state: stopped
