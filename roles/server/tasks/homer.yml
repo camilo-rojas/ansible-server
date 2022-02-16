@@ -68,10 +68,15 @@
     name: homer
     state: started
 
-- name: homer | reload service
+- name: homer | start service
   systemd:
     name: homer
-    state: reloaded
+    state: stopped
+
+- name: homer | restart service
+  systemd:
+    name: homer
+    state: started
 
 # download icons
 
