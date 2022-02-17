@@ -15,6 +15,7 @@
   register: update_result
   async: 1000
   poll: 0
+  no_log: true
 
 - name: system setup | check on update
   async_status:
