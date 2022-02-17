@@ -90,7 +90,7 @@
   become: yes
   become_user: camilor
 
-- name: users | camilor | create config directories
+- name: users | camilor | create powerlevel10k theme
   tags: dotfiles,camilor,tmux,users,vim,zsh
   file:
     path: /home/camilor/{{ item.dir }}
@@ -105,6 +105,44 @@
   git:
     repo: https://github.com/romkatv/powerlevel10k.git
     dest: /home/camilor/.oh-my-zsh/themes/powerlevel10k
+    depth: 1
+  become: yes
+  become_user: camilor
+
+- name: users | camilor | create zsh-syntax-highlighting oh-my-zsh plugin
+  tags: dotfiles,camilor,users,zsh
+  file:
+    path: /home/camilor/{{ item.dir }}
+    state: directory
+    owner: camilor
+    group: camilor
+    mode: 0700
+  with_items:
+    - { dir: '.oh-my-zsh/plugins/zsh-syntax-highlighting' }
+
+- name: users | camilor | Download autosuggestions plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: /home/camilor/.oh-my-zsh/plugins/zsh-syntax-highlighting
+    depth: 1
+  become: yes
+  become_user: camilor
+
+- name: users | camilor | create autosuggestions oh-my-zsh plugin
+  tags: dotfiles,camilor,users,zsh
+  file:
+    path: /home/camilor/{{ item.dir }}
+    state: directory
+    owner: camilor
+    group: camilor
+    mode: 0700
+  with_items:
+    - { dir: '.oh-my-zsh/plugins/zsh-autosugguestions' }
+
+- name: users | camilor | Download autosuggestions plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: /home/camilor/.oh-my-zsh/plugins/zsh-autosuggestions
     depth: 1
   become: yes
   become_user: camilor
