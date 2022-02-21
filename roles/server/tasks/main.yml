@@ -13,6 +13,7 @@
   - import_tasks: thinkpad.yml
 # Install Homer
   - import_tasks: homer.yml
+  - import_tasks: hugo.yml
 
   - include_tasks: unattended_upgrades.yml
     when:

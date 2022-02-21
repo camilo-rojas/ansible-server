@@ -5,6 +5,7 @@
     name:
       - python-pexpect
     state: latest
+  when: ansible_distribution == "Archlinux"
 
 - name: system setup | software package updates
   expect:
@@ -16,10 +17,12 @@
   async: 1000
   poll: 0
   no_log: true
+  when: ansible_distribution == "Archlinux"
 
 - name: system setup | check on update
   async_status:
     jid: "{{update_result.ansible_job_id}}"
   until: check_result.finished
   register: check_result
-  retries: 1000
+  retries: 150
+  when: ansible_distribution == "Archlinux"

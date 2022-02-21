@@ -27,6 +27,9 @@ alias tn='tmux new -s'
 alias watch='watch -d'
 alias weather='curl wttr.in'
 alias wget='wget -c'
+
+alias update_ansible="sudo ansible-pull -U https://github.com/camilo-rojas/ansible-server"
+
 ## get top process eating memory
 alias mem5='ps auxf | sort -nr -k 4 | head -5'
 alias mem10='ps auxf | sort -nr -k 4 | head -10'

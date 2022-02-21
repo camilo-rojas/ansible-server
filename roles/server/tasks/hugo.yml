@@ -1,0 +1,8 @@
+#Install Hugo
+- name: Hugo | Install Hugo
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - hugo
+  become: yes
+  become_user: camilor

@@ -37,20 +37,20 @@
     use: makepkg
     state: latest
 
-- name: change font size alacritty
+- name: alacritty font | change font size alacritty
   replace:
     path: /home/camilor/.config/alacritty/alacritty.yml
     regexp: "  size: 12"
     replace: "  size: {{ alacritty_font_size }}"
     backup: yes
 
-- name: enable openssh daemon
+- name: system setup | enable openssh daemon
   ansible.builtin.systemd:
       name: sshd
       enabled: yes
       masked: no
 
-- name: start openssh daemon
+- name: system setup | start openssh daemon
   ansible.builtin.systemd:
       state: started
       name: sshd
