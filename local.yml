@@ -19,7 +19,7 @@
     - base
 
 - hosts: server
-  tags: server
+  tags: homeserver
   become: true
   roles:
-    - server
+    - homeserver

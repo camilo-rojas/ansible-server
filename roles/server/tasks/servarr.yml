@@ -192,3 +192,11 @@
   systemd:
     name: ombi
     state: started
+
+
+- name: servarr | create inbox dir
+  file:
+    path: /inbox
+    state: directory
+  become: yes
+  become_user: camilor
