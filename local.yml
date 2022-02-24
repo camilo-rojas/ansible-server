@@ -18,8 +18,8 @@
   roles:
     - base
 
-- hosts: server
+- hosts: homeserver
   tags: homeserver
   become: true
   roles:
-    - homeserver
+    - server
