@@ -1,2 +1,5 @@
-[homeserver]
+[server]
 homeserver ansible_connection=local
+[laptop]
+[workstations]
+camilor ansible_connection=local
