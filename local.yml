@@ -24,6 +24,6 @@
   vars_prompt:
     - name: smb_pwd
       prompt: '\nServer profile prompt\nSamba Share password?'
-      private: no
+      private: yes
   roles:
     - server
