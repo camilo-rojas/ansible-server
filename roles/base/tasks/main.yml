@@ -26,5 +26,8 @@
   - import_tasks: system_setup/openssh.yml
   - import_tasks: system_setup/scripts.yml
 
+  # Display final message for base role
+  - import_tasks: end_message.yml
+
   rescue:
     - set_fact: task_failed=true

@@ -1,0 +1,7 @@
+---
+
+- name: base | display final message
+  debug:
+    msg:
+      - 'Base role install finished.'
+      - 'After initial install please reboot your machine'

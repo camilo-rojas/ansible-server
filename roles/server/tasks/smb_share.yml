@@ -9,7 +9,8 @@
 
 #Add smb_credential file
 - name: Samba Share | Add credential file
-  debug: Samba pwd {{smb_pwd}}
+  debug:
+    msg: Samba pwd {{smb_pwd}}
   become: yes
   become_user: camilor
 
