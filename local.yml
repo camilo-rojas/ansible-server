@@ -22,7 +22,8 @@
   tags: server
   become: true
   vars_prompt:
-    -name: smb_pwd
-     prompt: Samba Share password?
+    - name: smb_pwd
+      prompt: Samba Share password?
+      private: no
   roles:
     - server
