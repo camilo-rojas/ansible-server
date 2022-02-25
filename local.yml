@@ -23,7 +23,7 @@
   become: true
   vars_prompt:
     - name: smb_pwd
-      prompt: Samba Share password?
+      prompt: '\nServer profile prompt\nSamba Share password?'
       private: no
   roles:
     - server
