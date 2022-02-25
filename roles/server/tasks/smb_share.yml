@@ -1,0 +1,18 @@
+---
+
+# Create the inbox directory
+- name: Samba Share | create inbox dir
+  file:
+    path: /inbox
+    state: directory
+  become: yes
+
+#Add smb_credential file
+- name: Samba Share | Add credential file
+  debug: Samba pwd {{smb_pwd}}
+  become: yes
+  become_user: camilor
+
+ # Add line in fstab
+
+ # Mount inbox shared filesystem

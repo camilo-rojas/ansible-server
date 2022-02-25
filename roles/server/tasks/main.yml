@@ -13,7 +13,10 @@
   - import_tasks: thinkpad.yml
 # Install Homer
   - import_tasks: homer.yml
+# Install Hugo static page manager
   - import_tasks: hugo.yml
+# Mount Samba Share from NAS for media connectiviy
+  - import_tasks: smb_share.yml
 
   - include_tasks: unattended_upgrades.yml
     when:

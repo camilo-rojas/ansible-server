@@ -21,5 +21,8 @@
 - hosts: server
   tags: server
   become: true
+  vars_prompt:
+    -name: smb_pwd
+     prompt: Samba Share password?
   roles:
     - server

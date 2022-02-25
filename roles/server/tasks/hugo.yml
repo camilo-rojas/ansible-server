@@ -1,3 +1,4 @@
+---
 #Install Hugo
 - name: Hugo | Install Hugo
   kewlfft.aur.aur:
