@@ -56,7 +56,7 @@
       username={{ prompt_usr.user_input }}
       password={{ prompt_pwd.user_input }}
   become: yes
-  become: camilor
+  become_user: camilor
   when: smbc_exists.stat.exists == False
 
  # Add line in fstab
