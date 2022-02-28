@@ -69,9 +69,10 @@
     state: present
   become: yes
   register: fstab
+  when: smbc_exists.stat.exists == False
 
  # Mount inbox shared filesystem
 
 - name: samba share | mount if changed
   command: 'mount /inbox -o remount'
-  when: fstab.changed
+  when: fstab.changed 
