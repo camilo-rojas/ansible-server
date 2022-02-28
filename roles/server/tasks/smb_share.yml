@@ -52,6 +52,7 @@
     backup: yes
     path: /home/camilor/.smb_credentials
     state: present
+    marker: ""
     block: |
       username={{ prompt_usr.user_input }}
       password={{ prompt_pwd.user_input }}
@@ -59,11 +60,17 @@
   become_user: camilor
   when: smbc_exists.stat.exists == False
 
+# remove markets
+- name: samba share | remove markers
+  lineinfile:
+    path: /homee/camilor/.smb_credentials
+    state: absent
+    regexp: '^$'
+
  # Add line in fstab
 - name: samba share | add share to fstab
   lineinfile:
     backup: yes
-    backuprefs: yes
     path: /etc/fstab
     line: '//{{ prompt_srv.user_input }}/inbox /inbox cifs credentials=/home/camilor/ .smb_credentials,_netdev,nofail,iocharset=utf8,vers=3.0,noperm 0 0'
     state: present
@@ -75,4 +82,4 @@
 
 - name: samba share | mount if changed
   command: 'mount /inbox -o remount'
-  when: fstab.changed 
+  when: fstab.changed
