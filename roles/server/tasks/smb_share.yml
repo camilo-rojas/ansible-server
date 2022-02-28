@@ -14,6 +14,13 @@
   register: smbc_exists
 
 #if not present then ask for credentials
+
+- name: samba share | pause for credentials
+  pause:
+    seconds: 2
+  no_log: true
+  when: smbc_exists.stat.exists == False
+
 - name: samba share | no credential ask for info user
   pause:
     prompt: 'Server profile started - Variables for playbook - Samba Share server?'
