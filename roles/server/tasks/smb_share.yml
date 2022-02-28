@@ -1,19 +1,77 @@
 ---
 
 # Create the inbox directory
-- name: Samba Share | create inbox dir
+- name: samba share | create inbox dir
   file:
     path: /inbox
     state: directory
   become: yes
 
-#Add smb_credential file
-- name: Samba Share | Add credential file
-  debug:
-    msg: Samba pwd {{smb_pwd}}
+#confirm if smb_credential file is present
+- name: samba share | confirm credential file present
+  stat:
+    path: /home/camilor/.smb_credentials
+  register: smbc_exists
+
+#if not present then ask for credentials
+- name: samba share | no credential ask for info user
+  pause:
+    prompt: 'Server profile started - Variables for playbook - Samba Share server?'
+  register: prompt_srv
+  no_log: true
+  when: smbc_exists.stat.exists == False
+
+- name: samba share | no credential ask for info user
+  pause:
+    prompt: 'Server profile started - Variables for playbook - Samba Share user?'
+  register: prompt_usr
+  no_log: true
+  when: smbc_exists.stat.exists == False
+
+- name: samba share | no credential ask for info pwd
+  pause:
+    prompt: 'Server profile started - Variables for playbook - Samba Share pwd?'
+    echo: no
+  register: prompt_pwd
+  no_log: true
+  when: smbc_exists.stat.exists == False
+
+#Create credential file
+- name: samba share | create .smb_credentials file
+  file:
+    path: /home/camilor/.smb_credentials
+    owner: camilor
+    group: camilor
+    mode: '0600'
+    state: touch
+  when: smbc_exists.stat.exists == False
+
+#Add credentials in file
+- name: samba share | add username and password to credential file
+  blockinfile:
+    backup: yes
+    path: /home/camilor/.smb_credentials
+    state: present
+    block: |
+      username={{prompt_usr.user_input}}
+      password={{prompt_pwd.user_input}}
   become: yes
-  become_user: camilor
+  become: camilor
+  when: smbc_exists.stat.exists == False
 
  # Add line in fstab
+- name: samba share | add share to fstab
+  lineinfile:
+    backup: yes
+    backuprefs: yes
+    path: /etc/fstab
+    line: ''//{{prompt_srv.user_input}}/inbox /inbox cifs credentials=/home/camilor/ .smb_credentials,_netdev,nofail,iocharset=utf8,vers=3.0,noperm 0 0'
+    state: present
+  become: yes
+  register: fstab
 
  # Mount inbox shared filesystem
+
+- name: samba share | mount if changed
+  command: 'mount /inbox -o remount'
+  when: fstab.changed
