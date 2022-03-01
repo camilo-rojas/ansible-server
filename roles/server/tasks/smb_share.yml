@@ -88,5 +88,5 @@
  # Mount inbox shared filesystem
 
 - name: samba share | mount if changed
-  command: 'mount /inbox -o remount'
+  command: 'mount /inbox'
   when: fstab.changed
