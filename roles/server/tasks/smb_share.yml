@@ -4,13 +4,14 @@
 - name: samba share | create inbox dir
   file:
     path: /inbox
+    mode: '0777'
     state: directory
   become: yes
 
 #confirm if smb_credential file is present
 - name: samba share | confirm credential file present
   stat:
-    path: /home/camilor/.smb_credentials
+    path: /etc/.smb_cred
   register: smbc_exists
 
 #if not present then ask for credentials
@@ -46,9 +47,9 @@
 #Create credential file
 - name: samba share | create .smb_credentials file
   file:
-    path: /home/camilor/.smb_credentials
-    owner: camilor
-    group: camilor
+    path: /etc/.smb_cred
+    owner: root
+    group: root
     mode: '0600'
     state: touch
   when: smbc_exists.stat.exists == False
@@ -57,20 +58,19 @@
 - name: samba share | add username and password to credential file
   blockinfile:
     backup: yes
-    path: /home/camilor/.smb_credentials
+    path: /etc/.smb_cred
     state: present
     marker: ""
     block: |
       username={{ prompt_usr.user_input }}
       password={{ prompt_pwd.user_input }}
   become: yes
-  become_user: camilor
   when: smbc_exists.stat.exists == False
 
 # remove markets
 - name: samba share | remove markers
   lineinfile:
-    path: /home/camilor/.smb_credentials
+    path: /etc/.smb_cred
     state: absent
     regexp: '^$'
 
@@ -79,7 +79,7 @@
   lineinfile:
     backup: yes
     path: /etc/fstab
-    line: '//{{ prompt_srv.user_input }}/inbox /inbox cifs credentials=/home/camilor/.smb_credentials,iocharset=utf8,noperm 0 0'
+    line: '//{{ prompt_srv.user_input }}/inbox /inbox cifs credentials=/etc/.smb_cred,iocharset=utf8,noperm 0 0'
     state: present
   become: yes
   register: fstab
