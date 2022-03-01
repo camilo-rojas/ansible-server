@@ -9,7 +9,6 @@
   - import_tasks: essentials.yml
 
   # install software
-  - import_tasks: software/update.yml
   - import_tasks: software/repositories.yml
   - import_tasks: software/packages_development.yml
   - import_tasks: software/packages_cleanup.yml
@@ -26,6 +25,8 @@
   - import_tasks: system_setup/openssh.yml
   - import_tasks: system_setup/scripts.yml
 
+  #Update Arch server
+  - import_tasks: software/update.yml
   # Display final message for base role
   - import_tasks: end_message.yml
 
