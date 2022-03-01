@@ -47,8 +47,8 @@
 - name: samba share | create .smb_credentials file
   file:
     path: /home/camilor/.smb_credentials
-    owner: camilor
-    group: camilor
+    owner: root
+    group: root
     mode: '0600'
     state: touch
   when: smbc_exists.stat.exists == False
@@ -64,13 +64,12 @@
       username={{ prompt_usr.user_input }}
       password={{ prompt_pwd.user_input }}
   become: yes
-  become_user: camilor
   when: smbc_exists.stat.exists == False
 
 # remove markets
 - name: samba share | remove markers
   lineinfile:
-    path: /homee/camilor/.smb_credentials
+    path: /home/camilor/.smb_credentials
     state: absent
     regexp: '^$'
 
