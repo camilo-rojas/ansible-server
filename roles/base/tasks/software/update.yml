@@ -24,5 +24,5 @@
     jid: "{{update_result.ansible_job_id}}"
   until: check_result.finished
   register: check_result
-  retries: 150
+  retries: 200
   when: ansible_distribution == "Archlinux"
