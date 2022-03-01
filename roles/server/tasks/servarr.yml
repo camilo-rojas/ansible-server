@@ -156,6 +156,16 @@
     group: camilor
     mode: 0770
 
+- name: servarr | copy qB config file
+  tags: servaar
+  copy:
+    src: qb/config
+    dest: /home/camilor/.config/qBittorrent/qBittorrent.conf
+    backup: yes
+    owner: camilor
+    group: camilor
+    mode: 0770
+
 - name: servarr | daemon reload
   systemd: daemon_reload=yes
 
