@@ -79,7 +79,7 @@
   lineinfile:
     backup: yes
     path: /etc/fstab
-    line: '//{{ prompt_srv.user_input }}/inbox /inbox cifs credentials=/etc/.smb_cred,iocharset=utf8,noperm 0 0'
+    line: '//{{ prompt_srv.user_input }}/inbox /inbox cifs noauto,x-systemd.automount,_netdev,credentials=/etc/.smb_cred,iocharset=utf8,noperm 0 0'
     state: present
   become: yes
   register: fstab
