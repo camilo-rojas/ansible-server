@@ -6,9 +6,6 @@
   - import_tasks: nrpe.yml
 #  - import_tasks: ufw.yml
   - import_tasks: qemu-agent.yml
-
-# Install servarr modules
-  - import_tasks: servarr.yml
 # Specific thinkpad lid ignore configurations
   - import_tasks: thinkpad.yml
 # Install Homer
@@ -17,7 +14,9 @@
   - import_tasks: hugo.yml
 # Mount Samba Share from NAS for media connectiviy
   - import_tasks: smb_share.yml
-
+# Install servarr modules
+  - import_tasks: servarr.yml
+#Upgrades for Debian based
   - include_tasks: unattended_upgrades.yml
     when:
       - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]

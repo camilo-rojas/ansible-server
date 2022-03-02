@@ -1,6 +1,6 @@
 ---
 #Install Lidarr
-- name: servarr | Install Lidarr using yay
+- name: servarr | lidarr | Install Lidarr using yay
   kewlfft.aur.aur:
     use: yay
     name:
@@ -8,23 +8,44 @@
   become: yes
   become_user: camilor
 
-- name: servarr | daemon reload
+#Copy config files
+- name: servarr | lidarr | copy config
+  tags: lidarr
+  copy:
+    src: lidarr/config.xml
+    dest: /var/lib/lidarr/config.xml
+    owner: lidarr
+    group: lidarr
+    mode: 0644
+  become: yes
+
+- name: servarr | lidarr | copy db
+  tags: lidarr
+  copy:
+    src: lidarr/lidarr.db
+    dest: /var/lib/lidarr/lidarr.db
+    owner: lidarr
+    group: lidarr
+    mode: 0644
+  become: yes
+
+- name: servarr | lidarr | daemon reload
   systemd: daemon_reload=yes
 
 #Enable Lidarr service
-- name: servarr | enable service Lidarr and ensure it is not masked
+- name: servarr | lidarr | enable service Lidarr and ensure it is not masked
   systemd:
     name: lidarr
     enabled: yes
     masked: no
 
-- name: servarr | enable service Lidarr and ensure it is not masked
+- name: servarr | lidarr | enable service Lidarr and ensure it is not masked
   systemd:
     name: lidarr
     state: started
 
 #Install Radarr
-- name: servarr | Install Radarr using yay
+- name: servarr | radarr | Install Radarr using yay
   kewlfft.aur.aur:
     use: yay
     name:
@@ -32,22 +53,43 @@
   become: yes
   become_user: camilor
 
-- name: servarr | daemon reload
+#Copy config files
+- name: servarr | radarr | copy config
+  tags: radarr
+  copy:
+    src: radarr/config.xml
+    dest: /var/lib/radarr/config.xml
+    owner: radarr
+    group: radarr
+    mode: 0644
+  become: yes
+
+- name: servarr | radarr | copy db
+  tags: radarr
+  copy:
+    src: radarr/radarr.db
+    dest: /var/lib/radarr/radarr.db
+    owner: radarr
+    group: radarr
+    mode: 0644
+  become: yes
+
+- name: servarr | radarr | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | enable service Radarr and ensure it is not masked
+- name: servarr | radarr | enable service Radarr and ensure it is not masked
   systemd:
     name: radarr
     enabled: yes
     masked: no
 
-- name: servarr | start service Radarr
+- name: servarr | radarr | start service Radarr
   systemd:
     name: radarr
     state: started
 
 #Install Sonarr
-- name: servarr | Install Sonarr using yay
+- name: servarr | sonarr | Install Sonarr using yay
   kewlfft.aur.aur:
     use: yay
     name:
@@ -55,22 +97,43 @@
   become: yes
   become_user: camilor
 
-- name: servarr | daemon reload
+#Copy config files
+- name: servarr | sonarr | copy config
+  tags: sonarr
+  copy:
+    src: sonarr/config.xml
+    dest: /var/lib/sonarr/config.xml
+    owner: sonarr
+    group: sonarr
+    mode: 0644
+  become: yes
+
+- name: servarr | sonarr | copy db
+  tags: sonarr
+  copy:
+    src: sonarr/sonarr.db
+    dest: /var/lib/sonarr/sonarr.db
+    owner: sonarr
+    group: sonarr
+    mode: 0644
+  become: yes
+
+- name: servarr | sonarr | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | enable service Sonarr and ensure it is not masked
+- name: servarr | sonarr | enable service Sonarr and ensure it is not masked
   systemd:
     name: sonarr
     enabled: yes
     masked: no
 
-- name: servarr | start service Sonarr
+- name: servarr | sonarr | start service Sonarr
   systemd:
     name: sonarr
     state: started
 
 #Install Readarr
-- name: servarr | Install Readarr using yay
+- name: servarr | readarr | Install Readarr using yay
   kewlfft.aur.aur:
     use: yay
     name:
@@ -78,22 +141,43 @@
   become: yes
   become_user: camilor
 
-- name: servarr | daemon reload
+#Copy config files
+- name: servarr | readarr | copy config
+  tags: readarr
+  copy:
+    src: readarr/config.xml
+    dest: /var/lib/readarr/config.xml
+    owner: readarr
+    group: readarr
+    mode: 0644
+  become: yes
+
+- name: servarr | readarr | copy db
+  tags: readarr
+  copy:
+    src: readarr/readarr.db
+    dest: /var/lib/readarr/readarr.db
+    owner: readarr
+    group: readarr
+    mode: 0644
+  become: yes
+
+- name: servarr | readarr | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | enable service Readarr and ensure it is not masked
+- name: servarr | readarr | enable service Readarr and ensure it is not masked
   systemd:
     name: readarr
     enabled: yes
     masked: no
 
-- name: servarr | start Readarr
+- name: servarr | readarr | start Readarr
   systemd:
     name: readarr
     state: started
 
 #Install Prowlarr
-- name: servarr | Install Prowlarr using yay
+- name: servarr | prowlarr | Install Prowlarr using yay
   kewlfft.aur.aur:
     use: yay
     name:
@@ -101,22 +185,43 @@
   become: yes
   become_user: camilor
 
-- name: servarr | daemon reload
+#Copy config files
+- name: servarr | prowlarr | copy config
+  tags: prowlarr
+  copy:
+    src: prowlarr/config.xml
+    dest: /var/lib/prowlarr/config.xml
+    owner: prowlarr
+    group: prowlarr
+    mode: 0644
+  become: yes
+
+- name: servarr | prowlarr | copy db
+  tags: prowlarr
+  copy:
+    src: prowlarr/prowlarr.db
+    dest: /var/lib/prowlarr/prowlarr.db
+    owner: prowlarr
+    group: prowlarr
+    mode: 0644
+  become: yes
+
+- name: servarr | prowlarr | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | enable service Prowlarr and ensure it is not masked
+- name: servarr | prowlarr | enable service Prowlarr and ensure it is not masked
   systemd:
     name: prowlarr
     enabled: yes
     masked: no
 
-- name: servarr | start Prowlarr
+- name: servarr | prowlarr | start Prowlarr
   systemd:
     name: prowlarr
     state: started
 
 #Install Bazaar
-- name: servarr | Install Bazarr using yay
+- name: servarr | bazarr | Install Bazarr using yay
   kewlfft.aur.aur:
     use: yay
     name:
@@ -124,22 +229,43 @@
   become: yes
   become_user: camilor
 
-- name: servarr | daemon reload
+#Copy config files
+- name: servarr | bazarr | copy config
+  tags: bazarr
+  copy:
+    src: bazarr/config/config.ini
+    dest: /var/lib/bazarr/config/config.ini
+    owner: bazarr
+    group: bazarr
+    mode: 0644
+  become: yes
+
+- name: servarr | bazarr | copy db
+  tags: bazarr
+  copy:
+    src: bazarr/db/bazarr.db
+    dest: /var/lib/bazarr/db/bazarr.db
+    owner: bazarr
+    group: bazarr
+    mode: 0644
+  become: yes
+
+- name: servarr | bazarr | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | enable service bazaar and ensure it is not masked
+- name: servarr | bazarr | enable service bazaar and ensure it is not masked
   systemd:
     name: bazarr
     enabled: yes
     masked: no
 
-- name: servarr | start bazaar start
+- name: servarr | bazarr | start bazaar start
   systemd:
     name: bazarr
     state: started
 
 #Install qB
-- name: servarr | Install qB using yay
+- name: servarr | qb | Install qB using yay
   kewlfft.aur.aur:
     use: yay
     name:
@@ -147,7 +273,7 @@
   become: yes
   become_user: camilor
 
-- name: servarr | add qB service file
+- name: servarr | qb | add qB service file
   tags: servaar
   copy:
     src: qb/qb.service
@@ -156,7 +282,7 @@
     group: camilor
     mode: 0770
 
-- name: servarr | copy qB config file
+- name: servarr | qb | copy qB config file
   tags: servaar
   copy:
     src: qb/config
@@ -166,22 +292,22 @@
     group: camilor
     mode: 0770
 
-- name: servarr | daemon reload
+- name: servarr | qb | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | enable service qB and ensure it is not masked
+- name: servarr | qb | enable service qB and ensure it is not masked
   systemd:
     name: qb
     enabled: yes
     masked: no
 
-- name: servarr | start qB start
+- name: servarr | qb | start qB start
   systemd:
     name: qb
     state: started
 
 #Install Ombi
-- name: servarr | Install Ombi using yay
+- name: servarr | ombi | Install Ombi using yay
   kewlfft.aur.aur:
     use: yay
     name:
@@ -189,16 +315,57 @@
   become: yes
   become_user: camilor
 
-- name: servarr | daemon reload
+#Copy config files
+- name: servarr | ombi | copy config
+  tags: ombi
+  copy:
+    src: ombi/appsettings.json
+    dest: /var/lib/ombi/appsettings.json
+    owner: ombi
+    group: ombi
+    mode: 0644
+  become: yes
+
+- name: servarr | ombi | copy db
+  tags: ombi
+  copy:
+    src: ombi/Ombi.db
+    dest: /var/lib/ombi/Ombi.db
+    owner: ombi
+    group: ombi
+    mode: 0644
+  become: yes
+
+- name: servarr | ombi | copy external db
+  tags: ombi
+  copy:
+    src: ombi/OmbiExternal.db
+    dest: /var/lib/ombi/OmbiExternal.db
+    owner: ombi
+    group: ombi
+    mode: 0644
+  become: yes
+
+- name: servarr | ombi | copy settings db
+  tags: ombi
+  copy:
+    src: ombi/OmbiSettings.db
+    dest: /var/lib/ombi/OmbiSettings.db
+    owner: ombi
+    group: ombi
+    mode: 0644
+  become: yes
+
+- name: servarr | ombi | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | enable service ombi and ensure it is not masked
+- name: servarr | ombi | enable service ombi and ensure it is not masked
   systemd:
     name: ombi
     enabled: yes
     masked: no
 
-- name: servarr | start ombi start
+- name: servarr | ombi | start ombi start
   systemd:
     name: ombi
     state: started
