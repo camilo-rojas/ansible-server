@@ -291,6 +291,15 @@
     group: camilor
     mode: 0770
 
+- name: servaar | qb  | create config dirs
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+  with_items:
+    - { dir: '/home/camilor/.config/qBittorrent' }
+  become: yes
+  become_user: camilor
+
 - name: servarr | qb | copy qB config file
   tags: servaar
   copy:
