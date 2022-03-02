@@ -229,6 +229,15 @@
   become: yes
   become_user: camilor
 
+- name: servaar | bazarr  | create config dirs
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+  with_items:
+    - { dir: '/var/lib/bazarr/config' }
+    - { dir: '/var/lib/bazarr/db' }
+  become: yes
+
 #Copy config files
 - name: servarr | bazarr | copy config
   tags: bazarr
