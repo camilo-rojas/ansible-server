@@ -9,7 +9,7 @@
 
 - name: update_tmux_plugin_perms
   file:
-    path: /home/camilor/.tmux/plugins
-    owner: camilor
-    group: camilor
+    path: "/home/{{ user.name }}/.tmux/plugins"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     recurse: true

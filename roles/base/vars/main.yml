@@ -1,5 +1,18 @@
-camilor_passwd: password-hash-goes-here
+#Main base configuration variables
+servername: homeserver
+user:
+  name: camilor
+  group: camilor
+  uid: 1000
+  comment: Camilo Rojas
+  groups:
+    - sys
+    - systemd-journal
+    - wheel
+  shell: /bin/zsh
+
 swappiness_value: 5
+alacritty_font_size: 10
 essential_packages:
   - htop
   - tmux
@@ -10,6 +23,3 @@ essential_packages:
   - vi
   - ntfs-3g
   - iperf
-
-alacritty_font_size: 10
-servername: homeServer
