@@ -17,7 +17,7 @@
   tags: cron
   cron:
     name: "ansible provision"
-    user: camilor
+    user: {{ user.name }}
     hour: "{{ ansible_cron_hour | default('*') }}"
     minute: "{{ ansible_cron_minute | default('*/30') }}"
     job: "ansible-pull -o -U https://github.com/camilo-rojas/ansible-server.git"
@@ -26,6 +26,6 @@
   tags: cron
   cron:
     name: "ansible refresh at boot"
-    user: camilor
+    user: "{{ user.name }}"
     special_time: reboot
-    job: "/bin/rm -rf /home/camilor/.ansible"
+    job: "/bin/rm -rf /home/{{ user.name }}/.ansible"

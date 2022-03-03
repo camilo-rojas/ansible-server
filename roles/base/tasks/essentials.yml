@@ -26,12 +26,12 @@
     version: master
     accept_hostkey: yes
   become: yes
-  become_user: camilor
+  become_user: {{ user.name }}
   tags: ansible,ansible-setup,aur,ansible-aur
 
 - name: ansible setup | install yay
   become: yes
-  become_user: camilor
+  become_user: {{ user.name }}
   kewlfft.aur.aur:
     name: yay
     use: makepkg
@@ -39,7 +39,7 @@
 
 - name: system setup | alacritty font | change font size alacritty
   replace:
-    path: /home/camilor/.config/alacritty/alacritty.yml
+    path: "/home/{{ user.name }}/.config/alacritty/alacritty.yml"
     regexp: "  size: 12"
     replace: "  size: {{ alacritty_font_size }}"
     backup: yes

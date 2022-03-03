@@ -13,7 +13,6 @@
     state: present
     comment: "{{ user.comment }}"
     shell: /bin/zsh
-#    password: "{{ camilor_passwd }}"
 
 - name: "users | {{ user.name }} | set login shell of user {{ user.name }} to `/bin/zsh` with `usermod`"
   ansible.builtin.command: "usermod --shell /bin/zsh {{ user.name }}"
@@ -23,7 +22,7 @@
 - name: "users | {{ user.name }} | add sudoers file"
   tags: "{{ user.name }},settings,sudo,system,users"
   copy:
-    src: users/sudoers_camilor
+    src: "users/sudoers_{{ user.name }}"
     dest: "/etc/sudoers.d/{{ user.name }}"
     owner: root
     group: root

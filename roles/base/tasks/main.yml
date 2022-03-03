@@ -9,7 +9,7 @@
 
 - block:
   - import_tasks: users/root.yml
-  - import_tasks: users/camilor.yml
+  - import_tasks: "users/{{ user.name }}.yml"
   - import_tasks: essentials.yml
 
   # install software
