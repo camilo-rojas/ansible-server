@@ -9,7 +9,7 @@
   user:
     name: {{ user.name }}
     group: {{ user.group}}
-    groups: adm,wheel,{{ sudo_group }}
+    groups: "adm,wheel,{{ sudo_group }}"
     state: present
     comment: {{ user.comment }}
     shell: /bin/zsh
