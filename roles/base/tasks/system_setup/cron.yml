@@ -17,7 +17,7 @@
   tags: cron
   cron:
     name: "ansible provision"
-    user: {{ user.name }}
+    user: "{{ user.name }}"
     hour: "{{ ansible_cron_hour | default('*') }}"
     minute: "{{ ansible_cron_minute | default('*/30') }}"
     job: "ansible-pull -o -U https://github.com/camilo-rojas/ansible-server.git"
