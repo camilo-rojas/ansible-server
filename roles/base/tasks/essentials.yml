@@ -37,7 +37,7 @@
     use: makepkg
     state: latest
 
-- name: alacritty font | change font size alacritty
+- name: system setup | alacritty font | change font size alacritty
   replace:
     path: /home/camilor/.config/alacritty/alacritty.yml
     regexp: "  size: 12"
