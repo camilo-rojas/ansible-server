@@ -89,4 +89,5 @@
 
 - name: samba share | mount if changed
   command: 'mount /inbox'
+  become: yes
   when: fstab.changed
