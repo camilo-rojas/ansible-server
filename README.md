@@ -10,21 +10,21 @@ Installation
 
 1. Install Ansible -
 
-    '''sh
+    ```sh
     sudo pacman -Sy ansible
-    '''
+    ```
 
 2. Run initial galaxy dependencies -
 
-    '''sh
+    ```sh
     sudo ansible-galaxy collection install kewlfft.aur
-    '''
+    ```
 
 3. Run the local notebook -
 
-    '''sh
+    ```sh
     sudo ansible-pull -U https://github.com/camilo-rojas/ansible-server.git
-    '''
+    ```
 
 Available Applications
 ---
