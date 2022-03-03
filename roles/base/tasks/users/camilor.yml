@@ -1,17 +1,17 @@
-- name: users | camilor | create group
-  tags: groups,camilor,users
+- name: users | {{ user.name }} | create group
+  tags: groups, {{ user.name }},users
   group:
-    name: camilor
+    name: {{ user.group }}
     state: present
 
-- name: users | camilor | create user
-  tags: camilor,sudo,users
+- name: users | {{ user.name }} | create user
+  tags: {{ user.name }},sudo,users
   user:
-    name: camilor
-    group: camilor
-    groups: adm,{{ sudo_group }}
+    name: {{ user.name }}
+    group: {{ user.group}}
+    groups: adm,wheel,{{ sudo_group }}
     state: present
-    comment: "Camilo Rojas"
+    comment: {{ user.comment }}
     shell: /bin/zsh
 #    password: "{{ camilor_passwd }}"
 
