@@ -41,30 +41,30 @@
   with_items:
     - { dir: '/home/{{ user.name }}/.ssh' }
 
-- name: users | camilor | add public key
-  tags: dotfiles,camilor,ssh,ssh-keys,users
+- name: "users | {{ user.name }} | add public key"
+  tags: "dotfiles,{{ user.name }},ssh,ssh-keys,users"
   authorized_key:
-    user: camilor
+    user: "{{ user.name }}"
     key: "{{ item }}"
   with_file:
     - users/camilor/ssh/camilor_id_ed25519.pub
 
-- name: users | camilor | add pub key to .ssh
-  tags: camilor,keys,ssh
+- name: "users | {{ user.name }} | add pub key to .ssh"
+  tags: "{{ user.name }},keys,ssh"
   copy:
     src: users/camilor/ssh/camilor_id_ed25519.pub
-    dest: /home/camilor/.ssh/id_ed25519.pub
-    owner: camilor
-    group: camilor
+    dest: "/home/{{ user.name }}/.ssh/id_ed25519.pub"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0600
 
-- name: users | camilor | create config directories
-  tags: dotfiles,camilor,tmux,users,vim,zsh
+- name: "users | {{ user.name }} | create config directories"
+  tags: "dotfiles,{{ user.name }},tmux,users,vim,zsh"
   file:
-    path: /home/camilor/{{ item.dir }}
+    path: "/home/{{ user.name }}/{{ item.dir }}"
     state: directory
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0700
   with_items:
     - { dir: '.bash' }
@@ -82,107 +82,107 @@
     - { dir: '.zsh' }
     - { dir: '.oh-my-zsh' }
 
-- name: users | camilor | Download oh my zsh
+- name: "users | {{ user.name }} | Download oh my zsh"
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: /home/camilor/.oh-my-zsh
+    dest: "/home/{{ user.name }}/.oh-my-zsh"
     depth: 1
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
-- name: users | camilor | create powerlevel10k theme
-  tags: dotfiles,camilor,tmux,users,vim,zsh
+- name: "users | {{ user.name }} | create powerlevel10k theme"
+  tags: "dotfiles,{{ user.name }},tmux,users,vim,zsh"
   file:
-    path: /home/camilor/{{ item.dir }}
+    path: "/home/{{ user.name }}/{{ item.dir }}"
     state: directory
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0700
   with_items:
     - { dir: '.oh-my-zsh/themes/powerlevel10k' }
 
-- name: users | camilor | Download pk10k
+- name: "users | {{ user.name }} | Download pk10k"
   git:
     repo: https://github.com/romkatv/powerlevel10k.git
-    dest: /home/camilor/.oh-my-zsh/themes/powerlevel10k
+    dest: "/home/{{ user.name }}/.oh-my-zsh/themes/powerlevel10k"
     depth: 1
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
-- name: users | camilor | create zsh-syntax-highlighting oh-my-zsh plugin
-  tags: dotfiles,camilor,users,zsh
+- name: "users | {{ user.name }} | create zsh-syntax-highlighting oh-my-zsh plugin"
+  tags: "dotfiles,{{ user.name }},users,zsh"
   file:
-    path: /home/camilor/{{ item.dir }}
+    path: "/home/{{ user.name }}/{{ item.dir }}"
     state: directory
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0700
   with_items:
     - { dir: '.oh-my-zsh/plugins/zsh-syntax-highlighting' }
 
-- name: users | camilor | Download autosuggestions plugin
+- name: "users | {{ user.name }} | Download autosuggestions plugin"
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: /home/camilor/.oh-my-zsh/plugins/zsh-syntax-highlighting
+    dest: "/home/{{ user.name }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
     depth: 1
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
-- name: users | camilor | create autosuggestions oh-my-zsh plugin
-  tags: dotfiles,camilor,users,zsh
+- name: "users | {{ user.name }} | create autosuggestions oh-my-zsh plugin"
+  tags: "dotfiles,{{ user.name }},users,zsh"
   file:
-    path: /home/camilor/{{ item.dir }}
+    path: "/home/{{ user.name }}/{{ item.dir }}"
     state: directory
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0700
   with_items:
     - { dir: '.oh-my-zsh/plugins/zsh-autosugguestions' }
 
-- name: users | camilor | Download autosuggestions plugin
+- name: "users | {{ user.name }} | Download autosuggestions plugin"
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
-    dest: /home/camilor/.oh-my-zsh/plugins/zsh-autosuggestions
+    dest: "/home/{{ user.name }}/.oh-my-zsh/plugins/zsh-autosuggestions"
     depth: 1
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
-- name: users | camilor | copy zsh aliases files
-  tags: dotfiles,camilor,users,zsh
+- name: "users | {{ user.name }} | copy zsh aliases files"
+  tags: "dotfiles,{{ user.name }},users,zsh"
   copy:
     src: users/camilor/zsh/aliases.zsh
-    dest: /home/camilor/.oh-my-zsh/custom/aliases.zsh
-    owner: camilor
-    group: camilor
+    dest: "/home/{{ user.name }}/.oh-my-zsh/custom/aliases.zsh"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0600
 
-- name: users | camilor | copy tmux config (server version)
-  tags: dotfiles,users,camilor,tmux,users,vim,zsh
+- name: "users | {{ user.name }} | copy tmux config (server version)"
+  tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
     src: users/camilor/tmux/tmux.conf.server
-    dest: /home/camilor/.tmux.conf
-    owner: camilor
-    group: camilor
+    dest: "/home/{{ user.name }}/.tmux.conf"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0600
   when: "'server' not in group_names"
 
-- name: users | camilor | copy tmux config (workstation version)
-  tags: dotfiles,users,camilor,tmux,users,vim,zsh
+- name: "users | {{ user.name }} | copy tmux config (workstation version)"
+  tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
     src: users/camilor/tmux/tmux.conf.workstation
-    dest: /home/camilor/.tmux.conf
-    owner: camilor
-    group: camilor
+    dest: "/home/{{ user.name }}/.tmux.conf"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0600
   when: "'server' in group_names"
 
-- name: users | camilor | copy dotfiles
-  tags: dotfiles,users,camilor,tmux,users,vim,zsh
+- name: "users | {{ user.name }} | copy dotfiles"
+  tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
     src: users/camilor/{{ item.src }}
-    dest: /home/camilor/{{ item.dest }}
-    owner: camilor
-    group: camilor
+    dest: "/home/{{ user.name }}/{{ item.dest }}"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0600
   with_items:
     - { src: 'bash/bash_aliases', dest: '.bash/bash_aliases' }
@@ -198,37 +198,37 @@
     - { src: 'zsh/zshrc', dest: '.zshrc' }
     - { src: 'zsh/p10k.zsh', dest: '.p10k.zsh' }
 
-- name: users | camilor | clone tmux-completion plugin repository
-  tags: dotfiles,camilor,users,tmux
+- name: "users | {{ user.name }} | clone tmux-completion plugin repository"
+  tags: "dotfiles,{{ user.name }},users,tmux"
   git:
     repo: https://github.com/srsudar/tmux-completion.git
-    dest: /home/camilor/.tmux/plugins/completion
+    dest: "/home/{{ user.name }}/.tmux/plugins/completion"
     force: yes
   notify: update_tmux_plugin_perms
 
-- name: users | camilor | clone tmux-continuum plugin repository
-  tags: dotfiles,camilor,users,tmux
+- name: "users | {{ user.name }} | clone tmux-continuum plugin repository"
+  tags: "dotfiles,{{ user.name }},users,tmux"
   git:
     repo: https://github.com/tmux-plugins/tmux-continuum
-    dest: /home/camilor/.tmux/plugins/continuum
+    dest: "/home/{{ user.name }}/.tmux/plugins/continuum"
     force: yes
   notify: update_tmux_plugin_perms
 
-- name: users | camilor | clone tmux-resurrect plugin repository
-  tags: dotfiles,camilor,users,tmux
+- name: "users | {{ user.name }} | clone tmux-resurrect plugin repository"
+  tags: "dotfiles,{{ user.name }},users,tmux"
   git:
     repo: https://github.com/tmux-plugins/tmux-resurrect
-    dest: /home/camilor/.tmux/plugins/resurrect
+    dest: "/home/{{ user.name }}/.tmux/plugins/resurrect"
     force: yes
   notify: update_tmux_plugin_perms
 
-- name: users | camilor | copy individual zsh config files
-  tags: dotfiles,camilor,users,zsh
+- name: "users | {{ user.name }} | copy individual zsh config files"
+  tags: "dotfiles,{{ user.name }},users,zsh"
   copy:
     src: users/camilor/zsh/{{ item.src }}
-    dest: /home/camilor/.zsh/{{ item.src }}
-    owner: camilor
-    group: camilor
+    dest: "/home/{{ user.name }}/.zsh/{{ item.src }}"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0600
   with_items:
     - { src: 'aliases.zsh' }
