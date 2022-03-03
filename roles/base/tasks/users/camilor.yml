@@ -8,38 +8,38 @@
   tags: "{{ user.name }},sudo,users"
   user:
     name: "{{ user.name }}"
-    group: "{{ user.group}}"
+    group: "{{ user.group }}"
     groups: "adm,wheel,{{ sudo_group }}"
     state: present
     comment: "{{ user.comment }}"
     shell: /bin/zsh
 #    password: "{{ camilor_passwd }}"
 
-- name: Set login shell of user camilor to `/bin/zsh` with `usermod`
-  ansible.builtin.command: usermod --shell /bin/zsh camilor
+- name: "users | {{ user.name }} | set login shell of user {{ user.name }} to `/bin/zsh` with `usermod`"
+  ansible.builtin.command: "usermod --shell /bin/zsh {{ user.name }}"
   become: true
   changed_when: false
 
-- name: users | camilor | camilor | add sudoers file
-  tags: camilor,settings,sudo,system,users
+- name: "users | {{ user.name }} | add sudoers file"
+  tags: "{{ user.name }},settings,sudo,system,users"
   copy:
     src: users/sudoers_camilor
-    dest: /etc/sudoers.d/camilor
+    dest: "/etc/sudoers.d/{{ user.name }}"
     owner: root
     group: root
     mode: 0440
     validate: 'visudo -cf %s'
 
-- name: users | camilor | create .ssh directory
-  tags: dotfiles,camilor,ssh,users
+- name: "users | {{ user.name }} | create .ssh directory"
+  tags: "dotfiles,{{ user.name }},ssh,users"
   file:
     path: "{{ item.dir }}"
     state: directory
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0700
   with_items:
-    - { dir: '/home/camilor/.ssh' }
+    - { dir: '/home/{{ user.name }}/.ssh' }
 
 - name: users | camilor | add public key
   tags: dotfiles,camilor,ssh,ssh-keys,users
