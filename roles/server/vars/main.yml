@@ -1,0 +1,7 @@
+#Main base configuration variables
+servername: homeserver
+user:
+  name: camilor
+  group: camilor
+  uid: 1000
+  gid: 1000

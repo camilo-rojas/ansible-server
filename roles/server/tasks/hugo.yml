@@ -6,4 +6,4 @@
     name:
       - hugo
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"

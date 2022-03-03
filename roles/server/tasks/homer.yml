@@ -6,7 +6,7 @@
     path: ~/homer
     state: directory
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 - name: homer unarchive
   unarchive:
@@ -14,7 +14,7 @@
     remote_src: yes
     dest: ~/homer
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
   tags: homer
 
 - name: homer | copy config file
@@ -22,11 +22,11 @@
   copy:
     src: homer/config.yml
     dest: ~/homer/assets/config.yml
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0660
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 - name: homer | delete config file for second refresh
   tags: homer
@@ -39,19 +39,19 @@
   copy:
     src: homer/config.yml
     dest: ~/homer/assets/config.yml
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0660
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 - name: homer | add homer service file
   tags: homer
   copy:
     src: homer/homer.service
     dest: /etc/systemd/system
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0770
 
 - name: homer | daemon reload
@@ -85,7 +85,7 @@
     path: ~/homer/assets/img
     state: directory
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 - name: homer | download icons
   git:
@@ -94,5 +94,5 @@
     version: master
     accept_hostkey: yes
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
   tags: homer

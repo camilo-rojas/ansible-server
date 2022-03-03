@@ -4,6 +4,7 @@ user:
   name: camilor
   group: camilor
   uid: 1000
+  gid: 1000
   comment: Camilo Rojas
   groups:
     - sys

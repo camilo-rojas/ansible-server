@@ -46,12 +46,12 @@
     user: "{{ user.name }}"
     key: "{{ item }}"
   with_file:
-    - users/camilor/ssh/camilor_id_ed25519.pub
+    - "users/{{ user.name }}/ssh/{{ user.name }}_id_ed25519.pub"
 
 - name: "users | {{ user.name }} | add pub key to .ssh"
   tags: "{{ user.name }},keys,ssh"
   copy:
-    src: users/camilor/ssh/camilor_id_ed25519.pub
+    src: users/{{ user.name }}/ssh/{{ user.name }}_id_ed25519.pub
     dest: "/home/{{ user.name }}/.ssh/id_ed25519.pub"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -149,7 +149,7 @@
 - name: "users | {{ user.name }} | copy zsh aliases files"
   tags: "dotfiles,{{ user.name }},users,zsh"
   copy:
-    src: users/camilor/zsh/aliases.zsh
+    src: "users/{{ user.name }}/zsh/aliases.zsh"
     dest: "/home/{{ user.name }}/.oh-my-zsh/custom/aliases.zsh"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -158,7 +158,7 @@
 - name: "users | {{ user.name }} | copy tmux config (server version)"
   tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
-    src: users/camilor/tmux/tmux.conf.server
+    src: "users/{{ user.name }}/tmux/tmux.conf.server"
     dest: "/home/{{ user.name }}/.tmux.conf"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -168,7 +168,7 @@
 - name: "users | {{ user.name }} | copy tmux config (workstation version)"
   tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
-    src: users/camilor/tmux/tmux.conf.workstation
+    src: "users/{{ user.name }}/tmux/tmux.conf.workstation"
     dest: "/home/{{ user.name }}/.tmux.conf"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -178,7 +178,7 @@
 - name: "users | {{ user.name }} | copy dotfiles"
   tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
-    src: users/camilor/{{ item.src }}
+    src: "users/{{ user.name }}/{{ item.src }}"
     dest: "/home/{{ user.name }}/{{ item.dest }}"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -224,7 +224,7 @@
 - name: "users | {{ user.name }} | copy individual zsh config files"
   tags: "dotfiles,{{ user.name }},users,zsh"
   copy:
-    src: users/camilor/zsh/{{ item.src }}
+    src: "users/{{ user.name }}/zsh/{{ item.src }}"
     dest: "/home/{{ user.name }}/.zsh/{{ item.src }}"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"

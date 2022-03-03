@@ -6,7 +6,7 @@
     name:
       - lidarr
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 #Copy config files
 - name: servarr | lidarr | copy config
@@ -51,7 +51,7 @@
     name:
       - radarr
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 #Copy config files
 - name: servarr | radarr | copy config
@@ -95,7 +95,7 @@
     name:
       - sonarr
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 #Copy config files
 - name: servarr | sonarr | copy config
@@ -139,7 +139,7 @@
     name:
       - readarr
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 #Copy config files
 - name: servarr | readarr | copy config
@@ -183,7 +183,7 @@
     name:
       - prowlarr
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 #Copy config files
 - name: servarr | prowlarr | copy config
@@ -227,7 +227,7 @@
     name:
       - bazarr
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 - name: servaar | bazarr  | create config dirs
   file:
@@ -280,15 +280,15 @@
     name:
       - qbittorrent-nox
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 - name: servarr | qb | add qB service file
   tags: servaar
   copy:
     src: qb/qb.service
     dest: /etc/systemd/system
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0770
 
 - name: servaar | qb  | create config dirs
@@ -298,16 +298,16 @@
   with_items:
     - { dir: '/home/camilor/.config/qBittorrent' }
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 - name: servarr | qb | copy qB config file
   tags: servaar
   copy:
     src: qb/config
-    dest: /home/camilor/.config/qBittorrent/qBittorrent.conf
+    dest: "/home/{{ user.name }}/.config/qBittorrent/qBittorrent.conf"
     backup: yes
-    owner: camilor
-    group: camilor
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
     mode: 0770
 
 - name: servarr | qb | daemon reload
@@ -331,7 +331,7 @@
     name:
       - ombi
   become: yes
-  become_user: camilor
+  become_user: "{{ user.name }}"
 
 #Copy config files
 - name: servarr | ombi | copy config
