@@ -91,3 +91,17 @@
   command: 'mount /inbox'
   become: yes
   when: fstab.changed
+
+- name: samba share |  daemon reload
+  systemd: daemon_reload=yes
+
+#Enable remote-fs.target service
+- name: samba share | enable service remote-fs.target
+  systemd:
+    name: remote-fs.target
+    enabled: yes
+
+- name: samba share | start service remote-fs.target
+  systemd:
+    name: remote-fs.target
+    state: started
