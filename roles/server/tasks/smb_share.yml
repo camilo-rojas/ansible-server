@@ -100,8 +100,10 @@
   systemd:
     name: remote-fs.target
     enabled: yes
+  when: fstab.changed
 
 - name: samba share | start service remote-fs.target
   systemd:
     name: remote-fs.target
     state: started
+  when: fstab.changed
