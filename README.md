@@ -8,6 +8,13 @@ Setup crons itself to run every 30 mins to keep package updated
 Installation
 ---
 
+0. Recommended update Garuda
+
+    ```sh
+    sudo garuda-update
+    ```
+
+
 1. Install Ansible -
 
     ```sh

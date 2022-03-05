@@ -323,7 +323,7 @@
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0770
-    when: not serverinit.stat.exists
+  when: not serverinit.stat.exists
 
 - name: servarr | qb | daemon reload
   systemd: daemon_reload=yes
