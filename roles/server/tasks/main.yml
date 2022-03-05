@@ -9,6 +9,7 @@
   tags: always
 
 - block:
+  - import_tasks: initialSetup.yml
   - import_tasks: nrpe.yml
 #  - import_tasks: ufw.yml
   - import_tasks: qemu-agent.yml
@@ -28,6 +29,8 @@
       - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
       - unattended_upgrades is defined
       - unattended_upgrades == true
-
+  # Display final message for base role
+  - import_tasks: end_message.yml
+  
   rescue:
     - set_fact: task_failed=true

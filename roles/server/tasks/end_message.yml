@@ -1,0 +1,15 @@
+---
+
+# if we end and initialSetup flag is true then create
+# If it doesnt exist create
+- name: Create the file, if it doesnt exist already
+  file:
+    path: /etc/.serverinit
+    state: touch
+  when: not serverinit.stat.exists
+
+- name: base | display final message
+  debug:
+    msg:
+      - 'Server role install finished.'
+      - 'After initial install please reboot your machine'

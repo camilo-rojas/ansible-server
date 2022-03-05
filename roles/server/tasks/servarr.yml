@@ -18,6 +18,7 @@
     group: lidarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | lidarr | copy db
   tags: lidarr
@@ -28,6 +29,7 @@
     group: lidarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | lidarr | daemon reload
   systemd: daemon_reload=yes
@@ -63,6 +65,7 @@
     group: radarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | radarr | copy db
   tags: radarr
@@ -73,6 +76,7 @@
     group: radarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | radarr | daemon reload
   systemd: daemon_reload=yes
@@ -107,6 +111,7 @@
     group: sonarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | sonarr | copy db
   tags: sonarr
@@ -117,6 +122,7 @@
     group: sonarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | sonarr | daemon reload
   systemd: daemon_reload=yes
@@ -151,6 +157,7 @@
     group: readarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | readarr | copy db
   tags: readarr
@@ -161,6 +168,7 @@
     group: readarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | readarr | daemon reload
   systemd: daemon_reload=yes
@@ -195,6 +203,7 @@
     group: prowlarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | prowlarr | copy db
   tags: prowlarr
@@ -205,6 +214,7 @@
     group: prowlarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | prowlarr | daemon reload
   systemd: daemon_reload=yes
@@ -237,6 +247,7 @@
     - { dir: '/var/lib/bazarr/config' }
     - { dir: '/var/lib/bazarr/db' }
   become: yes
+  when: not serverinit.stat.exists
 
 #Copy config files
 - name: servarr | bazarr | copy config
@@ -248,6 +259,7 @@
     group: bazarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | bazarr | copy db
   tags: bazarr
@@ -258,6 +270,7 @@
     group: bazarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | bazarr | daemon reload
   systemd: daemon_reload=yes
@@ -299,6 +312,7 @@
     - { dir: '/home/camilor/.config/qBittorrent' }
   become: yes
   become_user: "{{ user.name }}"
+  when: not serverinit.stat.exists
 
 - name: servarr | qb | copy qB config file
   tags: servaar
@@ -309,6 +323,7 @@
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0770
+    when: not serverinit.stat.exists
 
 - name: servarr | qb | daemon reload
   systemd: daemon_reload=yes
@@ -353,6 +368,7 @@
     group: ombi
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | ombi | copy external db
   tags: ombi
@@ -363,6 +379,7 @@
     group: ombi
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | ombi | copy settings db
   tags: ombi
@@ -373,6 +390,7 @@
     group: ombi
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
 
 - name: servarr | ombi | daemon reload
   systemd: daemon_reload=yes

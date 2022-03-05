@@ -1,0 +1,7 @@
+---
+
+# This file will flag if initial run for config setup
+- name: Check that the .serverinit exists
+  stat:
+    path: /etc/.serverinit
+  register: serverinit
