@@ -1,0 +1,13 @@
+---
+
+# Setup cron filee
+- name: backup | copy cron file
+  tags: backup
+  copy:
+    src: backup/backup
+    dest: /etc/cron.daily
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+  

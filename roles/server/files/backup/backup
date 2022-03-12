@@ -1,0 +1,8 @@
+#!/bin/sh
+rsync -arzz --delete --quiet /var/lib/bazarr /inbox/backups/homeserver
+rsync -arzz --delete --quiet /var/lib/lidarr /inbox/backups/homeserver
+rsync -arzz --delete --quiet /var/lib/readarr /inbox/backups/homeserver
+rsync -arzz --delete --quiet /var/lib/radarr /inbox/backups/homeserver
+rsync -arzz --delete --quiet /var/lib/sonarr /inbox/backups/homeserver
+rsync -arzz --delete --quiet /var/lib/ombi /inbox/backups/homeserver
+rsync -arzz --delete --quiet /var/lib/prowlarr /inbox/backups/homeserver

@@ -23,6 +23,8 @@
   - import_tasks: smb_share.yml
 # Install servarr modules
   - import_tasks: servarr.yml
+# Install daily backup strategy
+  - import_tasks: backup.yml
 #Upgrades for Debian based
   - include_tasks: unattended_upgrades.yml
     when:
@@ -31,6 +33,6 @@
       - unattended_upgrades == true
   # Display final message for base role
   - import_tasks: end_message.yml
-  
+
   rescue:
     - set_fact: task_failed=true
