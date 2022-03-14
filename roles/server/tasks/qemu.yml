@@ -12,7 +12,6 @@
       - virt-viewer
       - dnsmasq
       - vde2
-      - openbsd-netcat
       - libguestfs
       - bridge-utils
   become: yes
