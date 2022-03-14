@@ -41,7 +41,7 @@
     enabled: yes
     masked: no
 
-- name: servarr | lidarr | enable service Lidarr and ensure it is not masked
+- name: servarr | lidarr | start service Lidarr 
   systemd:
     name: lidarr
     state: started

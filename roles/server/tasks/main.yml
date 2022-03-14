@@ -25,6 +25,10 @@
   - import_tasks: servarr.yml
 # Install daily backup strategy
   - import_tasks: backup.yml
+# Install qemu virtualization
+  - import_tasks: qemu.yml
+# Restore homeassistant vm
+
 #Upgrades for Debian based
   - include_tasks: unattended_upgrades.yml
     when:

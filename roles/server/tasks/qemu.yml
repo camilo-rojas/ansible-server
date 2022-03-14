@@ -1,0 +1,62 @@
+---
+
+- name: virtualization | install qemu and virtualizaton packages
+  tags: qemu, virtualization
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - qemu
+      - virt-manager
+      - libvirt
+      - ebtables
+      - virt-viewer
+      - dnsmasq
+      - vde2
+      - openbsd-netcat
+      - libguestfs
+      - bridge-utils
+  become: yes
+  become_user: "{{ user.name }}"
+
+#Enable libvirtd service
+- name: virtualization | libvirtd | enable service libvirtd and ensure it is not masked
+  tags: qemu, virtualization
+  systemd:
+    name: libvirtd
+    enabled: yes
+
+#Start libvirtd service
+- name: virtualization | libvirtd | start service libvirtd
+  tags: qemu, virtualization
+  systemd:
+    name: libvirtd
+    state: started
+
+#Change libvirtd.conf
+- name: virtualization | libvirtd | change group
+  tags: qemu, virtualization
+  lineinfile:
+    dest: "/etc/libvirt/libvirtd.conf"
+    regexp: "^#unix_sock_group"
+    line: "unix_sock_group = 'libvirt'"
+
+- name: virtualization | libvirtd | change group
+  tags: qemu, virtualization
+  lineinfile:
+    dest: "/etc/libvirt/libvirtd.conf"
+    regexp: "^#unix_sock_rw_perms"
+    line: "unix_sock_rw_perms = '0770'"
+
+#Add user to libvirt group
+- name: virtualization | libvirtd | adding existing user '{{ user.name }}' to group libvirt
+  user:
+    name: '{{ user.name }}'
+    groups: libvirt
+    append: yes
+
+#restart libvirtd service
+- name: virtualization | libvirtd | start service libvirtd
+  tags: qemu, virtualization
+  systemd:
+    name: libvirtd
+    state: restarted
