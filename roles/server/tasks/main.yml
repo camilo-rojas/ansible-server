@@ -28,7 +28,7 @@
 # Install qemu virtualization
   - import_tasks: qemu.yml
 # Restore homeassistant vm
-
+  - import_tasks: homeassistant.yml
 #Upgrades for Debian based
   - include_tasks: unattended_upgrades.yml
     when:

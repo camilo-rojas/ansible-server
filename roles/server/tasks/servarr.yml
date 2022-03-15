@@ -31,6 +31,17 @@
   become: yes
   when: not serverinit.stat.exists
 
+#Copy custom service file
+- name: servarr | lidarr | replace with custom service file
+  tags: lidarr
+  copy:
+    src: lidarr/lidarr.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
+  when: not serverinit.stat.exists
+
 - name: servarr | lidarr | daemon reload
   systemd: daemon_reload=yes
 
@@ -41,7 +52,7 @@
     enabled: yes
     masked: no
 
-- name: servarr | lidarr | start service Lidarr 
+- name: servarr | lidarr | start service Lidarr
   systemd:
     name: lidarr
     state: started
@@ -76,6 +87,17 @@
     group: radarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
+
+#Copy custom service file
+- name: servarr | radarr | replace with custom service file
+  tags: radarr
+  copy:
+    src: radarr/radarr.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
   when: not serverinit.stat.exists
 
 - name: servarr | radarr | daemon reload
@@ -124,6 +146,17 @@
   become: yes
   when: not serverinit.stat.exists
 
+#Copy custom service file
+- name: servarr | sonarr | replace with custom service file
+  tags: sonarr
+  copy:
+    src: sonarr/sonarr.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
+  when: not serverinit.stat.exists
+
 - name: servarr | sonarr | daemon reload
   systemd: daemon_reload=yes
 
@@ -170,6 +203,17 @@
   become: yes
   when: not serverinit.stat.exists
 
+#Copy custom service file
+- name: servarr | readarr | replace with custom service file
+  tags: readarr
+  copy:
+    src: readarr/readarr.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
+  when: not serverinit.stat.exists
+
 - name: servarr | readarr | daemon reload
   systemd: daemon_reload=yes
 
@@ -214,6 +258,17 @@
     group: prowlarr
     mode: 0644
   become: yes
+  when: not serverinit.stat.exists
+
+#Copy custom service file
+- name: servarr | prowlarr | replace with custom service file
+  tags: prowlarr
+  copy:
+    src: prowlarr/prowlarr.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
   when: not serverinit.stat.exists
 
 - name: servarr | prowlarr | daemon reload
@@ -272,6 +327,17 @@
   become: yes
   when: not serverinit.stat.exists
 
+#Copy custom service file
+- name: servarr | bazarr | replace with custom service file
+  tags: bazarr
+  copy:
+    src: bazarr/bazarr.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
+  when: not serverinit.stat.exists
+
 - name: servarr | bazarr | daemon reload
   systemd: daemon_reload=yes
 
@@ -302,7 +368,7 @@
     dest: /etc/systemd/system
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
-    mode: 0770
+    mode: 0644
 
 - name: servaar | qb  | create config dirs
   file:

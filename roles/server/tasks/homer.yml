@@ -52,7 +52,7 @@
     dest: /etc/systemd/system
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
-    mode: 0770
+    mode: 0644
 
 - name: homer | daemon reload
   systemd: daemon_reload=yes

@@ -1,0 +1,14 @@
+[Unit]
+Description=Lidarr Service
+After=syslog.target network-online.target inbox.mount
+
+[Service]
+User=lidarr
+Group=lidarr
+Type=simple
+ExecStart=/usr/lib/lidarr/bin/Lidarr -nobrowser -data=/var/lib/lidarr
+Restart=on-failure
+SyslogIdentifier=lidarr
+
+[Install]
+WantedBy=mult-user.target

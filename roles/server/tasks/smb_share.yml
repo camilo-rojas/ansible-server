@@ -93,7 +93,7 @@
     dest: /etc/systemd/system
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
-    mode: 0770
+    mode: 0644
   become: yes
   when: smbc_exists.stat.exists == False
 

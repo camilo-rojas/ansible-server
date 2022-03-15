@@ -1,0 +1,15 @@
+[Unit]
+Description=prowlarr Service
+Wants=network-online.target
+After=syslog.target network-online.target inbox.mount
+
+[Service]
+User=prowlarr
+Group=prowlarr
+Type=simple
+ExecStart=/usr/lib/prowlarr/bin/Prowlarr -nobrowser -data=/var/lib/prowlarr
+Restart=on-failure
+SyslogIdentifier=prowlarr
+
+[Install]
+WantedBy=mult-user.target
