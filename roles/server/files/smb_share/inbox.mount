@@ -5,10 +5,10 @@
 Documentation=man:fstab(5) man:systemd-fstab-generator(8)
 SourcePath=/etc/fstab
 #Before=remote-fs.target
-Requires=network-online.target systemd-networkd-wait-online.service
-After=network-online.target systemd-networkd-wait-online.service
-#Requires=network-online.target
-#After=network-online.service
+#Requires=network-online.target systemd-networkd-wait-online.service
+#After=network-online.target systemd-networkd-wait-online.service
+Requires=network-online.target
+After=network-online.service
 
 [Mount]
 What=//192.168.0.5/inbox

@@ -60,3 +60,11 @@
   systemd:
     name: libvirtd
     state: restarted
+
+#create vms directory
+- name: virtualization | create vm dir
+  file:
+    path: "/home/{{ user.name }}/vms"
+    state: directory
+  become: yes
+  become_user: "{{ user.name }}"

@@ -1,0 +1,7 @@
+#!/bin/sh
+cp -r /inbox/backups/ha/HA /home/camilor/vms/ha
+#Convert the disk format to qemu
+qemu-img convert -f vdi -O qcow2 /home/camilor/vms/ha/hassos_ova_5.13.vdi /home/camilor/vms/ha/hassos_ova_5.13.qcow2
+#Register the VM with KVM/QEMU
+systemctl restart network
+#Start HASSIO

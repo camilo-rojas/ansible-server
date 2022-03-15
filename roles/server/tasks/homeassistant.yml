@@ -1,0 +1,46 @@
+---
+
+#Create HA directory
+- name: homeassistant | create vm dir
+  tags: homeassistant
+  file:
+    path: "/home/{{ user.name }}/vms/ha"
+    state: directory
+  become: yes
+  become_user: "{{ user.name }}"
+
+#Copy cpHA tool to move the tool from backup
+- name: homeassistant | copy cpHA tool
+  tags: homeassistant
+  copy:
+    src: homeassistant/cpHA
+    dest: "/home/{{ user.name }}/.config"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0755
+  become: yes
+  become_user: "{{ user.name }}"
+
+#Copy bridge files to network-scripts
+- name: homeassistant | copy bridge tool
+  tags: homeassistant
+  copy:
+    src: homeassistant/ifcfg-br1
+    dest: "/etc/sysconfig/network-scripts"
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+
+- name: homeassistant | copy eth tool
+  tags: homeassistant
+  copy:
+    src: homeassistant/ifcfg-eth2
+    dest: "/etc/sysconfig/network-scripts"
+    owner: root
+    group: root
+    mode: 0755
+  become: yes
+
+#Restart network
+#move to the cpHA tool
