@@ -8,6 +8,7 @@
       - qemu
       - virt-manager
       - libvirt
+      - ovmf
       - ebtables
       - virt-viewer
       - dnsmasq
