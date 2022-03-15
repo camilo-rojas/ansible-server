@@ -10,4 +10,15 @@
     group: root
     mode: 0755
   become: yes
-  
+
+# Copy manual restore file
+- name: backup | copy cron file
+  tags: backup
+  copy:
+    src: backup/restore
+    dest: "/home/{{ user.name }}/.config"
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0755
+  become: yes
+  become_user: "{{ user.name }}"

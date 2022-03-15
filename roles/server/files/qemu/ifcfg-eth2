@@ -1,0 +1,5 @@
+TYPE=Ethernet
+NAME="Ethernet 2"
+DEVICE=enp0s25
+ONBOOT=yes
+BRIDGE=nm-bridge1

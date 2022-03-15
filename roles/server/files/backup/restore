@@ -1,0 +1,22 @@
+#!/bin/sh
+sudo systemctl stop bazarr
+rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/bazarr
+sudo systemctl start bazarr
+sudo systemctl stop lidarr
+rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/lidarr
+sudo systemctl start lidarr
+sudo systemctl stop readarr
+rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/readarr
+sudo systemctl start readarr
+sudo systemctl stop radarr
+rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/radarr
+sudo systemctl start radarr
+sudo systemctl stop sonarr
+rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/sonarr
+sudo systemctl start sonarr
+sudo systemctl stop ombi
+rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/ombi
+sudo systemctl start ombi
+sudo systemctl stop prowlarr
+rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/prowlarr
+sudo systemctl start prowlarr
