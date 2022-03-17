@@ -9,7 +9,7 @@ user:
 #Bridge information
 nmcli_br:
   - conn_name: br0
-    ip4: 192.168.0.19/24
+    ip4: 192.168.0.19
     gw4: 192.168.0.1
     dns4: 192.168.0.180
 
