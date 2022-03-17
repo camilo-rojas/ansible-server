@@ -1,0 +1,79 @@
+---
+
+- name: ipconfig | getting ip config
+#  ansible.builtin.command: ip address add 192.168.0.19/24 broadcast + dev enp0s25 | true
+  ansible.builtin.command: ip a
+  register: ipaddout
+  become: true
+
+#First remove Wired connection 1
+- name: ipconfig | remove current Wired connectin 1
+  nmcli:
+    type: ethernet
+    conn_name: Wired connection 1
+    state: absent
+
+#Generate the Bridge with an ip
+- name: ipconfig | add bridge
+  nmcli:
+    type: bridge
+    conn_name: "{{ item.conn_name }}"
+    ip4: "{{ item.ip4 }}"
+    gw4: "{{ item.gw4 }}"
+    dns4: "{{ item.dns4 }}"
+    state: present
+  register: bridge
+  with_items:
+    - "{{ nmcli_br }}"
+
+#Add bridge slaves
+- name: ipconfig | add bridge slaves
+  nmcli:
+    type: bridge-slave
+    conn_name: "{{ item.conn_name }}"
+    state: present
+    ifname: "{{ item.ifname }}"
+    master: "{{ item.master }}"
+  with_items:
+    - "{{ nmcli_br_slaves }}"
+
+
+#- name: thinkpad | setting ip address
+#  ansible.builtin.command: ip address add 192.168.0.19/24 broadcast + dev enp0s25
+#  become: true
+#  when: "'192.168.0.19/24' not in ipaddout.stdout"
+
+
+#- debug:
+#    msg: "{{ipaddout.stdout}}"
+#  tags: ipconfig
+#  copy:
+#    src: ipconfig/20-wired.network
+#    dest: /etc/systemd/network/20-wired.network
+#    owner: root
+#    group: root
+#    mode: 0660
+#  become: yes
+#  become_user: root
+#
+#- name: thinkpad | enable networking services systemd-networkd
+#  systemd:
+#    name: systemd-networkd.service
+#    enabled: yes
+#    masked: no
+#
+#- name: thinkpad | start networking services systemd-networkd
+#  systemd:
+#    name: systemd-networkd.service
+#    state: started
+#
+#- name: thinkpad | enable networking services systemd-resolved
+#  systemd:
+#    name: systemd-networkd.service
+#    enabled: yes
+#    masked: no
+#
+#- name: thinkpad | start networking services systemd-resovled
+#  systemd:
+#    name: systemd-networkd.service
+#    state: started

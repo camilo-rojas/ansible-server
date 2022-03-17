@@ -5,3 +5,15 @@ user:
   group: camilor
   uid: 1000
   gid: 1000
+
+#Bridge information
+nmcli_br:
+  - conn_name: br0
+    ip4: 192.168.0.19/24
+    gw4: 192.168.0.1
+    dns4: 192.168.0.180
+
+nmcli_br_slaves:
+  - conn_name: enp0s25
+    ifname: enp0s25
+    master: br0
