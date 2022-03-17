@@ -471,3 +471,27 @@
   systemd:
     name: ombi
     state: started
+
+#Copy startServarr
+- name: servarr | copy start sh
+  tags: servarr
+  copy:
+    src: servarr/startServarr
+    dest: "/home/{{ user.name }}/.config"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0770
+  become: yes
+  become_user: "{{ user.name }}"
+
+#Copy startServarr
+- name: servarr | copy stop sh
+  tags: servarr
+  copy:
+    src: servarr/stopServarr
+    dest: "/home/{{ user.name }}/.config"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0770
+  become: yes
+  become_user: "{{ user.name }}"
