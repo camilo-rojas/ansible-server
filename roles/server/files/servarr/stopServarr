@@ -1,8 +1,8 @@
 #!/bin/sh
-cp -r /inbox/backups/ha/HA /home/camilor/vms/ha
-#Convert the disk format to qemu
-qemu-img convert -f vdi -O qcow2 /home/camilor/vms/ha/hassos_ova_5.13.vdi /home/camilor/vms/ha/hassos_ova_5.13.qcow2
-#Register the VM with KVM/QEMU
-cp /home/camilor/.config/ifcfg-br1 /
-#systemctl restart network
-#Start HASSIO
+sudo systemctl stop bazarr
+sudo systemctl stop prowlarr
+sudo systemctl stop sonarr
+sudo systemctl stop radar
+sudo systemctl stop readarr
+sudo systemctl stop lidarr
+sudo systemctl stop ombi
