@@ -7,11 +7,11 @@
   become: true
 
 #First remove Wired connection 1
-- name: ipconfig | remove current Wired connectin 1
-  nmcli:
-    type: ethernet
-    conn_name: Wired connection 1
-    state: absent
+#- name: ipconfig | remove current Wired connectin 1
+#  nmcli:
+#    type: ethernet
+#    conn_name: Wired connection 1
+#    state: absent
 
 #Generate the Bridge with an ip
 - name: ipconfig | add bridge
@@ -21,6 +21,7 @@
     ip4: "{{ item.ip4 }}"
     gw4: "{{ item.gw4 }}"
     dns4: "{{ item.dns4 }}"
+    stp: no
     state: present
   register: bridge
   with_items:

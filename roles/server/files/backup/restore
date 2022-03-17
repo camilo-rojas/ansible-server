@@ -1,22 +1,22 @@
 #!/bin/sh
 sudo systemctl stop bazarr
-rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/bazarr
+sudo rsync -arzz --delete /inbox/backups/homeserver/bazarr /var/lib
 sudo systemctl start bazarr
 sudo systemctl stop lidarr
-rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/lidarr
+sudo rsync -arzz --delete /inbox/backups/homeserver/lidarr /var/lib
 sudo systemctl start lidarr
 sudo systemctl stop readarr
-rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/readarr
+sudo rsync -arzz --delete /inbox/backups/homeserver/readarr /var/lib
 sudo systemctl start readarr
 sudo systemctl stop radarr
-rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/radarr
+sudo rsync -arzz --delete /inbox/backups/homeserver/radarr /var/lib
 sudo systemctl start radarr
 sudo systemctl stop sonarr
-rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/sonarr
+sudo rsync -arzz --delete /inbox/backups/homeserver/sonarr /var/lib
 sudo systemctl start sonarr
 sudo systemctl stop ombi
-rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/ombi
+sudo rsync -arzz --delete /inbox/backups/homeserver/ombi /var/lib
 sudo systemctl start ombi
 sudo systemctl stop prowlarr
-rsync -arzz --delete --quiet /inbox/backups/homeserver /var/lib/prowlarr
+sudo rsync -arzz --delete /inbox/backups/homeserver/prowlarr /var/lib
 sudo systemctl start prowlarr
