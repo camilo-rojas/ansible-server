@@ -21,6 +21,7 @@
     method4: auto
     autoconnect: yes
     stp: no
+    mac: 92:3e:7b:f6:e7:97
     state: present
   register: bridge
   with_items:
