@@ -68,3 +68,15 @@
     state: directory
   become: yes
   become_user: "{{ user.name }}"
+
+#Copy br0.xml for bridge comms for kvm/qemu
+- name: virtualization | copy br0.xml for bridge
+  tags: qemu, virtualization
+  copy:
+    src: qemu/br0.xml
+    dest: "/home/{{ user.name }}/.config/br0.xml"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0660
+  become: yes
+  become_user: "{{ user.name }}"

@@ -1,0 +1,101 @@
+---
+
+# This file will flag if initial run for config setup
+- name: Check that the .serverinit exists
+  stat:
+    path: "/home/{{ user.name }}/.vnc/config"
+  register: vncinit
+
+#Install the software
+- name: vnc | install package
+  tags: vnc
+  package:
+    name:
+      - tigervnc
+  when: not vncinit.stat.exists
+
+- name: vnc | pause for credentials
+  pause:
+    seconds: 15
+  no_log: true
+  when: vncinit.stat.exists == False
+
+- name: vnc | no credential ask for vnc password
+  pause:
+    prompt: 'VNC - password?'
+  register: prompt_vncpwd
+  no_log: true
+  when: vncinit.stat.exists == False
+
+#Run vncpassword
+- name: vnc | set passwords
+  shell: |
+    set -o pipefail
+    printf '{{ prompt_vncpwd.user_input }}\n{{ prompt_vncpwd.user_input }}\n\n' | vncpasswd /home/{{ user.name }}/.vnc/passwd
+  args:
+    chdir: "/home/{{ user.name }}/.vnc"
+    creates: "/home/{{ user.name }}/.vnc/passwd"
+    executable: /bin/bash
+  when: vncinit.stat.exists == False
+
+#Set permissions
+
+- name: vnc | set permission on password
+  file:
+    path: "/home/{{ user.name }}/.vnc/passwd"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0770
+  when: vncinit.stat.exists == False
+
+#Copy vncserver.users file
+- name: vnc | copy vncserver.users file
+  tags: vnc
+  copy:
+    src: vnc/vncserver.users
+    dest: /etc/tigervnc
+    mode: 0660
+  become: yes
+  when: not vncinit.stat.exists
+
+#Copy config file
+- name: vnc | copy config file
+  tags: vnc
+  copy:
+    src: vnc/config
+    dest: "/home/{{ user.name }}/.vnc"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0660
+  become: yes
+  become_user: "{{ user.name }}"
+  when: not vncinit.stat.exists
+
+#Copy custom service file
+- name: vnc | set custom service file
+  tags: vnc
+  copy:
+    src: vnc/vncserver@:1.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
+  when: not vncinit.stat.exists
+
+- name: vnc | daemon reload
+  systemd: daemon_reload=yes
+  when: not vncinit.stat.exists
+
+#Enable VNC service
+- name: vnc | enable service  and ensure it is not masked
+  systemd:
+    name: vncserver@:1
+    enabled: yes
+    masked: no
+  when: not vncinit.stat.exists
+
+- name: vnc | start service
+  systemd:
+    name: vnc
+    state: started
+  when: not vncinit.stat.exists

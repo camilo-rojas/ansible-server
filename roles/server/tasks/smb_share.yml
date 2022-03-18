@@ -18,7 +18,7 @@
 
 - name: samba share | pause for credentials
   pause:
-    seconds: 2
+    seconds: 15
   no_log: true
   when: smbc_exists.stat.exists == False
 
