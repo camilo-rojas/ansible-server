@@ -31,6 +31,8 @@
   - import_tasks: qemu.yml
 # Restore homeassistant vm
   - import_tasks: homeassistant.yml
+# Install VNC
+  - import_tasks: vnc.yml
 #Upgrades for Debian based
   - include_tasks: unattended_upgrades.yml
     when:
