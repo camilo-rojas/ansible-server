@@ -23,6 +23,7 @@
     stp: no
     mac: 92:3e:7b:f6:e7:97
     state: present
+    priority: 32768
   register: bridge
   with_items:
     - "{{ nmcli_br }}"
@@ -35,6 +36,7 @@
     state: present
     ifname: "{{ item.ifname }}"
     master: "{{ item.master }}"
+    hairpin: no
   with_items:
     - "{{ nmcli_br_slaves }}"
 
