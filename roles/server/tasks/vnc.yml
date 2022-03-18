@@ -55,7 +55,7 @@
     path: "/home/{{ user.name }}/.vnc/passwd"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
-    mode: 0770
+    mode: 0600
   when: vncinit.stat.exists == False
 
 #Copy vncserver.users file
