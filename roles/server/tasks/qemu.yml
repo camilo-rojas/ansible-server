@@ -86,7 +86,7 @@
   virt_net:
     command: define
     name: br0
-    xml: "<network><name>br0</name><forward mode="bridge"/><bridge name="br0"/></network>"
+    xml: "<network><name>br0</name><forward mode='bridge'/><bridge name="br0"/></network>"
     autostart: yes
 
 #Start network
