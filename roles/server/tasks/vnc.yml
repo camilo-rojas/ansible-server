@@ -23,15 +23,26 @@
 - name: vnc | no credential ask for vnc password
   pause:
     prompt: 'VNC - password?'
+    echo: no
   register: prompt_vncpwd
   no_log: true
   when: vncinit.stat.exists == False
 
+#Creeate .vnc dirs
+- name: vnc | create .vnc dirs
+  file:
+    path: "/home/{{ user.name }}/.vnc"
+    state: directory
+    mode: 0755
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+  when: vncinit.stat.exists == False
+  
 #Run vncpassword
 - name: vnc | set passwords
   shell: |
     set -o pipefail
-    printf '{{ prompt_vncpwd.user_input }}\n{{ prompt_vncpwd.user_input }}\n\n' | vncpasswd /home/{{ user.name }}/.vnc/passwd
+    printf "{{ prompt_vncpwd.user_input }}\n{{ prompt_vncpwd.user_input }}\n\n" | vncpasswd /home/{{ user.name }}/.vnc/passwd
   args:
     chdir: "/home/{{ user.name }}/.vnc"
     creates: "/home/{{ user.name }}/.vnc/passwd"
