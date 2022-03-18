@@ -8,7 +8,7 @@ User=camilor
 PAMName=login
 PIDFile=/home/%u/.vnc/%H%i.pid
 ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
-ExecStart=/usr/bin/vncserver %i -geometry 1280x720 -alwaysshared -fg
+ExecStart=/usr/bin/vncserver %i
 ExecStop=/usr/bin/vncserver -kill %i
 
 [Install]
