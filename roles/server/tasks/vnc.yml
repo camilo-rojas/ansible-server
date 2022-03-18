@@ -37,7 +37,7 @@
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
   when: vncinit.stat.exists == False
-  
+
 #Run vncpassword
 - name: vnc | set passwords
   shell: |
@@ -107,6 +107,6 @@
 
 - name: vnc | start service
   systemd:
-    name: vnc
+    name: vncserver@:1
     state: started
   when: not vncinit.stat.exists
