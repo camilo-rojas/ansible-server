@@ -17,3 +17,11 @@ nmcli_br_slaves:
   - conn_name: bridge-slave-enp0s25
     ifname: enp0s25
     master: br0
+
+ha_vm:
+  - name: HAOS
+    vcpus: 1
+    ram: 2048
+    type: x86_64
+    machine: pc-q35-5.2
+    disk_qcow2: "/home/{{ user.name }}/vms/ha/haos_ova-7.5.qcow2"

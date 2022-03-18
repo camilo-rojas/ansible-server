@@ -87,7 +87,12 @@
     command: define
     name: br0
     xml: "<network><name>br0</name><forward mode='bridge'/><bridge name='br0'/></network>"
+
+#Autostart network
+- name: virtualization | autostart network br0
+  virt_net:
     autostart: yes
+    name: br0
 
 #Start network
 - name: virtualization | start network br0
