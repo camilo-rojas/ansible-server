@@ -50,7 +50,6 @@
   when: vncinit.stat.exists == False
 
 #Set permissions
-
 - name: vnc | set permission on password
   file:
     path: "/home/{{ user.name }}/.vnc/passwd"
@@ -78,6 +77,19 @@
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0660
+  become: yes
+  become_user: "{{ user.name }}"
+  when: not vncinit.stat.exists
+
+#Copy config file
+- name: vnc | copy xstartup file
+  tags: vnc
+  copy:
+    src: vnc/xstartup
+    dest: "/home/{{ user.name }}/.vnc"
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0770
   become: yes
   become_user: "{{ user.name }}"
   when: not vncinit.stat.exists
