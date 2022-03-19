@@ -33,7 +33,7 @@
     msg:
       - 'Current VMS'
       - "{{ vms }}"
-      - "{{ ha.name }}"
+      - "{{ ha }}"
 
 - name: homeassistant | create ha vm if not exists
   block:
