@@ -21,26 +21,25 @@
   become: yes
   become_user: "{{ user.name }}"
 
-#Copy bridge files to network-scripts
-- name: homeassistant | copy bridge tool
-  tags: homeassistant
-  copy:
-    src: homeassistant/ifcfg-br1
-    dest: "/home/{{ user.name }}/.config"
-    owner: root
-    group: root
-    mode: 0755
-  become: yes
+# Get VM List
+- name: homeassistant | get vms list
+  virt:
+    command: list_vms
+  register: vms
+  changed_when: no
 
-- name: homeassistant | copy eth tool
-  tags: homeassistant
-  copy:
-    src: homeassistant/ifcfg-eth2
-    dest: "/home/{{ user.name }}/.config"
-    owner: root
-    group: root
-    mode: 0755
-  become: yes
+- name: homeassistant | create ha vm if not exists
+  block:
+       # Download VM HAOS
+    - name: homeassistant | download and unarchive
+      ansible.builtin.unarchive:
+        src: "{{ ha.base_image_url }}"
+        dest: "/home/{{ user.name }}/vms/ha/{{ ha.base_image_name }}"
+        remote_src: yes
 
-#Restart network
-#move to the cpHA tool
+    - name: homeassistant | define vm
+      community.libvirt.virt:
+        command: define
+        xml: "{{ lookup('template', 'homeassistant/ha.xml.j2') }}"
+        autostart: yes
+  when: ha.name not in vms.list_vms
