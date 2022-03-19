@@ -37,6 +37,13 @@
 
 - name: homeassistant | create ha vm if not exists
   block:
+    - name: homeassistant | display vms
+      debug:
+        msg:
+          - 'Current VMS'
+          - "{{ vms }}"
+          - "{{ ha }}"
+
        # Download VM HAOS
     - name: homeassistant | download and unarchive
       ansible.builtin.unarchive:
