@@ -42,25 +42,4 @@
         command: define
         xml: "{{ lookup('template', 'homeassistant/ha.xml.j2') }}"
         autostart: yes
-  when: "{{ ha.name }} not in vms.list_vms"
-
-
-- name: software | software package updates
-  expect:
-    command: garuda-update
-    responses:
-        'Y/n': 'y'
-    timeout: 1000
-  register: update_result
-  async: 1000
-  poll: 0
-  no_log: true
-  when: ansible_distribution == "Archlinux"
-
-- name: software | check on update
-  async_status:
-    jid: "{{update_result.ansible_job_id}}"
-  until: check_result.finished
-  register: check_result
-  retries: 250
-  when: ansible_distribution == "Archlinux"
+  when: "ha.name not in vms.list_vms"
