@@ -31,6 +31,7 @@
   systemd:
     name: libvirtd
     state: started
+  changed_when: no
 
 #Change libvirtd.conf
 - name: virtualization | libvirtd | change group
@@ -53,6 +54,7 @@
     name: '{{ user.name }}'
     groups: libvirt
     append: yes
+  changed_when: no
 
 #restart libvirtd service
 - name: virtualization | libvirtd | start service libvirtd
@@ -60,6 +62,7 @@
   systemd:
     name: libvirtd
     state: restarted
+  changed_when: no
 
 #create vms directory
 - name: virtualization | create vm dir
