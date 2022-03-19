@@ -28,6 +28,12 @@
   register: vms
   changed_when: no
 
+- name: homeassistant | display vms
+  debug:
+    msg:
+      - 'Current VMS'
+      - vms
+
 - name: homeassistant | create ha vm if not exists
   block:
        # Download VM HAOS
@@ -42,4 +48,4 @@
         command: define
         xml: "{{ lookup('template', 'homeassistant/ha.xml.j2') }}"
         autostart: yes
-  when: "ha.name not in vms.list_vms"
+  when: "ha.name not in vms"

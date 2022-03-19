@@ -67,16 +67,19 @@
   systemd:
     name: homer
     state: started
+  changed_when: no
 
 - name: homer | stop service
   systemd:
     name: homer
     state: stopped
+  changed_when: no
 
 - name: homer | restart service
   systemd:
     name: homer
     state: started
+  changed_when: no
 
 # download icons
 

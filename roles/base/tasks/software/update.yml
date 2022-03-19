@@ -17,6 +17,7 @@
   async: 1000
   poll: 0
   no_log: true
+  changed_when: no
   when: ansible_distribution == "Archlinux"
 
 - name: software | check on update
