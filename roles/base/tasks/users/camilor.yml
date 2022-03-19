@@ -13,6 +13,7 @@
     state: present
     comment: "{{ user.comment }}"
     shell: /bin/zsh
+  changed_when: no
 
 - name: "users | {{ user.name }} | set login shell of user {{ user.name }} to `/bin/zsh` with `usermod`"
   ansible.builtin.command: "usermod --shell /bin/zsh {{ user.name }}"

@@ -1,13 +1,13 @@
 ---
 
-- name: system setup | pexpect for updates
+- name: software | pexpect for updates
   package:
     name:
       - python-pexpect
     state: latest
   when: ansible_distribution == "Archlinux"
 
-- name: system setup | software package updates
+- name: software | software package updates
   expect:
     command: garuda-update
     responses:
@@ -19,7 +19,7 @@
   no_log: true
   when: ansible_distribution == "Archlinux"
 
-- name: system setup | check on update
+- name: software | check on update
   async_status:
     jid: "{{update_result.ansible_job_id}}"
   until: check_result.finished
