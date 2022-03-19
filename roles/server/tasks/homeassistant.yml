@@ -48,4 +48,5 @@
         command: define
         xml: "{{ lookup('template', 'homeassistant/ha.xml.j2') }}"
         autostart: yes
-  when: "{{ ha.name }}" not in vms.list_vms
+  when:
+    - ha.name not in vms.list_vms
