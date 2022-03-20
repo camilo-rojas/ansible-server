@@ -40,9 +40,8 @@
     - name: homeassistant | display vms
       debug:
         msg:
-          - 'Current VMS'
-          - "{{ vms }}"
-          - "{{ ha }}"
+          - 'Current HA image'
+          - "{{ ha.base_image_url }}"
 
        # Download VM HAOS
     - name: homeassistant | download and unarchive
