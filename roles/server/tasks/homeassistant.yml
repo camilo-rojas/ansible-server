@@ -41,6 +41,7 @@
       ansible.builtin.unarchive:
         src: /home/{{ user.name }}/vms/ha/{{ haos.baseimagename }}
         dest: /home/{{ user.name }}/vms/ha/
+        remote_src: yes
 
     - name: homeassistant | define vm
       community.libvirt.virt:
