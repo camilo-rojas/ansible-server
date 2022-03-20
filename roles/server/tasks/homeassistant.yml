@@ -46,7 +46,7 @@
        # Download VM HAOS
     - name: homeassistant | download and unarchive
       ansible.builtin.unarchive:
-        src: "{{ ha.base_image_url }}"
+        src: "https://github.com/home-assistant/operating-system/releases/download/7.5/haos_ova-7.5.qcow2.xz"
         dest: "/home/{{ user.name }}/vms/ha/{{ ha.base_image_name }}"
         remote_src: yes
 
