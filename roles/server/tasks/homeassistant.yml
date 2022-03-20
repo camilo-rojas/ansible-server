@@ -28,26 +28,13 @@
   register: vms
   changed_when: no
 
-- name: homeassistant | display vms
-  debug:
-    msg:
-      - 'Current VMS'
-      - "{{ vms }}"
-      - "{{ haos }}"
-
 - name: homeassistant | create ha vm if not exists
   block:
-    - name: homeassistant | display vms
-      debug:
-        msg:
-          - 'Current HA image'
-          - "{{ haos }}"
-
        # Download VM HAOS
     - name: homeassistant | download and unarchive
       ansible.builtin.unarchive:
         src: "{{ haos['baseimagename'] }}"
-        dest: /home/{{ user.name }}/vms/ha/{{ haos["baseimagename"] }}
+        dest: /home/{{ user.name }}/vms/ha }}
         remote_src: yes
 
     - name: homeassistant | define vm
