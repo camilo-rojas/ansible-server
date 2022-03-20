@@ -41,7 +41,7 @@
       debug:
         msg:
           - 'Current HA image'
-          - "{{ haos.name }}"
+          - "{{ haos }}"
 
        # Download VM HAOS
     - name: homeassistant | download and unarchive
