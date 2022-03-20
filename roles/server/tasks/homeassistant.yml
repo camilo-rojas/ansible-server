@@ -33,7 +33,7 @@
        # Download VM HAOS
     - name: homeassistant | download
       get_url:
-        url: "{{ haos['baseimagename'] }}"
+        url: "{{ haos['baseimageurl'] }}"
         dest: /home/{{ user.name }}/vms/ha
         mode: 0770
 
