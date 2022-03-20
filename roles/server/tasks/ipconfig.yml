@@ -5,6 +5,7 @@
   ansible.builtin.command: ip a
   register: ipaddout
   become: true
+  changed_when: no
 
 #First remove Wired connection 1
 - name: ipconfig | remove current Wired connectin 1

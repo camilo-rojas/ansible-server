@@ -38,10 +38,9 @@
         mode: 0770
 
     - name: homeassistant | unarchive
-      ansible.builtin.unarchive:
-        src: /home/{{ user.name }}/vms/ha/{{ haos.baseimagename }}
-        dest: /home/{{ user.name }}/vms/ha/
-        remote_src: yes
+      shell:
+        cmd: unxz /home/{{ user.name }}/vms/ha/{{ haos.baseimagename }}
+        chdir: /home/{{ user.name }}/vms/ha/
 
     - name: homeassistant | define vm
       community.libvirt.virt:
