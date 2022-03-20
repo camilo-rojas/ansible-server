@@ -18,7 +18,7 @@ nmcli_br_slaves:
     ifname: enp0s25
     master: br0
 
-ha:
+haos:
   - name: HAOS
     vcpus: 1
     ram: 3072

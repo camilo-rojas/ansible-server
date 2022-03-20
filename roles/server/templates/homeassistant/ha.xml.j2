@@ -1,9 +1,9 @@
 <domain type='kvm'>
-  <name>{{ ha.name }}</name>
-  <memory unit='MiB'>{{ ha.ram }}</memory>
-  <vcpu placement='static'>{{ ha.vcpus }}</vcpu>
+  <name>{{ haos.name }}</name>
+  <memory unit='MiB'>{{ haos.ram }}</memory>
+  <vcpu placement='static'>{{ haos.vcpus }}</vcpu>
   <os>
-    <type arch='{{ ha.type }}' machine='{{ ha.machine }}'>hvm</type>
+    <type arch='{{ haos.type }}' machine='{{ haos.machine }}'>hvm</type>
     <loader readonly='yes' type='pflash'>/usr/share/edk2-ovmf/x64/OVMF_CODE.fd</loader>
     <boot dev='hd'/>
   </os>
@@ -26,12 +26,12 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='{{ ha.disk_qcow2 }}'/>
+      <source file='{{ haos.disk_qcow2 }}'/>
       <target dev='vda' bus='virtio'/>
     </disk>
     <interface type='bridge'>
-      <source bridge='{{ ha.network }}'/>
-      <mac address='{{ ha.mac }}'/>
+      <source bridge='{{ haos.network }}'/>
+      <mac address='{{ haos.mac }}'/>
       <model type='virtio'/>
     </interface>
     <controller type='usb' model='qemu-xhci' ports='15'/>

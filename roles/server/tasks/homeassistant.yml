@@ -33,7 +33,7 @@
     msg:
       - 'Current VMS'
       - "{{ vms }}"
-      - "{{ ha }}"
+      - "{{ haos }}"
 
 - name: homeassistant | create ha vm if not exists
   block:
@@ -41,13 +41,13 @@
       debug:
         msg:
           - 'Current HA image'
-          - "{{ ha.name }}"
+          - "{{ haos.name }}"
 
        # Download VM HAOS
     - name: homeassistant | download and unarchive
       ansible.builtin.unarchive:
         src: "https://github.com/home-assistant/operating-system/releases/download/7.5/haos_ova-7.5.qcow2.xz"
-        dest: "/home/{{ user.name }}/vms/ha/{{ ha.base_image_name }}"
+        dest: "/home/{{ user.name }}/vms/ha/{{ haos.base_image_name }}"
         remote_src: yes
 
     - name: homeassistant | define vm
@@ -56,4 +56,4 @@
         xml: "{{ lookup('template', 'homeassistant/ha.xml.j2') }}"
         autostart: yes
   when:
-    - ha.name not in vms.list_vms
+    - haos.name not in vms.list_vms
