@@ -28,4 +28,4 @@ haos:
   network: br0
   mac: '08:00:27:a6:74:6a'
   baseimageurl: "https://github.com/home-assistant/operating-system/releases/download/7.5/haos_ova-7.5.qcow2.xz"
-  baseimagename: haos_ova-7.5.qcow.xz
+  baseimagename: haos_ova-7.5.qcow2.xz
