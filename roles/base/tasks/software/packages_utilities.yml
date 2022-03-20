@@ -28,6 +28,7 @@
       - whois
       - zsh
       - lsd
+      - xz
 
 - name: system setup | utilities | install man-pages (arch)
   tags: packages,system,settings
