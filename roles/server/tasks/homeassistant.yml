@@ -31,11 +31,16 @@
 - name: homeassistant | create ha vm if not exists
   block:
        # Download VM HAOS
-    - name: homeassistant | download and unarchive
+    - name: homeassistant | download
+      get_url:
+        url: "{{ haos['baseimagename'] }}"
+        dest: /home/{{ user.name }}/vms/ha
+        mode: 0770
+
+    - name: homeassistant | unarchive
       ansible.builtin.unarchive:
-        src: "{{ haos['baseimagename'] }}"
+        src: /home/{{ user.name }}/vms/ha/{{ haos.baseimagename }}.xz
         dest: /home/{{ user.name }}/vms/ha/
-        remote_src: yes
 
     - name: homeassistant | define vm
       community.libvirt.virt:
@@ -44,3 +49,5 @@
         autostart: yes
   when:
     - haos.name not in vms.list_vms
+  become: yes
+  become_user: "{{ user.name }}"
