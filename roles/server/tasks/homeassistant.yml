@@ -35,7 +35,6 @@
       ansible.builtin.unarchive:
         src: "{{ haos['baseimagename'] }}"
         dest: /home/{{ user.name }}/vms/ha/
-        creates: /home/{{ user.name }}/vms/ha/{{ haos.baseimagename}}
         remote_src: yes
 
     - name: homeassistant | define vm
