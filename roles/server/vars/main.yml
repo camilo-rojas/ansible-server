@@ -19,13 +19,13 @@ nmcli_br_slaves:
     master: br0
 
 haos:
-  - name: HAOS
-    vcpus: 1
-    ram: 3072
-    type: x86_64
-    machine: q35
-    disk_qcow2: "/home/{{ user.name }}/vms/ha/haos_ova-7.5.qcow2"
-    network: br0
-    mac: '08:00:27:a6:74:6a'
-    base_image_url: "https://github.com/home-assistant/operating-system/releases/download/7.5/haos_ova-7.5.qcow2.xz"
-    base_image_name: haos_ova-7.5.qcow.xz
+  name: HAOS
+  vcpus: 1
+  ram: 3072
+  type: x86_64
+  machine: q35
+  disk_qcow2: "/home/{{ user.name }}/vms/ha/haos_ova-7.5.qcow2"
+  network: br0
+  mac: '08:00:27:a6:74:6a'
+  baseimageurl: "https://github.com/home-assistant/operating-system/releases/download/7.5/haos_ova-7.5.qcow2.xz"
+  baseimagename: haos_ova-7.5.qcow.xz

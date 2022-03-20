@@ -46,8 +46,8 @@
        # Download VM HAOS
     - name: homeassistant | download and unarchive
       ansible.builtin.unarchive:
-        src: "{{ haos['base_image_name'] }}"
-        dest: /home/{{ user.name }}/vms/ha/{{ haos["base_image_name"] }}
+        src: "{{ haos['baseimagename'] }}"
+        dest: /home/{{ user.name }}/vms/ha/{{ haos["baseimagename"] }}
         remote_src: yes
 
     - name: homeassistant | define vm
