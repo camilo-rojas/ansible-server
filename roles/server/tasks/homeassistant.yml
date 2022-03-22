@@ -47,6 +47,11 @@
         command: define
         xml: "{{ lookup('template', 'homeassistant/ha.xml.j2') }}"
         autostart: yes
+
+    - name: homeassistant | start vm
+      community.libvirt.virt:
+        name: "{{ haos.name }}"
+        state: running
   when:
     - haos.name not in vms.list_vms
   become: yes

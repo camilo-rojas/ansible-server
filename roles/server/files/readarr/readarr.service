@@ -11,4 +11,4 @@ Restart=on-failure
 SyslogIdentifier=readarr
 
 [Install]
-WantedBy=mult-user.target
+WantedBy=multi-user.target

@@ -1,6 +1,5 @@
 [Unit]
 Description=prowlarr Service
-Wants=network-online.target
 After=syslog.target network-online.target inbox.mount
 
 [Service]
@@ -12,4 +11,4 @@ Restart=on-failure
 SyslogIdentifier=prowlarr
 
 [Install]
-WantedBy=mult-user.target
+WantedBy=multi-user.target
