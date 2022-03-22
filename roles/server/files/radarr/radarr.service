@@ -1,12 +1,14 @@
 [Unit]
-Description=Servarr Service
+Description=radarr Service
 After=syslog.target network-online.target inbox.mount
 
-[Timer]
-User=camilor
-Group=camilor
-OnBootSec=2min
-Unit=servarr.service
+[Service]
+User=radarr
+Group=radarr
+Type=simple
+ExecStart=/usr/lib/radarr/bin/Radarr -nobrowser -data=/var/lib/radarr
+Restart=on-failure
+SyslogIdentifier=radarr
 
 [Install]
 WantedBy=multi-user.target
