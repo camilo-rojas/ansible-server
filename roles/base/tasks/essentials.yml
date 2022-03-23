@@ -23,7 +23,8 @@
   become: yes
   become_user: "{{ user.name }}"
   tags: ansible,ansible-setup,aur,ansible-aur
-  when: ansible_distribution == "Archlinux"
+  when:
+    - ansible_distribution == "Archlinux"
 
 - name: ansible setup | install yay
   become: yes
