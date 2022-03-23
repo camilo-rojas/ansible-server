@@ -173,8 +173,8 @@
 - name: "users | {{ user.name }} | copy tmux config (workstation version)"
   tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
-    src: "{{ users_folder }}/{{ user.name }}/tmux/tmux.conf.workstation"
-    dest: "/home/{{ user.name }}/.tmux.conf"
+    src: "users/{{ user.name }}/tmux/tmux.conf.workstation"
+    dest: "/{{ users_folder }}/{{ user.name }}/.tmux.conf"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0600
