@@ -16,7 +16,7 @@
   tags: backup
   copy:
     src: backup/restore
-    dest: "/home/{{ user.name }}/.config"
+    dest: "/{{ users_folder }}/{{ user.name }}/.config"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: 0755

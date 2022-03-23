@@ -67,7 +67,7 @@
 #create vms directory
 - name: virtualization | create vm dir
   file:
-    path: "/home/{{ user.name }}/vms"
+    path: "/{{ users_folder }}/{{ user.name }}/vms"
     state: directory
   become: yes
   become_user: "{{ user.name }}"
@@ -77,7 +77,7 @@
   tags: qemu, virtualization
   copy:
     src: qemu/br0.xml
-    dest: "/home/{{ user.name }}/.config/br0.xml"
+    dest: "/{{ users_folder }}/{{ user.name }}/.config/br0.xml"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0660

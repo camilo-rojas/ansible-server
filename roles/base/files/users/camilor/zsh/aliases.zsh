@@ -50,3 +50,13 @@ alias rm='rm -I --preserve-root'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
 alias chgrp='chgrp --preserve-root'
+
+#diag tools
+alias bootmsg="echo -n Boot Messages | pv -qL 10 && sudo journalctl -b | ccze -A"
+alias boot="echo -n Boot Time | pv -qL 10 && systemd-analyze"
+alias units="echo -n Listing Units | pv -qL 10 && systemctl list-units"
+alias errors="echo -n Journal Errors | pv -qL 10 && journalctl -b -p err | ccze -A"
+alias meminfo='echo -n "RAM Information   " | pv -qL 10 &&free -m -l -t'
+alias prebootmsg"="sudo journalctl --since=today | tac | sed -n '/-- Reboot --/{n;:r;/-- Reboot --/q;p;n;b r}' | tac"
+alias systemdmsg="sudo journalctl /usr/lib/systemd/systemd | ccze -A"
+alias blame="systemd-analyze blame"

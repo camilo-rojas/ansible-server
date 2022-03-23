@@ -3,7 +3,7 @@
 # This file will flag if initial run for config setup
 - name: Check that the .serverinit exists
   stat:
-    path: "/home/{{ user.name }}/.vnc/config"
+    path: "/{{ users_folder }}/{{ user.name }}/.vnc/config"
   register: vncinit
 
 #Install the software
@@ -31,7 +31,7 @@
 #Creeate .vnc dirs
 - name: vnc | create .vnc dirs
   file:
-    path: "/home/{{ user.name }}/.vnc"
+    path: "/{{ users_folder }}/{{ user.name }}/.vnc"
     state: directory
     mode: 0755
     owner: "{{ user.name }}"
@@ -42,17 +42,17 @@
 - name: vnc | set passwords
   shell: |
     set -o pipefail
-    printf "{{ prompt_vncpwd.user_input }}\n{{ prompt_vncpwd.user_input }}\n\n" | vncpasswd /home/{{ user.name }}/.vnc/passwd
+    printf "{{ prompt_vncpwd.user_input }}\n{{ prompt_vncpwd.user_input }}\n\n" | vncpasswd /{{ users_folder }}/{{ user.name }}/.vnc/passwd
   args:
-    chdir: "/home/{{ user.name }}/.vnc"
-    creates: "/home/{{ user.name }}/.vnc/passwd"
+    chdir: "/{{ users_folder }}/{{ user.name }}/.vnc"
+    creates: "/{{ users_folder }}/{{ user.name }}/.vnc/passwd"
     executable: /bin/bash
   when: vncinit.stat.exists == False
 
 #Set permissions
 - name: vnc | set permission on password
   file:
-    path: "/home/{{ user.name }}/.vnc/passwd"
+    path: "/{{ users_folder }}/{{ user.name }}/.vnc/passwd"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0600
@@ -73,7 +73,7 @@
   tags: vnc
   copy:
     src: vnc/config
-    dest: "/home/{{ user.name }}/.vnc"
+    dest: "/{{ users_folder }}/{{ user.name }}/.vnc"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0660
@@ -86,7 +86,7 @@
   tags: vnc
   copy:
     src: vnc/xstartup
-    dest: "/home/{{ user.name }}/.vnc"
+    dest: "/{{ users_folder }}/{{ user.name }}/.vnc"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0770

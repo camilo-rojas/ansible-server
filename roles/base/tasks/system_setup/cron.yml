@@ -28,4 +28,4 @@
     name: "ansible refresh at boot"
     user: "{{ user.name }}"
     special_time: reboot
-    job: "/bin/rm -rf /home/{{ user.name }}/.ansible"
+    job: "/bin/rm -rf /{{ users_folder }}/{{ user.name }}/.ansible"

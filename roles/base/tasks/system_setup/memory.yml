@@ -6,17 +6,21 @@
     regexp: "swappiness ="
     line: "vm.swappiness = 5"
   register: swappiness
+  when: ansible_distribution == "Archlinux"
 
 - name: system setup | memory | apply swappiness
   tags: swappiness,sysctl,system,setup
   command: sysctl vm.swappiness={{ swappiness_value }}
-  when: swappiness.changed
+  when:
+    - swappiness.changed
+    - ansible_distribution == "Archlinux"
 
 - name: system setup | memory | install earlyoom package
   tags: earlyoom,packages,system,setup
   package:
     name: earlyoom
     state: latest
+  when: ansible_distribution == "Archlinux"
 
 - name: system setup | memory | enable and start earlyoom
   tags: earlyoom,packages,system,setup
@@ -24,3 +28,4 @@
     name: earlyoom
     enabled: yes
     state: started
+  when: ansible_distribution == "Archlinux"

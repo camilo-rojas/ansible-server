@@ -1,10 +1,17 @@
-#Main base configuration variables
-servername: homeserver
+#Main server configuration variables
+
 user:
   name: camilor
   group: camilor
   uid: 1000
   gid: 1000
+  comment: Camilo Rojas
+  groups:
+    - sys
+    - systemd-journal
+    - wheel
+  shell: /bin/zsh
+
 
 #Bridge information
 nmcli_br:
@@ -24,7 +31,7 @@ haos:
   ram: 3072
   type: x86_64
   machine: q35
-  disk_qcow2: "/home/{{ user.name }}/vms/ha/haos_ova-7.5.qcow2"
+  disk_qcow2: "/{{ users_folder }}/{{ user.name }}/vms/ha/haos_ova-7.5.qcow2"
   network: br0
   mac: '08:00:27:a6:74:6a'
   baseimageurl: "https://github.com/home-assistant/operating-system/releases/download/7.5/haos_ova-7.5.qcow2.xz"

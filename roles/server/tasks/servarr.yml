@@ -413,7 +413,7 @@
     path: "{{ item.dir }}"
     state: directory
   with_items:
-    - { dir: '/home/camilor/.config/qBittorrent' }
+    - { dir: '/{{ users_folder }}/{{ user.name }}/.config/qBittorrent' }
   become: yes
   become_user: "{{ user.name }}"
   when: not serverinit.stat.exists
@@ -422,7 +422,7 @@
   tags: servaar
   copy:
     src: qb/config
-    dest: "/home/{{ user.name }}/.config/qBittorrent/qBittorrent.conf"
+    dest: "/{{ users_folder }}/{{ user.name }}/.config/qBittorrent/qBittorrent.conf"
     backup: yes
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -515,7 +515,7 @@
   tags: servarr
   copy:
     src: servarr/startServarr
-    dest: "/home/{{ user.name }}/.config"
+    dest: "/{{ users_folder }}/{{ user.name }}/.config"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0770
@@ -527,7 +527,7 @@
   tags: servarr
   copy:
     src: servarr/stopServarr
-    dest: "/home/{{ user.name }}/.config"
+    dest: "/{{ users_folder }}/{{ user.name }}/.config"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0770

@@ -1,4 +1,4 @@
-# Ansible setup
+# Archlinux esseentials
 - name: ansible setup | ensure ansible is the latest version
   tags: ansible,ansible-setup
   package:
@@ -12,12 +12,7 @@
       - "{{ dconf_package }}"
       - "{{ python_psutil_package }}"
     state: latest
-
-- name: ansible setup | install essential packages
-  tags: ansible,ansible-setup,packages
-  package:
-    name: '{{ essential_packages }}'
-    state: latest
+  when: ansible_distribution == "Archlinux"
 
 - name: ansible setup | ansible-aur setup
   git:
@@ -28,6 +23,7 @@
   become: yes
   become_user: "{{ user.name }}"
   tags: ansible,ansible-setup,aur,ansible-aur
+  when: ansible_distribution == "Archlinux"
 
 - name: ansible setup | install yay
   become: yes
@@ -36,21 +32,12 @@
     name: yay
     use: makepkg
     state: latest
+  when: ansible_distribution == "Archlinux"
 
 - name: system setup | alacritty font | change font size alacritty
   replace:
-    path: "/home/{{ user.name }}/.config/alacritty/alacritty.yml"
+    path: "/{{ users_folder }}/{{ user.name }}/.config/alacritty/alacritty.yml"
     regexp: "  size: 12"
     replace: "  size: {{ alacritty_font_size }}"
     backup: yes
-
-- name: system setup | enable openssh daemon
-  ansible.builtin.systemd:
-      name: sshd
-      enabled: yes
-      masked: no
-
-- name: system setup | start openssh daemon
-  ansible.builtin.systemd:
-      state: started
-      name: sshd
+  when: ansible_distribution == "Archlinux"

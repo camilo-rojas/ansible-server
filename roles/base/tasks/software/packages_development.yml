@@ -32,3 +32,5 @@
     url: "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
     dest: /{{ users_folder }}/{{ user.name }}/.config
     mode: 0770
+  become: yes
+  become_user: "{{ user.name }}"

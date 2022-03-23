@@ -1,0 +1,24 @@
+---
+#Copy custom service file
+- name: system setup | power | load powertop service unit file
+  tags: powertop
+  copy:
+    src: system_setup/powertop.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
+
+- name: system setup | power | daemon reload
+  systemd: daemon_reload=yes
+
+- name: system setup | power | enable service powertop and ensure it is not masked
+  systemd:
+    name: powertop
+    enabled: yes
+    masked: no
+
+- name: system setup | power | start service powertop
+  systemd:
+    name: powertop
+    state: started

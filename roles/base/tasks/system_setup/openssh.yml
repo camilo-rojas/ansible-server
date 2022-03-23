@@ -4,6 +4,7 @@
     name: "{{ openssh_package }}"
     state: latest
   notify: restart_sshd
+  when: ansible_distribution == "Archlinux"
 
 - name: system setup | openssh | enable daemon
   tags: openssh,ssh,system,settings
@@ -11,6 +12,7 @@
     name: "{{ openssh_service }}"
     enabled: yes
     state: started
+  when: ansible_distribution == "Archlinux"
 
 - name: system setup | openssh | generate sshd_config file from template
   tags: openssh,ssh,system,settings
@@ -21,6 +23,7 @@
     group: root
     mode: 0644
   notify: restart_sshd
+  when: ansible_distribution == "Archlinux"
 
 - name: system setup | openssh | copy issue.net
   tags: openssh,ssh,system,settings
@@ -30,3 +33,10 @@
     owner: root
     group: root
     mode: 0644
+  when: ansible_distribution == "Archlinux"
+
+- name: system setup | openssh | start openssh daemon
+  ansible.builtin.systemd:
+      state: started
+      name: "{{ openssh_service }}"
+  when: ansible_distribution == "Archlinux"

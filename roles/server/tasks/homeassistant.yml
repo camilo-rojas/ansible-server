@@ -4,7 +4,7 @@
 - name: homeassistant | create vm dir
   tags: homeassistant
   file:
-    path: "/home/{{ user.name }}/vms/ha"
+    path: "/{{ users_folder }}/{{ user.name }}/vms/ha"
     state: directory
   become: yes
   become_user: "{{ user.name }}"
@@ -14,7 +14,7 @@
   tags: homeassistant
   copy:
     src: homeassistant/cpHA
-    dest: "/home/{{ user.name }}/.config"
+    dest: "/{{ users_folder }}/{{ user.name }}/.config"
     owner: "{{ user.name }}"
     group: "{{ user.name }}"
     mode: 0755
@@ -34,13 +34,13 @@
     - name: homeassistant | download
       get_url:
         url: "{{ haos['baseimageurl'] }}"
-        dest: /home/{{ user.name }}/vms/ha
+        dest: /{{ users_folder }}/{{ user.name }}/vms/ha
         mode: 0770
 
     - name: homeassistant | unarchive
       shell:
-        cmd: unxz /home/{{ user.name }}/vms/ha/{{ haos.baseimagename }}
-        chdir: /home/{{ user.name }}/vms/ha/
+        cmd: unxz /{{ users_folder }}/{{ user.name }}/vms/ha/{{ haos.baseimagename }}
+        chdir: /{{ users_folder }}/{{ user.name }}/vms/ha/
 
     - name: homeassistant | define vm
       community.libvirt.virt:

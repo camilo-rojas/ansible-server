@@ -1,5 +1,4 @@
 #Main base configuration variables
-servername: homeserver
 user:
   name: camilor
   group: camilor
@@ -11,14 +10,3 @@ user:
     - systemd-journal
     - wheel
   shell: /bin/zsh
-
-essential_packages:
-  - htop
-  - tmux
-  - openssh
-  - git
-  - zsh
-  - nano
-  - vi
-  - ntfs-3g
-  - iperf
