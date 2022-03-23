@@ -6,3 +6,4 @@ sudo systemctl stop radarr
 sudo systemctl stop readarr
 sudo systemctl stop lidarr
 sudo systemctl stop ombi
+sudo systemctl stop vncserver@:1

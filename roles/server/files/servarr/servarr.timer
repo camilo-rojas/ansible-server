@@ -5,7 +5,7 @@ After=syslog.target network-online.target inbox.mount
 [Timer]
 User=camilor
 Group=camilor
-OnBootSec=2min
+OnBootSec=3min
 Unit=servarr.service
 
 [Install]

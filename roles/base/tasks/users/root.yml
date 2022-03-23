@@ -14,6 +14,7 @@
       - { dir: '.vim' }
       - { dir: '.vim/colors' }
   tags: dotfiles
+  when: ansible_distribution == "Archlinux"
 
 - name: users | root | copy dotfiles
   copy:
@@ -31,3 +32,4 @@
       - { src: 'vim/xoria256.vim', dest: '.vim/colors/xoria256.vim' }
       - { src: 'zsh/zshrc', dest: '.zshrc' }
   tags: dotfiles
+  when: ansible_distribution == "Archlinux"

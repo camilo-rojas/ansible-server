@@ -374,12 +374,6 @@
 - name: servarr | bazarr | daemon reload
   systemd: daemon_reload=yes
 
-- name: servarr | servarr | enable service and ensure it is not masked
-  systemd:
-    name: servarr.service
-    enabled: yes
-    masked: no
-
 - name: servarr | servarr | enable timer and ensure it is not masked
   systemd:
     name: servarr.timer

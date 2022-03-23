@@ -17,3 +17,18 @@
       - tig
       - python-pexpect
     state: latest
+
+- name: system setup | development packages | .config dir
+  tags: dev, development, python
+  file:
+    path: "/{{ users.folder }}/{{ user.name }}/.config"
+    state: directory
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: system setup | development packages | download speedtest
+  tags: dev, development, python
+  get_url:
+    url: "{{ haos['baseimageurl'] }}"
+    dest: /{{ users.folder }}/{{ user.name }}/.config
+    mode: 0770

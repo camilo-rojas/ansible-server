@@ -1,3 +1,5 @@
+---
+
 - name: "users | {{ user.name }} | create group"
   tags: "groups, {{ user.name }},users"
   group:
@@ -19,6 +21,7 @@
   ansible.builtin.command: "usermod --shell /bin/zsh {{ user.name }}"
   become: true
   changed_when: false
+  when: ansible_distribution == "Archlinux"
 
 - name: "users | {{ user.name }} | add sudoers file"
   tags: "{{ user.name }},settings,sudo,system,users"
@@ -29,6 +32,7 @@
     group: root
     mode: 0440
     validate: 'visudo -cf %s'
+  when: ansible_distribution == "Archlinux"
 
 - name: "users | {{ user.name }} | create .ssh directory"
   tags: "dotfiles,{{ user.name }},ssh,users"
@@ -39,7 +43,7 @@
     group: "{{ user.group }}"
     mode: 0700
   with_items:
-    - { dir: '/home/{{ user.name }}/.ssh' }
+    - { dir: '/{{ users_folder }}/{{ user.name }}/.ssh' }
 
 - name: "users | {{ user.name }} | add public key"
   tags: "dotfiles,{{ user.name }},ssh,ssh-keys,users"
@@ -53,7 +57,7 @@
   tags: "{{ user.name }},keys,ssh"
   copy:
     src: users/{{ user.name }}/ssh/{{ user.name }}_id_ed25519.pub
-    dest: "/home/{{ user.name }}/.ssh/id_ed25519.pub"
+    dest: "/{{ users_folder }}/{{ user.name }}/.ssh/id_ed25519.pub"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0600
@@ -61,7 +65,7 @@
 - name: "users | {{ user.name }} | create config directories"
   tags: "dotfiles,{{ user.name }},tmux,users,vim,zsh"
   file:
-    path: "/home/{{ user.name }}/{{ item.dir }}"
+    path: "/{{ users_folder }}/{{ user.name }}/{{ item.dir }}"
     state: directory
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -85,7 +89,7 @@
 - name: "users | {{ user.name }} | Download oh my zsh"
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: "/home/{{ user.name }}/.oh-my-zsh"
+    dest: "/{{ users_folder }}/{{ user.name }}/.oh-my-zsh"
     depth: 1
   become: yes
   become_user: "{{ user.name }}"
@@ -93,7 +97,7 @@
 - name: "users | {{ user.name }} | create powerlevel10k theme"
   tags: "dotfiles,{{ user.name }},tmux,users,vim,zsh"
   file:
-    path: "/home/{{ user.name }}/{{ item.dir }}"
+    path: "/{{ users_folder }}/{{ user.name }}/{{ item.dir }}"
     state: directory
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -104,7 +108,7 @@
 - name: "users | {{ user.name }} | Download pk10k"
   git:
     repo: https://github.com/romkatv/powerlevel10k.git
-    dest: "/home/{{ user.name }}/.oh-my-zsh/themes/powerlevel10k"
+    dest: "/{{ users_folder }}/{{ user.name }}/.oh-my-zsh/themes/powerlevel10k"
     depth: 1
   become: yes
   become_user: "{{ user.name }}"
@@ -112,7 +116,7 @@
 - name: "users | {{ user.name }} | create zsh-syntax-highlighting oh-my-zsh plugin"
   tags: "dotfiles,{{ user.name }},users,zsh"
   file:
-    path: "/home/{{ user.name }}/{{ item.dir }}"
+    path: "/{{ users_folder }}/{{ user.name }}/{{ item.dir }}"
     state: directory
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -123,7 +127,7 @@
 - name: "users | {{ user.name }} | Download autosuggestions plugin"
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: "/home/{{ user.name }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+    dest: "/{{ users_folder }}/{{ user.name }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
     depth: 1
   become: yes
   become_user: "{{ user.name }}"
@@ -131,7 +135,7 @@
 - name: "users | {{ user.name }} | create autosuggestions oh-my-zsh plugin"
   tags: "dotfiles,{{ user.name }},users,zsh"
   file:
-    path: "/home/{{ user.name }}/{{ item.dir }}"
+    path: "/{{ users_folder }}/{{ user.name }}/{{ item.dir }}"
     state: directory
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -142,7 +146,7 @@
 - name: "users | {{ user.name }} | Download autosuggestions plugin"
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
-    dest: "/home/{{ user.name }}/.oh-my-zsh/plugins/zsh-autosuggestions"
+    dest: "/{{ users_folder }}/{{ user.name }}/.oh-my-zsh/plugins/zsh-autosuggestions"
     depth: 1
   become: yes
   become_user: "{{ user.name }}"
@@ -151,7 +155,7 @@
   tags: "dotfiles,{{ user.name }},users,zsh"
   copy:
     src: "users/{{ user.name }}/zsh/aliases.zsh"
-    dest: "/home/{{ user.name }}/.oh-my-zsh/custom/aliases.zsh"
+    dest: "/{{ users_folder }}/{{ user.name }}/.oh-my-zsh/custom/aliases.zsh"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0600
@@ -160,7 +164,7 @@
   tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
     src: "users/{{ user.name }}/tmux/tmux.conf.server"
-    dest: "/home/{{ user.name }}/.tmux.conf"
+    dest: "/{{ users_folder }}/{{ user.name }}/.tmux.conf"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0600
@@ -169,7 +173,7 @@
 - name: "users | {{ user.name }} | copy tmux config (workstation version)"
   tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
-    src: "users/{{ user.name }}/tmux/tmux.conf.workstation"
+    src: "{{ users_folder }}/{{ user.name }}/tmux/tmux.conf.workstation"
     dest: "/home/{{ user.name }}/.tmux.conf"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
@@ -180,7 +184,7 @@
   tags: "dotfiles,users,{{ user.name }},tmux,users,vim,zsh"
   copy:
     src: "users/{{ user.name }}/{{ item.src }}"
-    dest: "/home/{{ user.name }}/{{ item.dest }}"
+    dest: "/{{ users_folder }}/{{ user.name }}/{{ item.dest }}"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0600
@@ -202,7 +206,7 @@
   tags: "dotfiles,{{ user.name }},users,tmux"
   git:
     repo: https://github.com/srsudar/tmux-completion.git
-    dest: "/home/{{ user.name }}/.tmux/plugins/completion"
+    dest: "/{{ users_folder }}/{{ user.name }}/.tmux/plugins/completion"
     force: yes
   notify: update_tmux_plugin_perms
 
@@ -210,7 +214,7 @@
   tags: "dotfiles,{{ user.name }},users,tmux"
   git:
     repo: https://github.com/tmux-plugins/tmux-continuum
-    dest: "/home/{{ user.name }}/.tmux/plugins/continuum"
+    dest: "/{{ users_folder }}/{{ user.name }}/.tmux/plugins/continuum"
     force: yes
   notify: update_tmux_plugin_perms
 
@@ -218,7 +222,7 @@
   tags: "dotfiles,{{ user.name }},users,tmux"
   git:
     repo: https://github.com/tmux-plugins/tmux-resurrect
-    dest: "/home/{{ user.name }}/.tmux/plugins/resurrect"
+    dest: "/{{ users_folder }}/{{ user.name }}/.tmux/plugins/resurrect"
     force: yes
   notify: update_tmux_plugin_perms
 
@@ -226,7 +230,7 @@
   tags: "dotfiles,{{ user.name }},users,zsh"
   copy:
     src: "users/{{ user.name }}/zsh/{{ item.src }}"
-    dest: "/home/{{ user.name }}/.zsh/{{ item.src }}"
+    dest: "/{{ users_folder }}/{{ user.name }}/.zsh/{{ item.src }}"
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0600

@@ -12,8 +12,6 @@ user:
     - wheel
   shell: /bin/zsh
 
-swappiness_value: 5
-alacritty_font_size: 10
 essential_packages:
   - htop
   - tmux
