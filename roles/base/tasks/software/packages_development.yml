@@ -29,6 +29,6 @@
 - name: system setup | development packages | download speedtest
   tags: dev, development, python
   get_url:
-    url: "{{ haos['baseimageurl'] }}"
+    url: "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
     dest: /{{ users.folder }}/{{ user.name }}/.config
     mode: 0770
