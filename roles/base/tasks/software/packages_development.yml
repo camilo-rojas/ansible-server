@@ -21,7 +21,7 @@
 - name: system setup | development packages | .config dir
   tags: dev, development, python
   file:
-    path: "/{{ users.folder }}/{{ user.name }}/.config"
+    path: "/{{ users_folder }}/{{ user.name }}/.config"
     state: directory
   become: yes
   become_user: "{{ user.name }}"
@@ -30,5 +30,5 @@
   tags: dev, development, python
   get_url:
     url: "https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py"
-    dest: /{{ users.folder }}/{{ user.name }}/.config
+    dest: /{{ users_folder }}/{{ user.name }}/.config
     mode: 0770
