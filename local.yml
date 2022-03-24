@@ -21,9 +21,5 @@
 - hosts: server
   tags: server
   become: true
-#  vars_prompt:
-#    - name: smb_pwd
-#      prompt: 'Server profile started - Variables for playbook - Samba Share password?'
-#      private: yes
   roles:
     - server
