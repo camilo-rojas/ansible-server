@@ -23,6 +23,12 @@
   changed_when: false
   when: ansible_distribution == "Archlinux"
 
+- name: "users | {{ user.name }} | set login shell of user {{ user.name }} to `/bin/zsh` with `usermod`"
+  ansible.builtin.command: "chsh -s /bin/zsh {{ user.name }}"
+  become: true
+  changed_when: false
+  when: ansible_distribution == "MacOSX"
+
 - name: "users | {{ user.name }} | add sudoers file"
   tags: "{{ user.name }},settings,sudo,system,users"
   copy:
@@ -110,7 +116,6 @@
     dest: "/{{ users_folder }}/{{ user.name }}/.oh-my-zsh/themes/powerlevel10k"
     depth: 1
   become: yes
-  become_user: "{{ user.name }}"
 
 - name: "users | {{ user.name }} | create zsh-syntax-highlighting oh-my-zsh plugin"
   tags: "dotfiles,{{ user.name }},users,zsh"
