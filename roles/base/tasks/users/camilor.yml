@@ -29,7 +29,7 @@
     src: "users/sudoers_{{ user.name }}"
     dest: "{{ sudoer_folder }}/{{ user.name }}"
     owner: root
-    group: {{ root_group }}
+    group: "{{ root_group }}"
     mode: 0440
     validate: 'visudo -cf %s'
 

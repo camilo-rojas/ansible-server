@@ -7,7 +7,7 @@
     src: backup/backup
     dest: /etc/cron.daily
     owner: root
-    group: {{ root_group }}
+    group: "{{ root_group }}"
     mode: 0755
   become: yes
 

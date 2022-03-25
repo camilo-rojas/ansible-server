@@ -49,7 +49,7 @@
   file:
     path: /etc/.smb_cred
     owner: root
-    group: {{ root_group }}
+    group: "{{ root_group }}"
     mode: '0600'
     state: touch
   when: smbc_exists.stat.exists == False

@@ -8,7 +8,7 @@
     path: /root/{{ item.dir }}
     state: directory
     owner: root
-    group: {{ root_group }}
+    group: "{{ root_group }}"
     mode: 0700
   with_items:
       - { dir: '.vim' }
@@ -21,7 +21,7 @@
     src: users/root/{{ item.src }}
     dest: /root/{{ item.dest}}
     owner: root
-    group: {{ root_group }}
+    group: "{{ root_group }}"
     mode: 0600
   with_items:
       - { src: 'bash/bashrc', dest: '.bashrc' }
