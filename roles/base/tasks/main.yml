@@ -39,6 +39,7 @@
 - block:
   #users
   - import_tasks: users/root.yml
+  - import_tasks: users/{{ user.name }}.yml
   rescue:
     - set_fact: task_failed=true
   when: ansible_distribution == "MacOSX"

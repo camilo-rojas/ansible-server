@@ -1,3 +1,5 @@
 ---
 
 users_folder: Users
+sudo_group: admin
+sudoer_folder: /private/etc/sudoers.d

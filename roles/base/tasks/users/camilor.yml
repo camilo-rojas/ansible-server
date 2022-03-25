@@ -11,7 +11,7 @@
   user:
     name: "{{ user.name }}"
     group: "{{ user.group }}"
-    groups: "adm,wheel,{{ sudo_group }}"
+    groups: "{{ sudo_group }}"
     state: present
     comment: "{{ user.comment }}"
     shell: /bin/zsh
@@ -27,12 +27,11 @@
   tags: "{{ user.name }},settings,sudo,system,users"
   copy:
     src: "users/sudoers_{{ user.name }}"
-    dest: "/etc/sudoers.d/{{ user.name }}"
+    dest: "{{ sudoer_folder }}/{{ user.name }}"
     owner: root
     group: root
     mode: 0440
     validate: 'visudo -cf %s'
-  when: ansible_distribution == "Archlinux"
 
 - name: "users | {{ user.name }} | create .ssh directory"
   tags: "dotfiles,{{ user.name }},ssh,users"
