@@ -40,6 +40,11 @@
   #users
   - import_tasks: users/root.yml
   - import_tasks: users/{{ user.name }}.yml
+  - import_tasks: essentials.yml
+  # install software
+  - import_tasks: software/packages_development.yml
+  - import_tasks: software/packages_utilities.yml
+
   rescue:
     - set_fact: task_failed=true
   when: ansible_distribution == "MacOSX"
