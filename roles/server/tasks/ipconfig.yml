@@ -55,7 +55,7 @@
 #    src: ipconfig/20-wired.network
 #    dest: /etc/systemd/network/20-wired.network
 #    owner: root
-#    group: root
+#    group: {{ root_group }}
 #    mode: 0660
 #  become: yes
 #  become_user: root

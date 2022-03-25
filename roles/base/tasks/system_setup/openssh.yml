@@ -20,7 +20,7 @@
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
     owner: root
-    group: root
+    group: {{ root_group }}
     mode: 0644
   notify: restart_sshd
   when: ansible_distribution == "Archlinux"
@@ -31,7 +31,7 @@
     src: system_setup/openssh_issue.net
     dest: /etc/issue.net
     owner: root
-    group: root
+    group: {{ root_group }}
     mode: 0644
   when: ansible_distribution == "Archlinux"
 

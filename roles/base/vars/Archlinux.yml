@@ -19,6 +19,7 @@ rename_package: perl-rename
 ruby_rake_package: ruby-rake
 sftp_path: /usr/lib/ssh/sftp-server
 sudo_group: wheel
+root_group: root
 sudoer_folder: /etc/sudoers.d
 vim_package: gvim
 alacritty_font_size: 10

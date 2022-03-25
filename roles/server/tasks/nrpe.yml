@@ -14,7 +14,7 @@
     src: nrpe.cfg.j2
     dest: "{{ nrpe_config_file_dest }}"
     owner: root
-    group: root
+    group: {{ root_group }}
     mode: 0644
   notify: restart_nrpe
 
@@ -31,7 +31,7 @@
     src: nrpe/{{ item }}
     dest: "{{ monitoring_plugins_path }}/{{ item }}"
     owner: root
-    group: root
+    group: {{ root_group }}
     mode: 0755
   with_items:
     - check_hddtemp
@@ -55,7 +55,7 @@
     src: nrpe/logrotate
     dest: /etc/logrotate.d/nrpe
     owner: root
-    group: root
+    group: {{ root_group }}
     mode: 0644
 
 - name: nrpe | clean up unneeded files (debian, etc)
