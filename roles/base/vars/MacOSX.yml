@@ -20,3 +20,4 @@ nfs_client_package: nfs-utils
 openssh_package: openssh
 openssh_service: sshd
 vim_package: vim
+at: awk

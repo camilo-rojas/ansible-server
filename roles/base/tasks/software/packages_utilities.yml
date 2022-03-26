@@ -3,7 +3,7 @@
   package:
     state: latest
     name:
-      - at
+      - "{{ at }}"
       - colordiff
       - curl
       - "{{ dns_utils_package}}"
