@@ -28,3 +28,4 @@ alacritty_font_size: 10
 swappiness_value: 5
 users_folder: home
 at: at
+iotop: iotop
