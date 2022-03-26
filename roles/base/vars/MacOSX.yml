@@ -16,7 +16,7 @@ python_pexpect: python
 rename_package: perl-rename
 ruby_rake_package: ruby
 lm_sensors_package: osx-cpu-temp
-nfs_client_package: nfs-utils
+nfs_client_package: libnfs
 openssh_package: openssh
 openssh_service: sshd
 vim_package: vim
