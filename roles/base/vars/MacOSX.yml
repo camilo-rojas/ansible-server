@@ -15,7 +15,7 @@ python_virtualenv_package: python
 python-pexpect: python
 rename_package: perl-rename
 ruby_rake_package: ruby-rake
-lm_sensors_package: lm-sensors
+lm_sensors_package: vitalsigns
 nfs_client_package: nfs-utils
 openssh_package: openssh
 openssh_service: sshd
