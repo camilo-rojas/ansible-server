@@ -9,10 +9,10 @@ python_flake8_package: flake8
 python_package: python
 python_pip_package: python
 python_psutil_package: python
-python-setuptools: python
+python_setuptools: python
 python_pyflakes_package: flake8
 python_virtualenv_package: python
-python-pexpect: python
+python_pexpect: python
 rename_package: perl-rename
 ruby_rake_package: ruby-rake
 lm_sensors_package: osx-cpu-temp
@@ -22,4 +22,4 @@ openssh_service: sshd
 vim_package: vim
 at: awk
 iotop: iftop
-net-tools: iftop
+net_tools: iftop

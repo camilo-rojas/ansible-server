@@ -13,7 +13,7 @@
       - lsof
       - mosh
 #      - ncdu
-      - "{{ net-tools }}"
+      - "{{ net_tools }}"
       - "{{ nfs_client_package }}"
       - nmap
       - ranger
