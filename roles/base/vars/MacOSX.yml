@@ -35,7 +35,6 @@ utilities_packages:
   - openssh
   - git
   - nano
-  - ntfs-3g
   - iperf
   - iotop
   - iftop
