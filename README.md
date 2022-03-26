@@ -1,8 +1,10 @@
 # ansible-server / my ansible home server config
-Ansible configuration for home server with all home services
+Ansible configuration for home server with all home services.  Extended now to support other personal machines for work and home use.
 ---
 
-My distro is Garuda Dr460nized Arch
+My server distro is Garuda Dr460nized Arch.
+My work laptop is MacOSX
+
 Setup crons itself to run every 30 mins to keep package updated
 
 Installation
@@ -36,6 +38,8 @@ Installation
 Available Applications
 ---
 
+Server
+---
 - *Yay* - AUR package manager
 - *Sonarr* - TV episodes manager
 - *Lidarr* - Music collection manager
@@ -48,19 +52,11 @@ Available Applications
 - *Homer* - Home server dashboard
 - *Home Assistant* - Open source home automation
 - *Hugo* - Go based website static site generator
-- Basic packages - vi, git, tmux, openssh, htop, zsh, ufw, qemu, nrpe, lsd, etc..
+- Basic packages - vim, git, tmux, openssh, htop, zsh, p10k, ufw, kmv/qemu, nrpe, lsd, etc..
 
-Future apps being considered
+Workstation
 ---
-
-- *Guacamole* - Apache Guacamole implementation
-- *Bitwarden_rs* - Self-Hosting port of password manager
-- *n8n* - Nodemation, a node based workflow and automation service like IFTTT.
-- *netboot.xyz* - a PXE boot server
-- *Portainer* - for managing Docker and running custom images
-- *Syncthing* - sync directories with another device
-- *YouTubeDL-Material* - Self-hosted YouTube downloader built on Material Design
-
+- Basic packages - vim, git, tmux, htop, zsh, p10k, etc..
 
 Status
 ---
