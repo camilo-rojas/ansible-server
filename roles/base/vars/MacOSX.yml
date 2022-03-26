@@ -23,3 +23,4 @@ vim_package: vim
 at: awk
 iotop: iftop
 net_tools: iftop
+sshfs: libnfs

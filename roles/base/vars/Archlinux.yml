@@ -30,3 +30,4 @@ users_folder: home
 at: at
 iotop: iotop
 net_tools: net-tools
+sshfs: sshfs

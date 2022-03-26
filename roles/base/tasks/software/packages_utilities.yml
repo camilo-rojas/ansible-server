@@ -20,7 +20,7 @@
       - "{{ rename_package }}"
       - rsync
       - screen
-      - sshfs
+      - "{{ sshfs }}"
       - tmux
       - traceroute
       - "{{ vim_package }}"
