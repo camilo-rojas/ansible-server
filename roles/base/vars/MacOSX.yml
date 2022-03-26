@@ -37,7 +37,6 @@ utilities_packages:
   - nano
   - iperf
   - iftop
-  - sshfs
   - tcptraceroute
   - vim
   - bind
