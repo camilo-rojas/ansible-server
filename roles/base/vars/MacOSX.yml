@@ -36,7 +36,6 @@ utilities_packages:
   - git
   - nano
   - iperf
-  - iotop
   - iftop
   - sshfs
   - tcptraceroute
