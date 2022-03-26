@@ -29,3 +29,4 @@ swappiness_value: 5
 users_folder: home
 at: at
 iotop: iotop
+net-tools: net-tools
