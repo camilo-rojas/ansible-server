@@ -22,7 +22,7 @@
       - screen
       - "{{ sshfs }}"
       - tmux
-      - traceroute
+      - "{{ traceroute }}"
       - "{{ vim_package }}"
       - wget
       - whois

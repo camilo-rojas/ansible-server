@@ -31,3 +31,4 @@ at: at
 iotop: iotop
 net_tools: net-tools
 sshfs: sshfs
+traceroute: traceroute

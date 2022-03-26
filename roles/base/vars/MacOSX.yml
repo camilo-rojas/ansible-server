@@ -24,3 +24,4 @@ at: awk
 iotop: iftop
 net_tools: iftop
 sshfs: libnfs
+traceroute: tcptraceroute
