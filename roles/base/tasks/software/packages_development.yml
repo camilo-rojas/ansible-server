@@ -17,6 +17,8 @@
       - tig
       - python-pexpect
     state: latest
+  become: yes
+  become_user: "{{ user.name }}"
 
 - name: system setup | development packages | .config dir
   tags: dev, development, python

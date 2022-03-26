@@ -37,6 +37,8 @@
       - vi
       - ntfs-3g
       - iperf
+  become: yes
+  become_user: "{{ user.name }}"
 
 - name: system setup | utilities | install man-pages (arch)
   tags: packages,system,settings

@@ -4,6 +4,8 @@
   package:
     name: ansible
     state: latest
+  become: yes
+  become_user: "{{ user.name }}"
 
 - name: ansible setup | install required packages
   tags: ansible,ansible-setup,packages
