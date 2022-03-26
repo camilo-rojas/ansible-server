@@ -10,12 +10,12 @@
       - "{{ python_package }}"
       - "{{ python_pip_package }}"
       - "{{ python_pyflakes_package }}"
-      - python-setuptools
+      - "{{ python-setuptools }}"
       - "{{ python_virtualenv_package }}"
       - ruby
       - "{{ ruby_rake_package }}"
       - tig
-      - python-pexpect
+      - "{{ python-pexpect }}"
     state: latest
   become: yes
   become_user: "{{ user.name }}"

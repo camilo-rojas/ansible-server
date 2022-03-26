@@ -8,8 +8,10 @@ python_flake8_package: flake8
 python_package: python
 python_pip_package: python
 python_psutil_package: python
+python-setuptools: python
 python_pyflakes_package: flake8
 python_virtualenv_package: python
+python-pexpect: python
 rename_package: perl-rename
 ruby_rake_package: ruby-rake
 lm_sensors_package: lm_sensors
