@@ -19,3 +19,4 @@ lm_sensors_package: lm_sensors
 nfs_client_package: nfs-utils
 openssh_package: openssh
 openssh_service: sshd
+vim_package: vim
