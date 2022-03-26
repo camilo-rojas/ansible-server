@@ -13,7 +13,7 @@ python_setuptools: python
 python_pyflakes_package: flake8
 python_virtualenv_package: python
 python_pexpect: python
-rename_package: perl-rename
+rename_package: perl
 ruby_rake_package: ruby
 lm_sensors_package: osx-cpu-temp
 nfs_client_package: libnfs
