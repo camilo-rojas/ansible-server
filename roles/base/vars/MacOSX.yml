@@ -3,25 +3,46 @@
 users_folder: Users
 sudo_group: admin
 sudoer_folder: /private/etc/sudoers.d
-dns_utils_package: bind
 root_group: wheel
-python_flake8_package: flake8
-python_package: python
-python_pip_package: python
-python_psutil_package: python
-python_setuptools: python
-python_pyflakes_package: flake8
-python_virtualenv_package: python
-python_pexpect: python
-rename_package: perl
-ruby_rake_package: ruby
-lm_sensors_package: osx-cpu-temp
-nfs_client_package: libnfs
-openssh_package: openssh
-openssh_service: sshd
-vim_package: vim
-at: awk
-iotop: iftop
-net_tools: iftop
-sshfs: libnfs
-traceroute: tcptraceroute
+
+development_packages:
+  - fabric
+  - flake8
+  - git
+  - perl
+  - python
+  - ruby
+  - tig
+
+utilities_packages:
+  - colordiff
+  - curl
+  - htop
+  - lsof
+  - mosh
+  - nmap
+  - ranger
+  - rsync
+  - screen
+  - tmux
+  - wget
+  - whois
+  - zsh
+  - lsd
+  - xz
+  - pv
+  - ccze
+  - openssh
+  - git
+  - nano
+  - vi
+  - ntfs-3g
+  - iperf
+  - iotop
+  - iftop
+  - sshfs
+  - tcptraceroute
+  - vim
+  - bind
+  - osx-cpu-temp
+  - libnfs

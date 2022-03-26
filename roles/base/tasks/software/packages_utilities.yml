@@ -2,41 +2,7 @@
   tags: packages,system,settings
   package:
     state: latest
-    name:
-      - "{{ at }}"
-      - colordiff
-      - curl
-      - "{{ dns_utils_package}}"
-      - htop
-      - "{{ iotop }}"
-      - "{{ lm_sensors_package }}"
-      - lsof
-      - mosh
-#      - ncdu
-      - "{{ net_tools }}"
-      - "{{ nfs_client_package }}"
-      - nmap
-      - ranger
-      - "{{ rename_package }}"
-      - rsync
-      - screen
-      - "{{ sshfs }}"
-      - tmux
-      - "{{ traceroute }}"
-      - "{{ vim_package }}"
-      - wget
-      - whois
-      - zsh
-      - lsd
-      - xz
-      - pv
-      - ccze
-      - openssh
-      - git
-      - nano
-      - vi
-      - ntfs-3g
-      - iperf
+    name: "{{ utilities_packages }}"
   become: yes
   become_user: "{{ user.name }}"
 
