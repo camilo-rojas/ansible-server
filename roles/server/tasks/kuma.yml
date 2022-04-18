@@ -8,3 +8,29 @@
       - uptime-kuma
   become: yes
   become_user: "{{ user.name }}"
+
+#Copy custom service file
+- name: Uptime Kuma | replace with custom service file
+  tags: kuma
+  copy:
+    src: kuma/uptime-kuma.service
+    dest: /etc/systemd/system
+    owner: "{{ user.name }}"
+    group: "{{ user.group }}"
+    mode: 0644
+  when: not serverinit.stat.exists
+
+- name: Uptime Kuma | daemon reload
+  systemd: daemon_reload=yes
+
+#Enable Lidarr service
+- name: Uptime Kuma | enable service and ensure it is not masked
+  systemd:
+    name: uptime-kuma
+    enabled: yes
+    masked: no
+
+- name: Uptime Kuma | start service
+  systemd:
+    name: uptime-kuma
+    state: started

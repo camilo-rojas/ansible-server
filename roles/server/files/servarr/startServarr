@@ -7,3 +7,4 @@ sudo systemctl start readarr
 sudo systemctl start lidarr
 sudo systemctl start ombi
 sudo systemctl start vncserver@:1
+sudo systemctl start uptime-kuma
