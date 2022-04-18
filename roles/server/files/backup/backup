@@ -20,3 +20,6 @@ sudo systemctl start ombi
 sudo systemctl stop prowlarr
 sudo rsync -arzz --delete --quiet /var/lib/prowlarr /inbox/backups/homeserver
 sudo systemctl start prowlarr
+sudo systemctl stop uptime-kuma
+sudo rsync -arzz --delete --quiet /usr/lib/node_modules/uptime-kuma/data /inbox/backups/homeserver/kuma
+sudo systemctl start uptime-kuma
