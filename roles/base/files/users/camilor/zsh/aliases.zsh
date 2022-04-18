@@ -47,9 +47,9 @@ alias dir10='du -cksh * | sort -hr | head -n 10'
 alias rm='rm -I --preserve-root'
 
 # Parenting changing perms on / #
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
+#alias chown='chown --preserve-root'
+#alias chmod='chmod --preserve-root'
+#alias chgrp='chgrp --preserve-root'
 
 #diag tools
 alias bootmsg="echo -n Boot Messages | pv -qL 10 && sudo journalctl -b | ccze -A"

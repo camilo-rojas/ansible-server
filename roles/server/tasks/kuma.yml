@@ -1,0 +1,10 @@
+---
+
+#Install Uptime Kuma
+- name: Uptime Kuma | Install using yay
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - uptime-kuma
+  become: yes
+  become_user: "{{ user.name }}"

@@ -42,3 +42,5 @@ utilities_packages:
   - bind
   - osx-cpu-temp
   - libnfs
+  - neofetch
+  - fsf
