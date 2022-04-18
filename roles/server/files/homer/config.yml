@@ -161,6 +161,11 @@ services:
   - name: "Tools"
     icon: "fas fa-tools"
     items:
+      - name: "Uptime Kuma"
+        logo: "assets/img/png/nagios.png"
+        subtitle: "Monitoring"
+        tag: "monigoring"
+        url: "http://homeserver.local:3001"
       - name: "qB"
         logo: "assets/img/png/qbittorrent.png"
         subtitle: "Bittorrent"
