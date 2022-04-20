@@ -98,6 +98,7 @@
     depth: 1
   become: yes
   become_user: "{{ user.name }}"
+  ignore_errors: yes
 
 - name: "users | {{ user.name }} | create powerlevel10k theme"
   tags: "dotfiles,{{ user.name }},tmux,users,vim,zsh"
@@ -136,6 +137,7 @@
     depth: 1
   become: yes
   become_user: "{{ user.name }}"
+  ignore_errors: yes
 
 - name: "users | {{ user.name }} | create autosuggestions oh-my-zsh plugin"
   tags: "dotfiles,{{ user.name }},users,zsh"
@@ -155,6 +157,7 @@
     depth: 1
   become: yes
   become_user: "{{ user.name }}"
+  ignore_errors: yes
 
 - name: "users | {{ user.name }} | copy zsh aliases files"
   tags: "dotfiles,{{ user.name }},users,zsh"
@@ -216,6 +219,7 @@
     dest: "/{{ users_folder }}/{{ user.name }}/.tmux/plugins/completion"
     force: yes
   notify: update_tmux_plugin_perms
+  ignore_errors: yes
 
 - name: "users | {{ user.name }} | clone tmux-continuum plugin repository"
   tags: "dotfiles,{{ user.name }},users,tmux"
@@ -224,6 +228,7 @@
     dest: "/{{ users_folder }}/{{ user.name }}/.tmux/plugins/continuum"
     force: yes
   notify: update_tmux_plugin_perms
+  ignore_errors: yes
 
 - name: "users | {{ user.name }} | clone tmux-resurrect plugin repository"
   tags: "dotfiles,{{ user.name }},users,tmux"
@@ -232,6 +237,7 @@
     dest: "/{{ users_folder }}/{{ user.name }}/.tmux/plugins/resurrect"
     force: yes
   notify: update_tmux_plugin_perms
+  ignore_errors: yes
 
 - name: "users | {{ user.name }} | copy individual zsh config files"
   tags: "dotfiles,{{ user.name }},users,zsh"
