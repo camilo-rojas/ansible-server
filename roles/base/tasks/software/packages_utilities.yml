@@ -4,7 +4,6 @@
     state: latest
     name: "{{ utilities_packages }}"
   become: yes
-  become_user: "{{ user.name }}"
 
 - name: system setup | utilities | install man-pages (arch)
   tags: packages,system,settings
