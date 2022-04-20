@@ -361,6 +361,7 @@
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0644
+  when: not serverinit.stat.exists
 
 - name: servarr | servarr | add service file
   tags: servaar
@@ -370,6 +371,7 @@
     owner: "{{ user.name }}"
     group: "{{ user.group }}"
     mode: 0644
+  when: not serverinit.stat.exists
 
 - name: servarr | bazarr | daemon reload
   systemd: daemon_reload=yes
