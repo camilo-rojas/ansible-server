@@ -161,7 +161,7 @@ services:
         logo: "assets/img/png/nginxproxymanager.png"
         subtitle: "Reverse proxy"
         tag: "network"
-        url: "https://192.168.0.15:81"
+        url: "http://192.168.0.15:81"
         target: "_blank"
 
   - name: "Tools"
