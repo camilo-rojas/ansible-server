@@ -63,4 +63,3 @@ utilities_packages:
   - net-tools
   - sshfs
   - traceroute
-  - vim
