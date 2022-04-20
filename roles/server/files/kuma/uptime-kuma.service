@@ -6,7 +6,7 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/usr/lib/node_modules/uptime-kuma/
-ExecStart=/usr/lib/node server/server.js
+ExecStart=/usr/lib/node server/server.js -e UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=1
 Restart=on-failure
 
 [Install]
