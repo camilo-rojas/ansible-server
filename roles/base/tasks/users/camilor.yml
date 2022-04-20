@@ -116,6 +116,7 @@
     dest: "/{{ users_folder }}/{{ user.name }}/.oh-my-zsh/themes/powerlevel10k"
     depth: 1
   become: yes
+  ignore_errors: yes
 
 - name: "users | {{ user.name }} | create zsh-syntax-highlighting oh-my-zsh plugin"
   tags: "dotfiles,{{ user.name }},users,zsh"
