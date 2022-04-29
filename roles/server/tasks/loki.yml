@@ -29,7 +29,6 @@
     group: loki
     mode: 0644
   become: yes
-  when: not serverinit.stat.exists
 
 #Copy config files
 - name: servarr | loki | copy promtail config
@@ -41,7 +40,6 @@
     group: promtail
     mode: 0644
   become: yes
-  when: not serverinit.stat.exists
 
 
 #Enable promtail service
