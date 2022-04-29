@@ -36,6 +36,8 @@
   - import_tasks: vnc.yml
 # Install Uptime Kuma
   - import_tasks: kuma.yml
+# Install Loki
+  - import_tasks: loki.yml
 #Upgrades for Debian based
   - include_tasks: unattended_upgrades.yml
     when:

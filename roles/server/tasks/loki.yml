@@ -1,0 +1,70 @@
+---
+#Install Loki
+- name: servarr | loki | Install loki using yay
+  tags: loki
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - loki
+  become: yes
+  become_user: "{{ user.name }}"
+
+#Install Promtail
+- name: servarr | loki | Install promtail using yay
+  tags: promtail
+  kewlfft.aur.aur:
+    use: yay
+    name:
+      - promtail
+  become: yes
+  become_user: "{{ user.name }}"
+
+#Copy config files
+- name: servarr | loki | copy loki config
+  tags: loki
+  copy:
+    src: loki/loki.yaml
+    dest: /etc/loki/loki.yaml
+    owner: loki
+    group: loki
+    mode: 0644
+  become: yes
+  when: not serverinit.stat.exists
+
+#Copy config files
+- name: servarr | loki | copy promtail config
+  tags: promtail
+  copy:
+    src: loki/promtail.yaml
+    dest: /etc/loki/promtail.yaml
+    owner: promtail
+    group: promtail
+    mode: 0644
+  become: yes
+  when: not serverinit.stat.exists
+
+
+#Enable promtail service
+- name: servarr | loki | enable service  and ensure it is not masked
+  systemd:
+    name: promtail
+    enabled: yes
+    masked: no
+
+- name: servarr | loki | start service loki
+  systemd:
+    name: promtail
+    state: started
+
+
+#Enable loki service
+- name: servarr | loki | enable service  and ensure it is not masked
+  systemd:
+    name: loki
+    enabled: yes
+    masked: no
+
+- name: servarr | loki | start service loki
+  systemd:
+    name: loki
+    state: started
