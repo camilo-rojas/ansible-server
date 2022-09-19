@@ -1,6 +1,13 @@
-[server]
-homeserver ansible_connection=local
-[laptop]
-camilowork.local ansible_connection=local
-[workstations]
-camilor ansible_connection=local
+all:
+  hosts:
+  children:
+    server:
+      hosts:
+        homeserver:
+    laptop:
+      hosts:
+        camilowork.local:
+    workstations:
+      hosts:
+        camilor:
+
